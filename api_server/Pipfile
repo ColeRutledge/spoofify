@@ -19,6 +19,7 @@ python-dotenv = "*"
 psycopg2-binary = "*"
 sqlalchemy = "*"
 flask-login = "*"
+flask-cors = "*"
 
 [requires]
 python_version = "3.8"

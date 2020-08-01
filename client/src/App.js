@@ -8,7 +8,6 @@ function App() {
 
       try {
         const result = await fetch(`http://host.docker.internal:5000/create-user`)
-        // console.log(result)
 
         if (result.ok) {
           const data = await result.json()
@@ -31,6 +30,12 @@ function App() {
   return (
     <>
       <h1>Hello React!</h1>
+      <ul>
+        <li>{user.id}</li>
+        <li>{user.name}</li>
+        <li>{user.email}</li>
+        <li>{user.password}</li>
+      </ul>
     </>
   );
 }
