@@ -1,0 +1,6 @@
+{
+  "python.autoComplete.extraPaths": [
+    "./api_server"
+  ],
+  "python.linting.enabled": false,
+}
