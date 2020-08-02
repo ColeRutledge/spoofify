@@ -29,7 +29,7 @@ function App() {
 
   return (
     <>
-      <h1>Hello React!</h1>
+      <h1>Hello from the React App!</h1>
       <ul>
         <li>{user.id}</li>
         <li>{user.name}</li>
