@@ -6,10 +6,11 @@ services:
     image: flaskapp
     ports:
       - 5000:5000
+    restart: always
     environment:
       FLASK_APP: entry.py
-      FLASK_ENV: development
-      DATABASE_URL: postgresql://flask_api:password@postgres/flask_api_db
+      FLASK_ENV: ${FLASK_ENV}
+      DATABASE_URL: ${DATABASE_URL}
     networks:
       pgflaskapp:
     volumes:
@@ -21,9 +22,9 @@ services:
   db:
     image: postgres:12-alpine
     environment:
-      POSTGRES_USER: flask_api
-      POSTGRES_PASSWORD: password
-      POSTGRES_DB: flask_api_db
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
     volumes:
       - postgres-db:/var/lib/postgresql/data
     networks:
@@ -35,6 +36,7 @@ services:
     build:
       context: ./client
       target: dev
+    image: reactapp
     volumes:
       - ./client:/app:delegated
       - /app/node_modules

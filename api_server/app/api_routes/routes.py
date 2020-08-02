@@ -5,11 +5,11 @@ from app.models import db, User
 bp = Blueprint('index', __name__, url_prefix='')
 
 
-@bp.before_request
-def to_allowed_host():
-  print(request.url_root)
-  if 'host.docker.internal' not in request.url_root:
-    abort(403)
+# @bp.before_request
+# def to_allowed_host():
+#   print(request.url_root)
+#   if 'host.docker.internal' not in request.url_root:
+#     abort(403)
   # if request.remote_addr != '127.0.0.1':
   #   abort(403)
 
@@ -29,6 +29,7 @@ def create_user():
   }
   user = User(**new_user)
   user.set_password = 'flask'
+
   print('*****MADE IT HERE*********', new_user)
   # db.session.add(user)
   # db.session.commit()
