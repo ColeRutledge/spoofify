@@ -33,6 +33,21 @@ def create_user():
   print()
   print('*****USER ADDED*****', { **new_user, 'password': user.hashed_password[:30] })
   print()
-  # db.session.add(user)
-  # db.session.commit()
+  db.session.add(user)
+  db.session.commit()
   return jsonify({ **new_user, 'password': user.hashed_password }), 201
+
+
+@bp.route('/users')
+def get_users():
+  print()
+  print('********GETTING USERS********')
+  print()
+  users = User.query.all()
+  res = [{
+    'id': user.id,
+    'name': user.name,
+    'email': user.email,
+    'password': user.password,
+    } for user in users]
+  return jsonify(res)
