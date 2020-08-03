@@ -30,3 +30,16 @@
 - Flask_RESTful
 - python-dotenv
 - psycopg2-binary (although we won't use this if Mongo)
+
+
+## Setup
+1. Clone project
+2. Create .env files in the root directory (example.env included)
+3. Create .env file in api_server directory with DATABASE_URL
+4. From the root directory, run [docker-compose up]
+
+## To run locally:
+1. cd into either api_server or client
+2. install packages locally
+3. npm start or flask run (with venv activated)
+
