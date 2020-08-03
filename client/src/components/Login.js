@@ -1,11 +1,14 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { useForm } from 'react-hook-form'
 import { TextField, Button } from '@material-ui/core'
+
+import UserContext from '../context/UserContext'
 
 const apiUrl = process.env.REACT_APP_API_SERVER_BASE_URL
 
 
 const Login = () => {
+  const { users, setUsers } = useContext(UserContext)
   const { register, handleSubmit } = useForm()
 
   const onSubmit = async data => {
@@ -21,6 +24,7 @@ const Login = () => {
         console.log('Success!')
         let data = await res.json()
         console.log(data)
+        setUsers([ data, ...users ])
       } else throw res
 
     } catch (err) {
