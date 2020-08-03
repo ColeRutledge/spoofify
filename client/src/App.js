@@ -1,41 +1,23 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
+// import React, { useState, useEffect } from 'react';
+import Login from './components/Login'
 
 function App() {
-  const [user, setUser] = useState({})
+  // const [user, setUser] = useState({})
 
-  useEffect(() => {
-    const fetchUsers = async () => {
-
-      try {
-        const result = await fetch(`http://host.docker.internal:5000/create-user`)
-
-        if (result.ok) {
-          const data = await result.json()
-          setUser(data)
-          console.log(data)
-        } else {
-          throw result
-        }
-
-      } catch (e) {
-        console.log(e)
-      }
-    }
-    fetchUsers()
-
-  }, [])
-
+  // useEffect(() => {}, [])
 
 
   return (
     <>
-      <h1>Hello from the React App!</h1>
-      <ul>
+      <h1 style={{ fontFamily: 'Roboto', textAlign: 'center' }}>Hello from the React App!</h1>
+      {/* <ul>
         <li>{user.id}</li>
         <li>{user.name}</li>
         <li>{user.email}</li>
         <li>{user.password}</li>
-      </ul>
+      </ul> */}
+      <Login />
     </>
   );
 }
