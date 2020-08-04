@@ -28,8 +28,8 @@ const Users = () => {
     <>
       {!users
         ? <div>No users</div>
-        : <div style={{ display: 'flex', justifyContent: 'center' }}>
-          <TableContainer className={classes.container} component={Paper}>
+        : <div style={{ display: 'flex', justifyContent: 'center', margin: '0px 25px 25px', paddingTop: '50px' }}>
+          <TableContainer component={Paper}>
             <Table className={classes.table} aria-label="simple table">
               <TableHead>
                 <TableRow>
