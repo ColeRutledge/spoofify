@@ -2,11 +2,15 @@ import React, { useState, useEffect } from 'react'
 import UserContext from './context/UserContext'
 import Login from './components/Login'
 import Users from './components/Users'
+import PlayBar from './components/PlayBar'
 
 const apiUrl = process.env.REACT_APP_API_SERVER_BASE_URL
 
 function App() {
-  const [ users, setUsers ] = useState([])
+  const [users, setUsers] = useState([])
+  const [currentTime, setCurrentTime] = useState('0:00')
+  const [duration, setDuration] = useState('0:00')
+  const [isPlaying, setIsPlaying] = useState(false)
 
   useEffect(() => {
     const getUsers = async () => {
@@ -28,6 +32,12 @@ function App() {
   const context = {
     users,
     setUsers,
+    currentTime,
+    setCurrentTime,
+    isPlaying,
+    setIsPlaying,
+    duration,
+    setDuration
   }
 
   return (
@@ -35,6 +45,7 @@ function App() {
       <h1 style={{ fontFamily: 'Roboto', textAlign: 'center' }}>Hello from the React App!</h1>
       <Login />
       {users && <Users />}
+      <PlayBar />
     </UserContext.Provider>
   )
 }
