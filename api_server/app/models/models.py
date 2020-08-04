@@ -55,7 +55,7 @@ class Song(db.Model):
   album_id = db.Column(db.Integer, db.ForeignKey("albums.id"),nullable=False)
   songURL = db.Column(db.String(255))
   songLength = db.Column(db.Time)
-
+#Change songLength to Numeric 
   album = db.relationship("Album", back_populates="songs")
   playlist_songs = db.relationship("PlaylistSong", back_populates="song")
 
