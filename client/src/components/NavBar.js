@@ -14,10 +14,7 @@ const NavBar = () => {
   }
 
   const containerStyles = {
-    // backgroundColor: '#282828',
-    // backgroundColor: 'rgb(25,20,20)',
     backgroundColor: 'hsl(0deg, 0%, 0%)',
-    // backgroundColor: 'cmyk(100%, 0%, 0%, 0%)',
     display: 'flex',
     flexDirection: 'column',
     width: '250px',

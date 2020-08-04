@@ -10,7 +10,7 @@
 body {
   font-family: "Circular Spotify Tx T Black";
   margin-left: 250px;
-  background-color: #121212;
+  /* background-color: #121212; */
 }
 
 a {
@@ -27,6 +27,7 @@ a {
 
 a:hover {
   color: #b3b3b3;
+  cursor: default;
 }
 
 /* .MuiPaper-root {
