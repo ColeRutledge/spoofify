@@ -5,10 +5,10 @@ from app.models import db, User
 bp = Blueprint('index', __name__)
 
 
-@bp.before_request
-def to_allowed_host():
-  if 'host.docker.internal' not in request.url_root:
-    abort(403)
+# @bp.before_request
+# def to_allowed_host():
+#   if 'host.docker.internal' not in request.url_root:
+#     abort(403)
   # if request.remote_addr != '127.0.0.1':
   #   abort(403)
 
