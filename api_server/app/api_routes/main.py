@@ -5,7 +5,7 @@ from app.models import db, User
 bp = Blueprint('index', __name__)
 
 
-@bp.before_request
+# @bp.before_request
 # def to_allowed_host():
 #   if 'host.docker.internal' not in request.url_root:
 #     abort(403)
@@ -24,7 +24,7 @@ def create_user():
 
   new_user = {
     'id': len(User.query.all()) + 1,
-    'name': data['name'],
+    'name': data['userName'],
     'email': data['email'],
   }
   user = User(**new_user)

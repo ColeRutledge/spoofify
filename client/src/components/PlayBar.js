@@ -20,8 +20,8 @@ const PlayBar = () => {
                 </div>
                 <div>
                     <h1>Other options</h1>
-                </div >
-            </BottomNavigation >
+                </div>
+            </BottomNavigation>
         </div>
     )
 }

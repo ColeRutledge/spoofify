@@ -32,7 +32,7 @@ class Artist(db.Model):
   id = db.Column(db.Integer, primary_key=True)
   name = db.Column(db.String(100), nullable=False)
   bio = db.Column(db.Text)
-  imageURL = db.Column(db.String(255))
+  image_url = db.Column(db.String(255))
 
   albums = db.relationship("Album", back_populates="artist")
 
@@ -42,7 +42,7 @@ class Album(db.Model):
   id = db.Column(db.Integer, primary_key=True)
   title = db.Column(db.String(100), nullable=False)
   artist_id = db.Column(db.Integer, db.ForeignKey("artists.id"),nullable=False)
-  imageURL = db.Column(db.String(255))
+  image_url = db.Column(db.String(255))
 
   artist = db.relationship("Artist", back_populates="albums")
   songs = db.relationship("Song", back_populates="album")
@@ -53,8 +53,8 @@ class Song(db.Model):
   id = db.Column(db.Integer, primary_key=True)
   title = db.Column(db.String(100), nullable=False)
   album_id = db.Column(db.Integer, db.ForeignKey("albums.id"),nullable=False)
-  songURL = db.Column(db.String(255))
-  songLength = db.Column(db.Time)
+  song_url = db.Column(db.String(255))
+  song_length = db.Column(db.Integer)
 #Change songLength to Numeric 
   album = db.relationship("Album", back_populates="songs")
   playlist_songs = db.relationship("PlaylistSong", back_populates="song")
@@ -75,7 +75,7 @@ class Playlist(db.Model):
   id = db.Column(db.Integer, primary_key=True)
   name = db.Column(db.String(50), nullable=False)
   description = db.Column(db.Text)
-  imageURL = db.Column(db.String(50))
+  image_url = db.Column(db.String(50))
   user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
 
   playlist_songs = db.relationship("PlaylistSong", back_populates="playlist")
