@@ -38,3 +38,37 @@ Package List
   - Flask_RESTful
   - python-dotenv
   - psycopg2-binary (although we won't use this if Mongo)
+
+
+
+## API Endpoints
+
+### User
+- Create User
+- Delete User
+- Update User
+- Return Users
+- User Auth -> /token
+
+### Playlist
+- Create Playlist
+- Delete Playlist
+- Update Playlist (add/remove)
+- Return Playlist
+
+### User Library
+- Add/Remove Songs
+- Return Song Library
+- Return Artist Library
+- Return Album Library
+- Return Genre Library (optional)
+
+### Spotify Library
+- Return Song Library
+- Return Artist Library
+- Return Album Library
+- Return Genre Library (optional)
+
+
+docker container exec -it spotify_clone_db_1 /bin/sh
+psql -U flask_api -W flask_api_db
