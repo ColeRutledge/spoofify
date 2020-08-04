@@ -5,7 +5,7 @@ from app.models import db, User
 bp = Blueprint('index', __name__)
 
 
-# @bp.before_request
+@bp.before_request
 # def to_allowed_host():
 #   if 'host.docker.internal' not in request.url_root:
 #     abort(403)

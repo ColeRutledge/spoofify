@@ -1,1 +1,1 @@
-from .routes import bp
+from .main import bp
