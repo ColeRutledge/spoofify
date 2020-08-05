@@ -6,7 +6,8 @@ import PlayBar from '../components/PlayBar'
 import Users from '../components/Users'
 import Login from '../components/Login'
 import Register from '../components/Register'
-import PlayBar from '../components/PlayBar'
+import ProtectedRoute from './ProtectedRoute'
+
 
 const Routes = () => {
   return (
@@ -15,9 +16,9 @@ const Routes = () => {
       <PlayBar />
       <Switch>
         <Route exact path='/' render={() => <Landing />} />
-        <Route path='/users' render={() => <Users />} />
         <Route path='/login' render={() => <Login />} />
         <Route path='/register' render={() => <Register />} />
+        <ProtectedRoute path='/users' component={Users}/>
       </Switch>
     </BrowserRouter>
   )

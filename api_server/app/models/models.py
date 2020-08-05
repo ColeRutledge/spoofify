@@ -1,5 +1,6 @@
 from flask_login import UserMixin
 from flask_sqlalchemy import SQLAlchemy
+from flask_jwt_extended import create_access_token
 from werkzeug.security import check_password_hash, generate_password_hash
 from dataclasses import dataclass
 
@@ -18,8 +19,8 @@ class User(db.Model, UserMixin):
 
   id = db.Column(db.Integer, primary_key=True)
   user_name = db.Column(db.String(50), nullable=False)
-  first_name = db.Column(db.String(50),nullable=False)
-  last_name = db.Column(db.String(50),nullable=False)
+  first_name = db.Column(db.String(50), nullable=False)
+  last_name = db.Column(db.String(50), nullable=False)
   email = db.Column(db.String(255), nullable=False, unique=True)
   hashed_password = db.Column(db.String(128))
 
@@ -35,6 +36,9 @@ class User(db.Model, UserMixin):
 
   def check_password(self, password):
     return check_password_hash(self.password, password)
+
+  def get_token(self):
+    return create_access_token(identity={'email': self.email, 'id': self.id})
 
 @dataclass
 class Artist(db.Model):
@@ -87,7 +91,7 @@ class Song(db.Model):
   title = db.Column(db.String(100), nullable=False)
   album_id = db.Column(db.Integer, db.ForeignKey("albums.id"),nullable=False)
   song_url = db.Column(db.String(255))
-  #song length measured in seconds Todo: convert to minutes 
+  #song length measured in seconds Todo: convert to minutes
   song_length = db.Column(db.Integer)
   # album = db.relationship(Album, back_populates="songs")
   album = db.relationship(Album)
