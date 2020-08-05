@@ -39,6 +39,7 @@ const ProgressBar = () => {
             }, 1000);
             setMyInterval(interval)
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [isPlaying])
 
     const secondsToMinutes = (seconds) => {
@@ -52,7 +53,7 @@ const ProgressBar = () => {
     }
 
     return (
-        <div style={{ display: 'flex', alignItems: 'center', flexDirection: 'row' }}>
+        <div style={{ color: '#b3b3b3', display: 'flex', alignItems: 'center', flexDirection: 'row' }}>
             <p style={{ marginRight: '10px', fontSize: '12px' }}>{secondsToMinutes(currentTime)}</p>
             <Slider onMouseUp={seekTime} step={step} style={{ color: 'grey', width: '350px' }}></Slider>
             <p style={{ marginLeft: '10px', fontSize: '12px' }}>{audio ? secondsToMinutes(audio.duration) : '0:00'}</p>

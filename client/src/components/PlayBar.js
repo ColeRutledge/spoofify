@@ -1,5 +1,4 @@
 import React from 'react'
-import { BottomNavigation } from '@material-ui/core'
 import PlayBarIcons from './PlayBarIcons'
 import VolumeUpRoundedIcon from '@material-ui/icons/VolumeUpRounded';
 import ProgressBar from './ProgressBar'
@@ -9,7 +8,7 @@ import VolumeBar from './VolumeBar'
 const PlayBar = () => {
     return (
         <div>
-            <BottomNavigation style={{ height: '100px', width: '100%', position: 'fixed', bottom: '0px', display: 'grid', gridTemplateColumns: '1fr 1fr 1fr' }}>
+            <div style={{ backgroundColor: '#121212', height: '100px', width: '100%', position: 'fixed', bottom: '0px', display: 'grid', gridTemplateColumns: '1fr 1fr 1fr' }}>
                 <audio id='song'>
                     <source src='https://endless-tumblr.s3-us-west-2.amazonaws.com/all-the-small-things.mp3' type='audio/mpeg' />
                 </audio>
@@ -24,7 +23,7 @@ const PlayBar = () => {
                     <VolumeUpRoundedIcon style={{ marginRight: '10px' }} />
                     <VolumeBar />
                 </div >
-            </BottomNavigation >
+            </div >
         </div>
     )
 }

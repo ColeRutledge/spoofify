@@ -30,3 +30,8 @@ a:hover {
   color: #b3b3b3;
   cursor: default;
 }
+
+
+.MuiSvgIcon-root {
+  fill: #b3b3b3 !important;
+}
