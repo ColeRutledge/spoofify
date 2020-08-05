@@ -5,11 +5,11 @@ import Routes from './components/Routes'
 
 
 function App() {
-  const [ currentTime, setCurrentTime ] = useState('0:00')
-  const [ duration, setDuration ] = useState('0:00')
-  const [ isPlaying, setIsPlaying ] = useState(false)
+  const [currentTime, setCurrentTime] = useState(0)
+  const [duration, setDuration] = useState(0)
+  const [isPlaying, setIsPlaying] = useState(false)
+  const [volume, setVolume] = useState(0.4)
   const [ auth, setAuth ] = useState(localStorage.getItem('token') || '')
-
 
   const context = {
     currentTime,
@@ -20,6 +20,8 @@ function App() {
     setDuration,
     auth,
     setAuth,
+    volume,
+    setVolume
   }
 
   return (
