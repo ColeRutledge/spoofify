@@ -30,6 +30,12 @@ a:hover {
   cursor: default;
 }
 
+.splash-page{
+  /* background-image: url('./images/spotifysplash.png'); */
+  /* width: 100%;
+  height: 100%; */
+}
+
 /* .MuiPaper-root {
   color: white;
   background-color: #282828;

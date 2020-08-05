@@ -11,10 +11,11 @@ const apiUrl = process.env.REACT_APP_API_SERVER_BASE_URL
 
 function App() {
 
-  const [currentTime, setCurrentTime] = useState('0:00')
-  const [duration, setDuration] = useState('0:00')
+  const [currentTime, setCurrentTime] = useState(0)
+  const [duration, setDuration] = useState(0)
   const [isPlaying, setIsPlaying] = useState(false)
-  const [ users, setUsers ] = useState(null)
+  const [volume, setVolume] = useState(0.4)
+  const [users, setUsers] = useState(null)
 
 
   useEffect(() => {
@@ -42,7 +43,9 @@ function App() {
     isPlaying,
     setIsPlaying,
     duration,
-    setDuration
+    setDuration,
+    volume,
+    setVolume
   }
 
   return (
