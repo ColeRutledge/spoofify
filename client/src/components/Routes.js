@@ -6,7 +6,7 @@ import PlayBar from '../components/PlayBar'
 import Users from '../components/Users'
 import Login from '../components/Login'
 import Register from '../components/Register'
-
+import PlayBar from '../components/PlayBar'
 
 const Routes = () => {
   return (

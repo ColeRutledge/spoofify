@@ -5,7 +5,7 @@ from app.models import db, User
 bp = Blueprint('index', __name__)
 
 
-@bp.before_request
+# @bp.before_request
 # def to_allowed_host():
 #   if 'host.docker.internal' not in request.url_root:
 #     abort(403)
@@ -18,13 +18,16 @@ def index():
   return render_template('index.pug')
 
 
+
 @bp.route('/create-user', methods=['POST'])
 def create_user():
   data = request.get_json()
 
   new_user = {
     'id': len(User.query.all()) + 1,
-    'name': data['name'],
+    'name': data['userName'],
+    #first_name: data['first_name'],
+    #last_name: data['last_name'],
     'email': data['email'],
   }
   user = User(**new_user)
@@ -48,6 +51,8 @@ def get_users():
     'id': user.id,
     'name': user.name,
     'email': user.email,
+    #'first_name': user.first_name,
+    #'last_name': user.last_name,
     'password': user.password,
     } for user in users]
   return jsonify(res)
