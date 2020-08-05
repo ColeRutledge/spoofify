@@ -8,8 +8,8 @@ const apiUrl = process.env.REACT_APP_API_SERVER_BASE_URL
 
 const Register = () => {
   const [ registerError, setRegisterError ] = useState('')
-  const { setLoggedIn } = useContext(UserContext)
   const { register, handleSubmit, errors } = useForm()
+  const { setAuth } = useContext(UserContext)
 
   const onSubmit = async data => {
     console.log(data)
@@ -28,10 +28,11 @@ const Register = () => {
         }
         console.log('Success!')
         localStorage.setItem('token', data.token)
-        setLoggedIn(true)
+        setAuth(data.token)
         console.log(data)
       } else throw res
 
+        setAuth(data.token)
     } catch (err) {
       console.log(err)
     }

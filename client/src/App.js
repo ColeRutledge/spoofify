@@ -8,7 +8,7 @@ function App() {
   const [ currentTime, setCurrentTime ] = useState('0:00')
   const [ duration, setDuration ] = useState('0:00')
   const [ isPlaying, setIsPlaying ] = useState(false)
-  const [ loggedIn, setLoggedIn ] = useState(false)
+  const [ auth, setAuth ] = useState(localStorage.getItem('token') || '')
 
 
   const context = {
@@ -18,8 +18,8 @@ function App() {
     setIsPlaying,
     duration,
     setDuration,
-    loggedIn,
-    setLoggedIn,
+    auth,
+    setAuth,
   }
 
   return (

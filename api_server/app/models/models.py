@@ -1,6 +1,6 @@
 from flask_login import UserMixin
 from flask_sqlalchemy import SQLAlchemy
-from flask_jwt_extended import jwt_required, create_access_token
+from flask_jwt_extended import create_access_token
 from werkzeug.security import check_password_hash, generate_password_hash
 
 db = SQLAlchemy()
@@ -30,7 +30,7 @@ class User(db.Model, UserMixin):
     return check_password_hash(self.password, password)
 
   def get_token(self):
-    return create_access_token(identity={'email': self.email})
+    return create_access_token(identity={'email': self.email, 'id': self.id})
 
 
 class Artist(db.Model):
