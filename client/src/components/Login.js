@@ -1,30 +1,35 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { TextField, Button, Typography } from '@material-ui/core'
-
 import UserContext from '../context/UserContext'
 
 const apiUrl = process.env.REACT_APP_API_SERVER_BASE_URL
 
 
 const Login = () => {
-  const { users, setUsers } = useContext(UserContext)
+  const [ loginError, setLoginError ] = useState('')
+  const { setLoggedIn } = useContext(UserContext)
   const { register, handleSubmit, errors } = useForm()
 
   const onSubmit = async data => {
     console.log(data)
     try {
-      const res = await fetch(`${apiUrl}/create-user`, {
+      const res = await fetch(`${apiUrl}/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data),
       })
 
       if (res.ok) {
-        console.log('Success!')
         let data = await res.json()
+        if (data.error) {
+          setLoginError(data.error)
+          return
+        }
+        console.log('Success!')
+        localStorage.setItem('token', data.token)
+        setLoggedIn(true)
         console.log(data)
-        setUsers([ data, ...users ])
       } else throw res
 
     } catch (err) {
@@ -46,21 +51,6 @@ const Login = () => {
         style={{ display: 'flex', flexDirection: 'column', width: '40ch' }}
         color='primary'
       >
-        <TextField
-          label='User Name'
-          name='userName'
-          variant='outlined'
-          style={{ margin: '15px 0' }}
-          inputRef={register({ required: true, maxLength: 50 })}
-        />
-        {errors.userName?.type === 'required' &&
-          <Typography style={errorStyles}
-            >Username required.
-          </Typography>}
-        {errors.userName?.type === 'maxLength' &&
-          <Typography style={errorStyles}
-            >Username cannot exceed 50 characters.
-          </Typography>}
         <TextField
           label='Email Address'
           name='email'
@@ -96,6 +86,10 @@ const Login = () => {
         {errors.password?.type === 'pattern' &&
           <Typography style={errorStyles}
             >Invalid password.
+          </Typography>}
+        {loginError &&
+          <Typography style={{...errorStyles, marginTop: '2px' }}
+            >{loginError}
           </Typography>}
         <Button
           variant='outlined'

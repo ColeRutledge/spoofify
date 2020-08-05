@@ -2,27 +2,30 @@ import React, { useContext, useEffect } from 'react';
 import { Slider } from '@material-ui/core'
 import UserContext from '../context/UserContext';
 
+
+
 const ProgressBar = () => {
+    const { currentTime, setCurrentTime, isPlaying } = useContext(UserContext);
+
     const audio = document.getElementById('song');
     const slider = document.querySelector('.MuiSlider-track');
     const thumb = document.querySelector('.MuiSlider-thumb')
 
-    const { currentTime, setCurrentTime, isPlaying } = useContext(UserContext);
-
     useEffect(() => {
-        if (audio && isPlaying) {
-            setInterval(() => {
-                setCurrentTime(secondsToMinutes(audio.currentTime))
-                slider.style.width = `${(audio.currentTime / audio.duration) * 100}%`
-                thumb.setAttribute('aria-valuenow', (audio.currentTime / audio.duration) * 100)
-                thumb.style.left = `${(audio.currentTime / audio.duration) * 100}%`
-                if (!isPlaying) {
-                    clearInterval()
-                }
-            }, 1000);
-        } else {
-            setCurrentTime('0:00')
-        }
+      if (audio && isPlaying) {
+          setInterval(() => {
+              setCurrentTime(secondsToMinutes(audio.currentTime))
+              slider.style.width = `${(audio.currentTime / audio.duration) * 100}%`
+              thumb.setAttribute('aria-valuenow', (audio.currentTime / audio.duration) * 100)
+              thumb.style.left = `${(audio.currentTime / audio.duration) * 100}%`
+              if (!isPlaying) {
+                  clearInterval()
+              }
+          }, 1000);
+      } else {
+          setCurrentTime('0:00')
+      }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [isPlaying])
 
     const secondsToMinutes = (seconds) => {

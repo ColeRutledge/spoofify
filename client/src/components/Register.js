@@ -1,35 +1,40 @@
-import React, { useContext } from 'react'
+import React, { useState, useContext } from 'react'
 import { useForm } from 'react-hook-form'
 import { TextField, Button, Typography } from '@material-ui/core'
-
 import UserContext from '../context/UserContext'
 
 const apiUrl = process.env.REACT_APP_API_SERVER_BASE_URL
 
 
 const Register = () => {
-  const { users, setUsers } = useContext(UserContext)
+  const [ registerError, setRegisterError ] = useState('')
+  const { setLoggedIn } = useContext(UserContext)
   const { register, handleSubmit, errors } = useForm()
 
   const onSubmit = async data => {
     console.log(data)
-    // try {
-    //   const res = await fetch(`${apiUrl}/create-user`, {
-    //     method: 'POST',
-    //     headers: { 'Content-Type': 'application/json' },
-    //     body: JSON.stringify(data),
-    //   })
+    try {
+      const res = await fetch(`${apiUrl}/register`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      })
 
-    //   if (res.ok) {
-    //     console.log('Success!')
-    //     let data = await res.json()
-    //     console.log(data)
-    //     setUsers([ data, ...users ])
-    //   } else throw res
+      if (res.ok) {
+        let data = await res.json()
+        if (data.error) {
+          setRegisterError(data.error)
+          return
+        }
+        console.log('Success!')
+        localStorage.setItem('token', data.token)
+        setLoggedIn(true)
+        console.log(data)
+      } else throw res
 
-    // } catch (err) {
-    //   console.log(err)
-    // }
+    } catch (err) {
+      console.log(err)
+    }
   }
 
   const errorStyles = {
@@ -39,8 +44,6 @@ const Register = () => {
   }
 
   return (
-
-
     <div style={{ display: 'flex', alignItems: 'center', paddingTop: '50px', flexDirection: 'column' }}>
       <h1 style={{ fontSize: 22 }}>Registration</h1>
       <form
@@ -148,6 +151,10 @@ const Register = () => {
         {errors.confirmPassword?.type === 'pattern' &&
           <Typography style={errorStyles}
             >Please provide a password with more than six characters that includes at least one number and one letter.
+          </Typography>}
+          {registerError &&
+          <Typography style={{...errorStyles, marginTop: '2px' }}
+            >{registerError}
           </Typography>}
         <Button
           variant='outlined'

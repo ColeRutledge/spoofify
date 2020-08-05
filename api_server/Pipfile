@@ -20,6 +20,7 @@ psycopg2-binary = "*"
 sqlalchemy = "*"
 flask-login = "*"
 flask-cors = "*"
+flask-jwt-extended = "*"
 
 [requires]
 python_version = "3.8"

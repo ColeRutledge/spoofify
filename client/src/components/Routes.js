@@ -5,12 +5,14 @@ import NavBar from '../components/NavBar'
 import Users from '../components/Users'
 import Login from '../components/Login'
 import Register from '../components/Register'
+// import PlayBar from './PlayBar'
 
 
 const Routes = () => {
   return (
     <BrowserRouter>
       <NavBar />
+      {/* <PlayBar /> */}
       <Switch>
         <Route exact path='/' render={() => <Landing />} />
         <Route path='/users' render={() => <Users />} />

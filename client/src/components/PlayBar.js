@@ -1,5 +1,5 @@
 import React from 'react'
-import { BottomNavigation, Grid } from '@material-ui/core'
+import { BottomNavigation } from '@material-ui/core'
 import PlayBarIcons from './PlayBarIcons'
 import ProgressBar from './ProgressBar'
 
