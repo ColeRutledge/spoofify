@@ -20,18 +20,11 @@ const PlayBar = () => {
                     <PlayBarIcons />
                     <ProgressBar />
                 </div>
-<<<<<<< HEAD
-                <div>
-                    <h1>Other options</h1>
-                </div>
-            </BottomNavigation>
-=======
                 <div style={{ display: 'flex', alignItems: 'center' }}>
                     <VolumeUpRoundedIcon style={{ marginRight: '10px' }} />
                     <VolumeBar />
                 </div >
             </BottomNavigation >
->>>>>>> master
         </div>
     )
 }

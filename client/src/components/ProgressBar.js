@@ -11,8 +11,6 @@ const ProgressBar = () => {
     const slider = document.querySelector('.MuiSlider-track');
     const thumb = document.querySelector('.MuiSlider-thumb')
 
-    const { currentTime, setCurrentTime, isPlaying } = useContext(UserContext);
-
     const [myInterval, setMyInterval] = useState();
     const [step, setStep] = useState(1);
 
