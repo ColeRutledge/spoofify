@@ -8,7 +8,7 @@ import VolumeBar from './VolumeBar'
 const PlayBar = () => {
     return (
         <div>
-            <div style={{ backgroundColor: '#121212', height: '100px', width: '100%', position: 'fixed', bottom: '0px', display: 'grid', gridTemplateColumns: '1fr 1fr 1fr' }}>
+            <div style={{ backgroundColor: '#121212', height: '100px', width: '100%', position: 'fixed', bottom: '0px', display: 'grid', gridTemplateColumns: '1fr 1fr 1fr 1fr' }}>
                 <audio id='song'>
                     <source src='https://endless-tumblr.s3-us-west-2.amazonaws.com/all-the-small-things.mp3' type='audio/mpeg' />
                 </audio>
