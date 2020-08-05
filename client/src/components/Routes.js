@@ -2,6 +2,7 @@ import React from 'react'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import Landing from '../components/Landing'
 import NavBar from '../components/NavBar'
+import PlayBar from '../components/PlayBar'
 import Users from '../components/Users'
 import Login from '../components/Login'
 import Register from '../components/Register'
@@ -11,6 +12,7 @@ const Routes = () => {
   return (
     <BrowserRouter>
       <NavBar />
+      <PlayBar />
       <Switch>
         <Route exact path='/' render={() => <Landing />} />
         <Route path='/users' render={() => <Users />} />
