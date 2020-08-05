@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Slider } from '@material-ui/core'
 import UserContext from '../context/UserContext';
 
@@ -9,10 +9,25 @@ const ProgressBar = () => {
 
     const { currentTime, setCurrentTime, isPlaying } = useContext(UserContext);
 
+    const [myInterval, setMyInterval] = useState();
+    const [step, setStep] = useState(1);
+
+    const seekTime = () => {
+        audio.currentTime = thumb.getAttribute('aria-valuenow') / step
+        setCurrentTime(audio.currentTime)
+    }
+
     useEffect(() => {
+        if (audio) {
+            setStep(100 / audio.duration)
+        }
+        let interval;
+        if (!isPlaying) {
+            clearInterval(myInterval)
+        }
         if (audio && isPlaying) {
-            setInterval(() => {
-                setCurrentTime(secondsToMinutes(audio.currentTime))
+            interval = setInterval(() => {
+                setCurrentTime(audio.currentTime)
                 slider.style.width = `${(audio.currentTime / audio.duration) * 100}%`
                 thumb.setAttribute('aria-valuenow', (audio.currentTime / audio.duration) * 100)
                 thumb.style.left = `${(audio.currentTime / audio.duration) * 100}%`
@@ -20,8 +35,7 @@ const ProgressBar = () => {
                     clearInterval()
                 }
             }, 1000);
-        } else {
-            setCurrentTime('0:00')
+            setMyInterval(interval)
         }
     }, [isPlaying])
 
@@ -37,8 +51,8 @@ const ProgressBar = () => {
 
     return (
         <div style={{ display: 'flex', alignItems: 'center', flexDirection: 'row' }}>
-            <p style={{ marginRight: '10px', fontSize: '12px' }}>{currentTime}</p>
-            <Slider style={{ color: 'grey', width: '350px' }}></Slider>
+            <p style={{ marginRight: '10px', fontSize: '12px' }}>{secondsToMinutes(currentTime)}</p>
+            <Slider onMouseUp={seekTime} step={step} style={{ color: 'grey', width: '350px' }}></Slider>
             <p style={{ marginLeft: '10px', fontSize: '12px' }}>{audio ? secondsToMinutes(audio.duration) : '0:00'}</p>
         </div >
     )
