@@ -16,43 +16,43 @@ ENV PATH /app/node_modules/.bin:$PATH
 
 # Development
 
-FROM base as production
+# FROM base as production
 
-ENV NODE_ENV=production
+# ENV NODE_ENV=production
 
-WORKDIR /app
+# WORKDIR /app
 
-RUN npm install && npm run build
+# RUN npm install && npm run build
 
-CMD ["npm", "start"]
+# CMD ["npm", "start"]
 
 
 # Build
 
-# FROM base as build
+FROM base as build
 
 # # Need to define the env vars for the React app
 # # so that the build process will have access
 # # to the values to use for production
-# ENV REACT_APP_API_SERVER_BASE_URL=http://localhost:5000
+ENV REACT_APP_API_SERVER_BASE_URL=http://localhost:5000
 
 
-# WORKDIR /app
+WORKDIR /app
 
-# COPY . .
+COPY . .
 
-# RUN npm run build
+RUN npm run build
 
 
 # # Production
 
-# FROM nginx:stable-alpine as prod
+FROM nginx:stable-alpine as prod
 
-# COPY --from=build /app/build /usr/share/nginx/html
+COPY --from=build /app/build /usr/share/nginx/html
 
-# EXPOSE 80
+EXPOSE 80
 
-# CMD ["nginx", "-g", "daemon off;"]
+CMD ["nginx", "-g", "daemon off;"]
 
 
 
