@@ -29,7 +29,7 @@ const Artist = () => {
   }, [auth])
 
   const cardContainerStyle = {
-    padding: '125px 0 50px 50px',
+    padding: '30px 0 50px 50px',
     display: 'grid',
     gridGap: '16px',
     gridTemplateColumns: 'repeat(auto-fill,minmax(200px,1fr))',
@@ -37,9 +37,10 @@ const Artist = () => {
 
   const cardStyles = {
     display: 'grid',
-    margin: '0 8px',
-    padding: '25px 18px',
+    margin: '0 3px',
+    padding: '25px 10px',
     borderRadius: '10px',
+    height: '257px',
     backgroundColor: '#282828',
     justifyItems: 'center',
     boxShadow: '0 10px 30px 0 rgba(0,0,0,.3), 0 1px 2px 0 rgba(0,0,0,.2)',
