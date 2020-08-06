@@ -1,4 +1,5 @@
 from flask import Flask, Blueprint, Response, jsonify
+from flask_cors import cross_origin
 from flask_jwt_extended import jwt_required
 from app.models import db, Artist, Album, Song
 
@@ -7,9 +8,12 @@ bp = Blueprint('artist',__name__,url_prefix="/artist")
 
 
 # GET all artists on spotify
-@bp.route("/", methods=['GET'])
+@bp.route("/", strict_slashes=False, methods=['GET'])
 @jwt_required
 def get_artists():
+    print()
+    print('**********GETTING ARTISTS**********')
+    print()
     # artists = Artist.query.all()
     # res = [{
     #     "name": artist.name,

@@ -12,6 +12,8 @@ const Login = () => {
   const { register, handleSubmit, errors } = useForm()
   const { auth, setAuth } = useContext(UserContext)
 
+  document.body.style.backgroundColor = '#FFF'
+
   const onSubmit = async data => {
     console.log(data)
     try {
@@ -47,13 +49,12 @@ const Login = () => {
   return (
     <>
       {auth
-        ? <Redirect to='/' />
+        ? <Redirect to='/library' />
         : <div style={{ display: 'flex', alignItems: 'center', paddingTop: '50px', flexDirection: 'column' }}>
             <h1 style={{ fontSize: 22 }}>Login</h1>
             <form
               onSubmit={handleSubmit(onSubmit)}
               style={{ display: 'flex', flexDirection: 'column', width: '40ch' }}
-              color='primary'
             >
               <TextField
                 label='Email Address'

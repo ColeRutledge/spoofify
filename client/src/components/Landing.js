@@ -6,9 +6,6 @@ import { Button } from '@material-ui/core'
 
 
 const Landing = () => {
-
-  console.log(process.env.REACT_APP_API_SERVER_BASE_URL)
-
   return (
     <div className='splash-page'>
       <TopNav />
