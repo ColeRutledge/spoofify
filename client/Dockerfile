@@ -16,14 +16,13 @@ ENV PATH /app/node_modules/.bin:$PATH
 
 # Development
 
-FROM base as dev
+FROM base as production
 
-ENV NODE_ENV=development
-
+ENV NODE_ENV=production
 
 WORKDIR /app
 
-RUN npm install --only=development
+RUN npm install && npm run build
 
 CMD ["npm", "start"]
 
@@ -54,3 +53,32 @@ CMD ["npm", "start"]
 # EXPOSE 80
 
 # CMD ["nginx", "-g", "daemon off;"]
+
+
+
+# FROM node:12-alpine as base
+
+# ENV NODE_ENV=production
+
+# WORKDIR /app
+
+# COPY package*.json ./
+
+# RUN npm ci && npm cache clean --force
+
+# ENV PATH /app/node_modules/.bin:$PATH
+
+
+# # Development
+
+# FROM base as dev
+
+# ENV NODE_ENV=development
+
+# COPY . .
+
+# WORKDIR /app
+
+# RUN npm install --only=development
+
+# CMD ["npm", "start"]
