@@ -20,7 +20,6 @@ const Routes = () => {
         <Route path='/login' render={() => <Login />} />
         <Route path='/logout' render={() => <Login />} />
         <Route path='/register' render={() => <Register />} />
-        {/* <Route path='/library' render={() => <Library />} /> */}
         <ProtectedRoute path='/users' component={Users}/>
         <ProtectedRoute path='/library' component={Library}/>
       </Switch>

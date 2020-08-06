@@ -16,6 +16,11 @@
 docker container exec -it spotify_clone_db_1 /bin/sh
 psql -U flask_api -W flask_api_db
 ```
+## To populate DB with seeder data:
+```bash
+docker container exec -it spotify_clone_api_1 /bin/sh
+python3 database.py
+```
 
 ## Containers:
 ### React Application:

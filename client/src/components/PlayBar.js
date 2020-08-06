@@ -23,6 +23,13 @@ const PlayBar = () => {
                     <source src='https://endless-tumblr.s3-us-west-2.amazonaws.com/all-the-small-things.mp3' type='audio/mpeg' />
                 </audio>
               </div>
+              <div style={{ display: 'flex', }}>
+                <img style={{ borderRadius: '15px', width: '75px', height: '75px', padding: '15px 15px' }} src='https://spotify-clone-app.s3-us-west-2.amazonaws.com/enema-of-the-state.jpg' />
+                <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+                    <p style={{ color: 'black', marginBottom: '10px', fontSize: '15px' }}>All The Small Things</p>
+                    <p style={{ color: 'black', fontSize: '10px' }}>Enema of the State</p>
+                </div>
+              </div>
               <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                   <PlayBarIcons />
                   <ProgressBar />
