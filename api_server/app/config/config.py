@@ -1,6 +1,4 @@
 from os import environ
-import datetime
-
 
 
 class Config:
