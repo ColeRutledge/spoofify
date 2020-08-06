@@ -41,7 +41,8 @@ WORKDIR /app
 
 COPY . .
 
-RUN npm run build
+RUN npm install && npm run build
+# RUN npm run build
 
 
 # # Production
