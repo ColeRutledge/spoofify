@@ -6,6 +6,7 @@ ENV NODE_ENV=production
 
 WORKDIR /app
 
+COPY . .
 COPY package*.json ./
 
 RUN npm ci && npm cache clean --force
@@ -18,6 +19,7 @@ ENV PATH /app/node_modules/.bin:$PATH
 FROM base as dev
 
 ENV NODE_ENV=development
+
 
 WORKDIR /app
 
