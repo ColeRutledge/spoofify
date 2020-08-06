@@ -2,16 +2,16 @@
 
 FROM node:12-alpine as base
 
-ENV NODE_ENV=production
+# ENV NODE_ENV=production
 
-WORKDIR /app
+# WORKDIR /app
 
-COPY . .
-COPY package*.json ./
+# COPY . .
+# COPY package*.json ./
 
-RUN npm ci && npm cache clean --force
+# RUN npm ci && npm cache clean --force
 
-ENV PATH /app/node_modules/.bin:$PATH
+# ENV PATH /app/node_modules/.bin:$PATH
 
 
 # Development
@@ -34,7 +34,7 @@ FROM base as build
 # # Need to define the env vars for the React app
 # # so that the build process will have access
 # # to the values to use for production
-ENV REACT_APP_API_SERVER_BASE_URL=http://localhost:5000
+# ENV REACT_APP_API_SERVER_BASE_URL=http://localhost:5000
 
 
 WORKDIR /app
