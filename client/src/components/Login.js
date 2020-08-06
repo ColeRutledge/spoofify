@@ -49,7 +49,7 @@ const Login = () => {
   return (
     <>
       {auth
-        ? <Redirect to='/' />
+        ? <Redirect to='/library' />
         : <div style={{ display: 'flex', alignItems: 'center', paddingTop: '50px', flexDirection: 'column' }}>
             <h1 style={{ fontSize: 22 }}>Login</h1>
             <form
