@@ -35,7 +35,7 @@ FROM base as build
 # # so that the build process will have access
 # # to the values to use for production
 # ENV REACT_APP_API_SERVER_BASE_URL=http://localhost:5000
-ENV REACT_APP_API_SERVER_BASE_URL=https://spotify-clone-appacademy.herokuapp.com/
+ENV REACT_APP_API_SERVER_BASE_URL=https://spotify-clone-appacademy.herokuapp.com
 
 
 WORKDIR /app
