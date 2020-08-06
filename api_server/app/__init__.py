@@ -2,6 +2,7 @@ from flask import Flask
 from flask_cors import CORS
 from flask_migrate import Migrate
 from flask_jwt_extended import JWTManager
+# make your awesome app
 
 from app.models import db
 from app.config import Config

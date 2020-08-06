@@ -69,7 +69,6 @@ def delete_playlist(id):
 # Add Song to playlist
 @bp.route("/<int:playlistid>/song/<int:songid>",methods=["POST"])
 def add_playlist_song(playlistid,songid):
-    data = request.json
 
     try:
         playlistsong = PlaylistSong(playlist_id = playlistid,

@@ -1,7 +1,18 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { NavLink } from 'react-router-dom'
 
+import UserContext from '../context/UserContext'
+
+
 const NavBar = () => {
+  const { auth, setAuth } = useContext(UserContext)
+
+  const logout = () => {
+    if (auth) {
+      setAuth('')
+      localStorage.removeItem('token')
+    }
+  }
 
   const linkStyles = {
     margin: '20px',
@@ -36,6 +47,7 @@ const NavBar = () => {
           <NavLink style={linkStyles} activeClassName='navbar--active' to='/catalog'>Browse</NavLink>
           <NavLink style={linkStyles} activeClassName='navbar--active' to='/login'>Login</NavLink>
           <NavLink style={linkStyles} activeClassName='navbar--active' to='/register'>Register</NavLink>
+          <NavLink style={linkStyles} onClick={logout} activeClassName='navbar--active' to='/logout'>Logout</NavLink>
         </div>
       </div>
     </>
