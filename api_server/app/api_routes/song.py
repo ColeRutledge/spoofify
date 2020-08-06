@@ -2,7 +2,7 @@ from flask import Flask, Blueprint, Response, jsonify
 from app.models import db, Song, Artist, Album
 
 
-bp = Blueprint('song',__name__,url_prefix="/song")
+bp = Blueprint('song',__name__,url_prefix="/api/song")
 
 
 # Get all songs on spotify
