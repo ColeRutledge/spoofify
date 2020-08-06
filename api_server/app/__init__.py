@@ -23,3 +23,5 @@ app.register_blueprint(library.bp)
 app.register_blueprint(playlist.bp)
 
 app.jinja_env.add_extension('pypugjs.ext.jinja.PyPugJSExtension')
+
+# test
