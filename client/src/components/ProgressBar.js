@@ -54,9 +54,9 @@ const ProgressBar = () => {
 
     return (
         <div style={{ color: '#b3b3b3', display: 'flex', alignItems: 'center', flexDirection: 'row' }}>
-            <p style={{ marginRight: '10px', fontSize: '12px' }}>{secondsToMinutes(currentTime)}</p>
-            <Slider onMouseUp={seekTime} step={step} style={{ color: 'grey', width: '350px' }}></Slider>
-            <p style={{ marginLeft: '10px', fontSize: '12px' }}>{audio ? secondsToMinutes(audio.duration) : '0:00'}</p>
+            <p style={{ marginRight: '15px', fontSize: '12px' }}>{secondsToMinutes(currentTime)}</p>
+            <Slider onMouseUp={seekTime} step={step} style={{ color: 'grey', width: '350px', marginBottom: '2px' }}></Slider>
+            <p style={{ marginLeft: '15px', fontSize: '12px' }}>{audio ? secondsToMinutes(audio.duration) : '0:00'}</p>
         </div >
     )
 }

@@ -12,6 +12,8 @@ const Login = () => {
   const { register, handleSubmit, errors } = useForm()
   const { auth, setAuth } = useContext(UserContext)
 
+  document.body.style.backgroundColor = '#FFF'
+
   const onSubmit = async data => {
     console.log(data)
     try {
@@ -53,7 +55,6 @@ const Login = () => {
             <form
               onSubmit={handleSubmit(onSubmit)}
               style={{ display: 'flex', flexDirection: 'column', width: '40ch' }}
-              color='primary'
             >
               <TextField
                 label='Email Address'

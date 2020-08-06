@@ -7,6 +7,8 @@ const Library = () => {
   const { auth } = useContext(UserContext)
   const [ artists, setArtists ] = useState([])
 
+  document.body.style.backgroundColor = '#121212'
+
   useEffect(() => {
     const fetchArtists = async () => {
       try {
@@ -32,7 +34,6 @@ const Library = () => {
     padding: '125px 0 50px 50px',
     display: 'grid',
     gridGap: '16px',
-    height: '300px',
     gridTemplateColumns: 'repeat(auto-fill,minmax(200px,1fr))',
   }
 
@@ -48,26 +49,36 @@ const Library = () => {
 
   return (
     <>
-      {!artists
-        ? <div>No Artists</div>
-        : <div style={cardContainerStyle}>
-            {artists.map(artist => (
-              <div key={artist.id} style={cardStyles}>
-                <img
-                  style={{ alignContent: 'end', borderRadius: '50%', marginBottom: '20px', boxShadow: '0 10px 30px 0 rgba(0,0,0,.3), 0 1px 2px 0 rgba(0,0,0,.2)'  }}
-                  src='https://i.scdn.co/image/1a14aedebeca3d8624ee83bd714b486d0b243064'
-                  height='160px'
-                  width='160px'
-                  alt='artist.jpg'
-                />
-                <div style={{ justifySelf: 'start', marginLeft: '10px' }}>
-                  <div style={{ marginBottom: '7px', color: '#fff', textDecoration: 'none', fontSize: '16px', lineHeight: '24px' }}>{artist.name}</div>
-                  <div style={{ color: '#b3b3b3', fontSize: '11px', lineHeight: '16px'}}>Artist</div>
-                </div>
-              </div>
-            ))}
+      <div style={cardContainerStyle}>
+        {artists.map(artist => (
+          <div key={artist.id} style={cardStyles}>
+            <img
+              style={{
+                alignContent: 'end',
+                borderRadius: '50%',
+                marginBottom: '20px',
+                boxShadow: '0 10px 30px 0 rgba(0,0,0,.3), 0 1px 2px 0 rgba(0,0,0,.2)'
+              }}
+              src='https://i.scdn.co/image/1a14aedebeca3d8624ee83bd714b486d0b243064'
+              height='160px'
+              width='160px'
+              alt='artist.jpg'
+            />
+            <div style={{ justifySelf: 'start', marginLeft: '10px' }}>
+              <div style={{
+                marginBottom: '7px',
+                color: '#fff',
+                textDecoration: 'none',
+                fontSize: '16px',
+                lineHeight: '24px' }}>{artist.name}</div>
+              <div style={{
+                color: '#b3b3b3',
+                fontSize: '11px',
+                lineHeight: '16px'}}>Artist</div>
+            </div>
           </div>
-      }
+        ))}
+      </div>
     </>
   )
 }

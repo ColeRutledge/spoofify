@@ -12,6 +12,8 @@ const Register = () => {
   const { register, handleSubmit, errors } = useForm()
   const { auth, setAuth } = useContext(UserContext)
 
+  document.body.style.backgroundColor = '#FFF'
+
   const onSubmit = async data => {
     console.log(data)
     try {

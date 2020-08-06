@@ -27,6 +27,8 @@ const Users = () => {
   const [ users, setUsers ] = useState(null)
   const classes = useStyles()
 
+  document.body.style.backgroundColor = '#FFF'
+
   useEffect(() => {
     const getUsers = async () => {
       try {
