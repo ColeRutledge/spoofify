@@ -18,7 +18,7 @@ const Routes = () => {
         <Route exact path='/' render={() => <Landing />} />
         <Route path='/login' render={() => <Login />} />
         <Route path='/register' render={() => <Register />} />
-        <ProtectedRoute path='/users' component={Users}/>
+        <ProtectedRoute path='/users' component={Users} />
       </Switch>
     </BrowserRouter>
   )
