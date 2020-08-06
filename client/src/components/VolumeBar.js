@@ -29,6 +29,7 @@ const VolumeBar = () => {
             slider.style.width = `${volume * 100}%`
             thumb.style.left = `${volume * 100}%`
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [isPlaying])
 
     return (

@@ -39,6 +39,7 @@ const ProgressBar = () => {
             }, 1000);
             setMyInterval(interval)
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [isPlaying])
 
     const secondsToMinutes = (seconds) => {

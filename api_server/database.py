@@ -2,7 +2,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 from app import app, db
-from app.models import db, User, Artist, Album, Song, PlaylistSong, Playlist
+from app.models import db, User, Artist, Album, Song, playlistsongs, Playlist
 
 
 with app.app_context():
@@ -19,8 +19,10 @@ with app.app_context():
     db.session.add(artist2)
     album = Album(title="Greatest Hits",artist_id=1,image_url="Placeholder Album Image")
     album2 = Album(title="Acid Rap",artist_id=2,image_url="Placeholder Album Image")
+    album3 = Album(title="blink182",artist_id=1,image_url="Placeholder Album Image")
     db.session.add(album)
     db.session.add(album2)
+    db.session.add(album3)
     playlist = Playlist(name="My First Playlist", description="This is my first playlist on this application",image_url="Placeholder playlist Image", user_id=1)
     playlist2 = Playlist(name="My Second Playlist", description="This is ANOTHER playlist on this application",image_url="Placeholder playlist Image", user_id=2)
     db.session.add(playlist)
@@ -33,12 +35,12 @@ with app.app_context():
     db.session.add(song2)
     db.session.add(song3)
     db.session.add(song4)
-    playlistsong = PlaylistSong(playlist_id=1,song_id=1)
-    playlistsong2 = PlaylistSong(playlist_id=1,song_id=2)
-    playlistsong3 = PlaylistSong(playlist_id=1,song_id=3)
-    playlistsong4 = PlaylistSong(playlist_id=2,song_id=4)
-    db.session.add(playlistsong)
-    db.session.add(playlistsong2)
-    db.session.add(playlistsong3)
-    db.session.add(playlistsong4)
+    # playlistsong = playlistsongs(playlist_id=1,song_id=1)
+    # playlistsong2 = playlistsongs(playlist_id=1,song_id=2)
+    # playlistsong3 = playlistsongs(playlist_id=1,song_id=3)
+    # playlistsong4 = playlistsongs(playlist_id=2,song_id=4)
+    # db.session.add(playlistsong)
+    # db.session.add(playlistsong2)
+    # db.session.add(playlistsong3)
+    # db.session.add(playlistsong4)
     db.session.commit()
