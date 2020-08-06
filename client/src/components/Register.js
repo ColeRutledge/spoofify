@@ -15,7 +15,7 @@ const Register = () => {
   document.body.style.backgroundColor = '#FFF'
 
   const onSubmit = async data => {
-    console.log(data)
+    // console.log(data)
     try {
       const res = await fetch(`${apiUrl}/register`, {
         method: 'POST',
