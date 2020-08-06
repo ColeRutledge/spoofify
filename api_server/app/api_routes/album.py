@@ -12,8 +12,7 @@ def get_albums():
     # artist =[artist.to_dict() for artist in albums.artist]
     albums = [{"title": album.title, "id": album.id, "image_url": album.image_url,
                 "artist": album.artist.name} for album in albums]
-    # payload =  {"albums":[{"title": albums.title,"image_url":albums.image_url, 
-    #             "id":albums.id, "artist":albums.artist.name}]}
+    
     return {"albums": albums}
 
 # GET one album
@@ -35,8 +34,8 @@ def get_album_songs(id):
     album = Album.query.options(joinedload("songs")).get(id)
     songs = [song.to_dict() for song in album.songs]
     # payload = {"album": album}
-    payload = {"album": [{"artist":album.artist.name, 
-                        "album_name": album.title,"songs": songs}]}
+    payload = {"album": {"artist":album.artist.name, 
+                        "album_name": album.title,"songs": songs}}
     return payload
 
 # GET one song from album

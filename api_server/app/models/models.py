@@ -7,10 +7,23 @@ from dataclasses import dataclass
 db = SQLAlchemy()
 
 
-playlistsongs = db.Table("playlistsongs", db.Model.metadata,
-db.Column('song_id',db.Integer, db.ForeignKey("songs.id"), primary_key=True),
-db.Column('playlist_id',db.Integer, db.ForeignKey("playlists.id"), primary_key=True)
-)
+# playlistsongs = db.Table("playlistsongs", db.Model.metadata,
+# db.Column('song_id',db.Integer, db.ForeignKey("songs.id"), primary_key=True),
+# db.Column('playlist_id',db.Integer, db.ForeignKey("playlists.id"), primary_key=True)
+# )
+
+
+class PlaylistSong(db.Model):
+
+  __tablename__ = 'playlistsongs'
+  playlist_id = db.Column(db.Integer,db.ForeignKey("playlists.id"),primary_key=True, nullable=False)
+  song_id = db.Column(db.Integer, db.ForeignKey("songs.id"),primary_key=True, nullable=False)
+
+  def to_dict(self):
+    return {"playlist_id": self.playlist_id, "song_id": self.song_id}
+
+
+
 
 @dataclass
 class User(db.Model, UserMixin):
@@ -104,8 +117,10 @@ class Song(db.Model):
   song_url = db.Column(db.String(255))
   #song length measured in seconds Todo: convert to minutes
   song_length = db.Column(db.Integer)
+
+  
   album = db.relationship("Album", back_populates="songs")
-  playlists = db.relationship("Playlist", secondary=playlistsongs,back_populates="songs")
+  playlists = db.relationship("Playlist", secondary="playlistsongs",back_populates="songs")
 
   def to_dict(self):
     return {"id": self.id, "title": self.title, "album_id": self.album_id, "song_url": self.song_url, "song_length": self.song_length}
@@ -125,27 +140,11 @@ class Playlist(db.Model):
   image_url = db.Column(db.String(50))
   user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
 
-  songs = db.relationship("Song", secondary=playlistsongs,back_populates="playlists")
+  songs = db.relationship("Song", secondary="playlistsongs",back_populates="playlists")
   user = db.relationship("User", back_populates="playlists")
 
 
   def to_dict(self):
     return {"id": self.id, "name": self.name, "description": self.description, "image_url": self.image_url, "user_id": self.user_id}
 
-
-# @dataclass
-# class PlaylistSong(db.Model):
-#   playlist: Playlist
-#   song: Song
-
-#   __tablename__ = 'playlistsongs'
-#   id = db.Column(db.Integer, primary_key=True)
-#   playlist_id = db.Column(db.Integer,db.ForeignKey("playlists.id"), nullable=False)
-#   song_id = db.Column(db.Integer, db.ForeignKey("songs.id"), nullable=False)
-
-#   song = db.relationship(Song, back_populates="playlist_songs")
-#   playlist = db.relationship(Playlist, back_populates="playlist_songs")
-
-#   def to_dict(self):
-#     return {"id": self.id, "playlist_id": self.playlist_id, "song_id": self.song_id}
 

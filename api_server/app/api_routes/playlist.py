@@ -1,5 +1,5 @@
-from flask import Flask, Blueprint, jsonify
-from app.models import db, Playlist, Song
+from flask import Flask, Blueprint, jsonify, request
+from app.models import db, Playlist, Song, PlaylistSong
 from sqlalchemy.orm import joinedload
 bp = Blueprint("playlist", __name__, url_prefix="/api/playlist")
 
@@ -52,8 +52,8 @@ def create_playlist():
                             image_url = data['image_url'],
                             user_id = data['user_id'])
         db.session.add(playlist)
-        db.commit()
-        return {'playlist':playlist}
+        db.session.commit()
+        return {'playlist':playlist.to_dict()}
     except AssertionError as message:
         return jsonify({"error": str(message)}), 400
 
@@ -61,5 +61,32 @@ def create_playlist():
 def delete_playlist(id):
     playlist = Playlist.query.get(id)
     db.session.delete(playlist)
-    db.session.commit
-    return {'deleted': playlist}
+    db.session.commit()
+    return {'deleted': playlist.to_dict()}
+
+
+
+# Add Song to playlist
+@bp.route("/<int:playlistid>/song/<int:songid>",methods=["POST"])
+def add_playlist_song(playlistid,songid):
+    data = request.json
+
+    try:
+        playlistsong = PlaylistSong(playlist_id = playlistid,
+                            song_id = songid)
+        db.session.add(playlistsong)
+        db.session.commit()
+        return {'added song to playlist': playlistsong.to_dict()}
+    except AssertionError as message:
+        return jsonify({"error": str(message)}), 400
+
+# Remove song from playlist
+@bp.route("/<int:playlistid>/song/<int:songid>",methods=["DELETE"])
+def del_playlist_song(playlistid,songid):
+        
+        playlistsong = PlaylistSong.query.filter_by(playlist_id=playlistid,song_id=songid).first()
+        db.session.delete(playlistsong)
+        db.session.commt()
+
+        return {"Removed song from playlist": playlistsong.to_dict()}
+
