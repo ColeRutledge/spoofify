@@ -8,7 +8,7 @@ import VolumeBar from './VolumeBar'
 const PlayBar = () => {
     return (
         <div>
-            <div style={{ backgroundColor: '#121212', height: '100px', width: '100%', position: 'fixed', bottom: '0px', display: 'grid', gridTemplateColumns: '1fr 1fr 1fr 1fr' }}>
+            <div style={{ boxShadow: '30px 0 0 0 rgba(21,27,38,.15)', backgroundColor: '#282828', height: '100px', width: '100%', position: 'fixed', bottom: '0px', display: 'grid', gridTemplateColumns: '1fr 1fr 1fr 1fr' }}>
                 <audio id='song'>
                     <source src='https://endless-tumblr.s3-us-west-2.amazonaws.com/all-the-small-things.mp3' type='audio/mpeg' />
                 </audio>
@@ -19,7 +19,7 @@ const PlayBar = () => {
                     <PlayBarIcons />
                     <ProgressBar />
                 </div>
-                <div style={{ display: 'flex', alignItems: 'center' }}>
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end' }}>
                     <VolumeUpRoundedIcon style={{ marginRight: '10px' }} />
                     <VolumeBar />
                 </div >
