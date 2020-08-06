@@ -1,3 +1,5 @@
 build:
   docker:
-    web: Dockerfile
+    web: ./api_server/Dockerfile
+run:
+  web: ./entrypoint.sh
