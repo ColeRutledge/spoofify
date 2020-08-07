@@ -1,8 +1,8 @@
 import React, { useEffect, useContext, useState } from 'react'
 import UserContext from '../context/UserContext'
 import { useHistory } from 'react-router-dom'
+import PlayCircleOutlineIcon from '@material-ui/icons/PlayCircleOutline'
 const apiUrl = process.env.REACT_APP_API_SERVER_BASE_URL
-
 
 const Albums = () => {
   const { auth, setAuth, setSongs, pointer, setPointer, setIsPlaying, songs } = useContext(UserContext)
@@ -43,7 +43,7 @@ const Albums = () => {
   const playAlbum = async (e) => {
     const albumId = e.target.getAttribute('id')
     try {
-        const res = await fetch(`${apiUrl}/album/${albumId}/songs`, {
+        const res = await fetch(`${apiUrl}/api/album/${albumId}/songs`, {
             method: 'GET',
             headers: { 'Authorization': `Bearer ${localStorage.getItem('token') || auth}` }
         })
@@ -66,7 +66,7 @@ const Albums = () => {
 }
 
   const cardContainerStyle = {
-    padding: '20px 0 50px 50px',
+    padding: '50px 0 50px 50px',
     display: 'grid',
     gridGap: '16px',
     gridTemplateColumns: 'repeat(auto-fill,minmax(200px,1fr))',
@@ -84,16 +84,17 @@ const Albums = () => {
 
 
   const headerStyles = {
-    padding: '50px 0 0 53px',
+    padding: '125px 0 0 53px',
     margin: '0 3px',
-    color: '#FFF',
     fontSize: '24px',
     lineHeight: '28px',
-    // padding: '25px 10px',
+    color: 'hsla(0,0%,100%,1)',
   }
+
 
   return (
     <>
+      <div style={headerStyles}>Albums</div>
       <div style={cardContainerStyle}>
           {albums.map(album => (
               <div key={album.id}>

@@ -35,7 +35,7 @@ const PlayBar = () => {
                   <source src={songs[pointer - 1].song_url} type='audio/mpeg' />
               </audio>
               <div style={{ display: 'flex', }}>
-                  <img style={{ borderRadius: '15px', width: '75px', height: '75px', padding: '15px 15px', alt='img.jpg' }} src='https://spotify-clone-app.s3-us-west-2.amazonaws.com/enema-of-the-state.jpg' />
+                  <img alt='img.jpg' style={{ borderRadius: '15px', width: '75px', height: '75px', padding: '15px 15px' }} src='https://spotify-clone-app.s3-us-west-2.amazonaws.com/enema-of-the-state.jpg' />
                   <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', color: '#FFF' }}>
                       <p style={{ marginBottom: '10px', fontSize: '15px' }}>{songs[pointer - 1].title}</p>
                       <p style={{ fontSize: '10px' }}>Album Name</p>
