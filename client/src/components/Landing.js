@@ -16,7 +16,7 @@ const Landing = () => {
           left: '0px',
           right: '0px',
           bottom: '0px',
-          // backgroundImage: 'url("https://spotify-clone-app.s3-us-west-2.amazonaws.com/spotifysplash.png")',
+          backgroundImage: 'url("https://spotify-clone-app.s3-us-west-2.amazonaws.com/spotifysplash.png")',
           backgroundRepeat: 'no-repeat',
           backgroundSize: 'cover',
           display: 'flex',

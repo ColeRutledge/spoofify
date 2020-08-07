@@ -1,11 +1,13 @@
 import React, { useEffect, useContext, useState } from 'react'
 import UserContext from '../context/UserContext'
+import { useHistory } from 'react-router-dom'
 const apiUrl = process.env.REACT_APP_API_SERVER_BASE_URL
 
 
 const Artist = () => {
-  const { auth } = useContext(UserContext)
+  const { auth, setAuth } = useContext(UserContext)
   const [ artists, setArtists ] = useState([])
+  const history = useHistory()
 
   useEffect(() => {
     const fetchArtists = async () => {
@@ -19,14 +21,24 @@ const Artist = () => {
           const data = await res.json()
           console.log(data.artists)
           setArtists([...data.artists])
-        }
+        } else throw res
+
       } catch (err) {
+        if (err.status === 401) {
+          localStorage.removeItem('token')
+          setAuth('')
+          history.push('/login')
+        }
+        console.dir(err)
         console.error(err)
       }
     }
 
     fetchArtists()
-  }, [auth])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
+
 
   const cardContainerStyle = {
     padding: '30px 0 50px 50px',

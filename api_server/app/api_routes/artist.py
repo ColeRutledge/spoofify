@@ -10,7 +10,7 @@ bp = Blueprint('artist', __name__, url_prefix="/api/artist")
 
 # Get all artists on spotify
 @bp.route("/", strict_slashes=False, methods=['GET'])
-# @jwt_required
+@jwt_required
 def get_artists():
     artists = Artist.query.all()
     return {"artists": artists}
@@ -41,7 +41,7 @@ def get_artist_albums(id):
     artist = Artist.query.options(joinedload("albums")).get(id)
     # albums = Album.query.filter_by(artist_id=id).all()
     albums = [album.to_dict() for album in artist.albums]
-    
+
 
     payload = {"artist": {"artist_name": artist.name, "albums": albums}}
     return payload
@@ -58,5 +58,3 @@ def get_artist_albums(id):
 #     # songs = [song.to_dict() for song in album.songs]
 
 #     return jsonify(artist)
-
-
