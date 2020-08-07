@@ -21,6 +21,7 @@ sqlalchemy = "*"
 flask-login = "*"
 flask-cors = "*"
 flask-jwt-extended = "*"
+gunicorn = "*"
 
 [requires]
 python_version = "3.8"

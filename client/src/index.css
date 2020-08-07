@@ -11,6 +11,7 @@
 body {
   font-family: "Circular Spotify Tx T Black";
   margin-left: 250px;
+  margin-top: 0;
 }
 
 a {
@@ -24,6 +25,11 @@ a {
   color: #b3b3b3;
 }
 
+.navbar--active2 {
+  border-bottom: 2px solid #FFFFFF;
+  color: #FFFFFF;
+}
+
 
 a:hover {
   color: #b3b3b3;
@@ -33,6 +39,11 @@ a:hover {
 
 .MuiSvgIcon-root {
   fill: #b3b3b3 !important;
+}
+
+.songCards:hover {
+  background-color: #b3b3b3;
+  border-radius: 5px;
 }
 
 .image-container {

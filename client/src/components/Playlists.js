@@ -4,23 +4,23 @@ import { useHistory } from 'react-router-dom'
 const apiUrl = process.env.REACT_APP_API_SERVER_BASE_URL
 
 
-const Artist = () => {
+const Playlists = () => {
   const { auth, setAuth } = useContext(UserContext)
-  const [ artists, setArtists ] = useState([])
+  const [ playlists, setPlaylists ] = useState([])
   const history = useHistory()
 
   useEffect(() => {
-    const fetchArtists = async () => {
+    const fetchSongs = async () => {
       try {
-        const res = await fetch(`${apiUrl}/api/artist`, {
+        const res = await fetch(`${apiUrl}/api/playlist`, {
           method: 'GET',
           headers: {'Authorization': `Bearer ${localStorage.getItem('token') || auth}`}
         })
 
         if (res.ok) {
           const data = await res.json()
-          console.log(data.artists)
-          setArtists([...data.artists])
+          console.log(data)
+          setPlaylists([...data.Playlists])
         } else throw res
 
       } catch (err) {
@@ -34,7 +34,7 @@ const Artist = () => {
       }
     }
 
-    fetchArtists()
+    fetchSongs()
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
@@ -49,42 +49,30 @@ const Artist = () => {
 
   const cardStyles = {
     display: 'grid',
-    margin: '0 3px',
+    gridTemplateColumns: '1fr .5fr',
+    justifyItems: 'end',
+    color: '#FFF',
+    margin: '3px 3px',
     padding: '25px 10px',
-    borderRadius: '10px',
-    height: '257px',
+    borderRadius: '5px',
     backgroundColor: '#282828',
-    justifyItems: 'center',
     boxShadow: '0 10px 30px 0 rgba(0,0,0,.3), 0 1px 2px 0 rgba(0,0,0,.2)',
   }
 
   const headerStyles = {
     padding: '50px 0 0 53px',
     margin: '0 3px',
-    color: '#FFF',
     fontSize: '24px',
     lineHeight: '28px',
-    // padding: '25px 10px',
+    color: 'hsla(0,0%,100%,1)',
   }
 
   return (
     <>
-      <div style={headerStyles}>Artists</div>
+      <div style={headerStyles}>Playlists</div>
       <div style={cardContainerStyle}>
-        {artists.map(artist => (
-          <div key={artist.id} style={cardStyles}>
-            <img
-              style={{
-                alignContent: 'end',
-                borderRadius: '50%',
-                marginBottom: '20px',
-                boxShadow: '0 10px 30px 0 rgba(0,0,0,.3), 0 1px 2px 0 rgba(0,0,0,.2)'
-              }}
-              src={artist.image_url}
-              height='160px'
-              width='160px'
-              alt='artist.jpg'
-            />
+        {playlists.map(playlist => (
+          <div key={playlist.id} style={cardStyles}>
             <div style={{ justifySelf: 'start', marginLeft: '10px' }}>
               <div style={{
                 marginBottom: '7px',
@@ -94,7 +82,7 @@ const Artist = () => {
                 width: '173px',
                 overflow: 'hidden',
                 whiteSpace: 'nowrap',
-                textOverflow: 'ellipsis' }}>{artist.name}</div>
+                textOverflow: 'ellipsis' }}>{playlist.name}</div>
               <div style={{
                 color: '#b3b3b3',
                 fontSize: '11px',
@@ -107,4 +95,4 @@ const Artist = () => {
   )
 }
 
-export default Artist
+export default Playlists
