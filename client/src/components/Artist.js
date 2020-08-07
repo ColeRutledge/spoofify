@@ -10,7 +10,7 @@ const Artist = () => {
   useEffect(() => {
     const fetchArtists = async () => {
       try {
-        const res = await fetch(`${apiUrl}/artist`, {
+        const res = await fetch(`${apiUrl}/api/artist`, {
           method: 'GET',
           headers: {'Authorization': `Bearer ${localStorage.getItem('token') || auth}`}
         })
@@ -46,8 +46,18 @@ const Artist = () => {
     boxShadow: '0 10px 30px 0 rgba(0,0,0,.3), 0 1px 2px 0 rgba(0,0,0,.2)',
   }
 
+  const headerStyles = {
+    padding: '50px 0 0 53px',
+    margin: '0 3px',
+    color: '#FFF',
+    fontSize: '24px',
+    lineHeight: '28px',
+    // padding: '25px 10px',
+  }
+
   return (
     <>
+      <div style={headerStyles}>Artists</div>
       <div style={cardContainerStyle}>
         {artists.map(artist => (
           <div key={artist.id} style={cardStyles}>
@@ -58,7 +68,7 @@ const Artist = () => {
                 marginBottom: '20px',
                 boxShadow: '0 10px 30px 0 rgba(0,0,0,.3), 0 1px 2px 0 rgba(0,0,0,.2)'
               }}
-              src='https://i.scdn.co/image/1a14aedebeca3d8624ee83bd714b486d0b243064'
+              src={artist.image_url}
               height='160px'
               width='160px'
               alt='artist.jpg'
@@ -67,9 +77,12 @@ const Artist = () => {
               <div style={{
                 marginBottom: '7px',
                 color: '#fff',
-                textDecoration: 'none',
                 fontSize: '16px',
-                lineHeight: '24px' }}>{artist.name}</div>
+                lineHeight: '24px',
+                width: '173px',
+                overflow: 'hidden',
+                whiteSpace: 'nowrap',
+                textOverflow: 'ellipsis' }}>{artist.name}</div>
               <div style={{
                 color: '#b3b3b3',
                 fontSize: '11px',

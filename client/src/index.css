@@ -24,6 +24,11 @@ a {
   color: #b3b3b3;
 }
 
+.navbar--active2 {
+  border-bottom: 2px solid #FFFFFF;
+  color: #FFFFFF;
+}
+
 
 a:hover {
   color: #b3b3b3;

@@ -24,7 +24,7 @@ const BottomNav = () => {
                     <p style={{ color: 'white' }}>Cole Rutledge</p>
                     <div style={{ display: 'flex', justifyContent: 'center' }}>
                         <IconButton href='https://github.com/ColeRutledge' aria-label='github'>
-                            <GitHubIcon href style={{ color: 'white' }} />
+                            <GitHubIcon style={{ color: 'white' }} />
                         </IconButton>
                         <IconButton aria-label='linkedin'>
                             <LinkedInIcon style={{ color: 'white' }} />
