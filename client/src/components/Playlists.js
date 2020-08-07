@@ -4,15 +4,15 @@ import { useHistory } from 'react-router-dom'
 const apiUrl = process.env.REACT_APP_API_SERVER_BASE_URL
 
 
-const Songs = () => {
+const Playlists = () => {
   const { auth, setAuth } = useContext(UserContext)
-  const [ songs, setSongs ] = useState([])
+  const [ playlists, setPlaylists ] = useState([])
   const history = useHistory()
 
   useEffect(() => {
     const fetchSongs = async () => {
       try {
-        const res = await fetch(`${apiUrl}/api/song`, {
+        const res = await fetch(`${apiUrl}/api/playlist`, {
           method: 'GET',
           headers: {'Authorization': `Bearer ${localStorage.getItem('token') || auth}`}
         })
@@ -20,7 +20,7 @@ const Songs = () => {
         if (res.ok) {
           const data = await res.json()
           console.log(data)
-          setSongs([...data])
+          setPlaylists([...data.Playlists])
         } else throw res
 
       } catch (err) {
@@ -41,9 +41,10 @@ const Songs = () => {
 
 
   const cardContainerStyle = {
-    padding: '30px 0 150px 50px',
-    display: 'flex',
-    flexDirection: 'column',
+    padding: '30px 0 50px 50px',
+    display: 'grid',
+    gridGap: '16px',
+    gridTemplateColumns: 'repeat(auto-fill,minmax(200px,1fr))',
   }
 
   const cardStyles = {
@@ -68,30 +69,30 @@ const Songs = () => {
 
   return (
     <>
-      <div style={headerStyles}>Songs</div>
-      {songs.length > 0 && <div style={{...headerStyles, fontSize: '19px', color: '#b3b3b3' }}>{songs[0].artist}</div>}
+      <div style={headerStyles}>Playlists</div>
       <div style={cardContainerStyle}>
-        {songs.map((song, i) => (
-          <React.Fragment key={i}>
-            <a className='songCards' style={{ cursor: 'pointer' }} id={song.title} href={song.song_url} >
-              <div style={cardStyles}>
-                <div style={{ justifySelf: 'start' }}>{song.title}
-                  <div style={{ marginTop: '5px', justifySelf: 'center', fontSize: '12px', color: '#b3b3b3' }}>{song.artist}
-                    <span style={{ marginLeft: '10px' }}>•</span>
-                    <span style={{ marginLeft: '10px', justifySelf: 'center', color: '#b3b3b3', display: 'inline' }}>{song.album}</span>
-                  </div>
-                </div>
-                <div style={{ alignSelf: 'center' }}>{song.song_length}</div>
-              </div>
-            </a>
-            {songs[i + 1] !== undefined && song.artist !== songs[i + 1].artist
-              && <div style={{...headerStyles, fontSize: '19px', paddingLeft: '5px', marginBottom: '25px', color: '#b3b3b3' }}
-              >{songs[i + 1].artist}</div>}
-          </React.Fragment>
+        {playlists.map(playlist => (
+          <div key={playlist.id} style={cardStyles}>
+            <div style={{ justifySelf: 'start', marginLeft: '10px' }}>
+              <div style={{
+                marginBottom: '7px',
+                color: '#fff',
+                fontSize: '16px',
+                lineHeight: '24px',
+                width: '173px',
+                overflow: 'hidden',
+                whiteSpace: 'nowrap',
+                textOverflow: 'ellipsis' }}>{playlist.name}</div>
+              <div style={{
+                color: '#b3b3b3',
+                fontSize: '11px',
+                lineHeight: '16px'}}>Artist</div>
+            </div>
+          </div>
         ))}
       </div>
     </>
   )
 }
 
-export default Songs
+export default Playlists

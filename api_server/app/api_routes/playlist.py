@@ -1,15 +1,18 @@
 from flask import Flask, Blueprint, jsonify, request
+from flask_jwt_extended import jwt_required
 from app.models import db, Playlist, Song, PlaylistSong
 from sqlalchemy.orm import joinedload
 bp = Blueprint("playlist", __name__, url_prefix="/api/playlist")
 
 
+
 # Get all playlists
-@bp.route("/", methods=["GET"])
+@bp.route("/", strict_slashes=False, methods=["GET"])
+@jwt_required
 def get_playlists():
     playlists = Playlist.query.all()
     #  users = [user.to_dict() for user in playlists.user]
-    payload = [{"description": playlist.description, "id": playlist.id, 
+    payload = [{"description": playlist.description, "id": playlist.id,
                 "image_url":playlist.image_url, "name": playlist.name,
                 "created_by":playlist.user.user_name} for playlist in playlists]
     return {"Playlists":payload}
@@ -27,7 +30,7 @@ def get_playlist(id):
     #                         "created_by": playlist.user.user_name, "image_url": playlist.image_url,
     #                         "songs": songs}]
     return payload
-         
+
 
 # GET all user's playlists
 @bp.route("/<int:user_id>/playlists", methods=["GET"])
@@ -47,7 +50,7 @@ def create_playlist():
     data = request.json
 
     try:
-        playlist = Playlist(name=data['name'], 
+        playlist = Playlist(name=data['name'],
                             description=data['description'],
                             image_url = data['image_url'],
                             user_id = data['user_id'])
@@ -82,10 +85,9 @@ def add_playlist_song(playlistid,songid):
 # Remove song from playlist
 @bp.route("/<int:playlistid>/song/<int:songid>",methods=["DELETE"])
 def del_playlist_song(playlistid,songid):
-        
+
         playlistsong = PlaylistSong.query.filter_by(playlist_id=playlistid,song_id=songid).first()
         db.session.delete(playlistsong)
         db.session.commt()
 
         return {"Removed song from playlist": playlistsong.to_dict()}
-

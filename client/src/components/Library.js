@@ -3,6 +3,7 @@ import { Switch, NavLink, BrowserRouter } from 'react-router-dom'
 import Artists from './Artists'
 import Albums from './Albums'
 import Songs from './Songs'
+import Playlists from './Playlists'
 import ProtectedRoute from './ProtectedRoute'
 
 
@@ -26,6 +27,8 @@ const Library = () => {
     width: '100%',
     backgroundColor: 'hsl(0deg, 0%, 0%)',
     display: 'grid',
+    position: 'fixed',
+    marginTop: '0',
     gridTemplateColumns: '1.5fr 1fr 1fr 1fr 1fr 5fr',
     justifyItems: 'center',
     alignItems: 'center',
@@ -69,7 +72,7 @@ const Library = () => {
           <ProtectedRoute path='/library/artists' component={Artists} />
           <ProtectedRoute path='/library/albums' component={Albums} />
           <ProtectedRoute path='/library/songs' component={Songs} />
-          <ProtectedRoute path='/library/playlists' component={Artists} />
+          <ProtectedRoute path='/library/playlists' component={Playlists} />
         </Switch>
       </BrowserRouter>
     </>
