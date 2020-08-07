@@ -43,7 +43,7 @@ services:
     ports:
       - 3000:3000
     environment:
-      - REACT_APP_API_SERVER_BASE_URL=http://host.docker.internal:5000/api
+      - REACT_APP_API_SERVER_BASE_URL=http://host.docker.internal:5000
     stdin_open: true
     depends_on:
       - api
