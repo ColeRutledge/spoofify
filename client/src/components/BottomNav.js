@@ -2,7 +2,6 @@ import React from 'react';
 import { IconButton } from '@material-ui/core'
 import GitHubIcon from '@material-ui/icons/GitHub';
 import LinkedInIcon from '@material-ui/icons/LinkedIn';
-import { Link } from 'react-router-dom';
 
 const BottomNav = () => {
     return (
