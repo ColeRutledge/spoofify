@@ -1,11 +1,14 @@
 from flask import Flask, Blueprint, jsonify, request
-from app.models import db, Playlist, Song, PlaylistSong
+from app.models import db, Playlist, Song, PlaylistSong, Album, Artist
 from sqlalchemy.orm import joinedload
+from sqlalchemy import text
+from flask_jwt_extended import jwt_required
+
 bp = Blueprint("playlist", __name__, url_prefix="/api/playlist")
 
 
 # Get all playlists
-@bp.route("/", methods=["GET"])
+@bp.route("/", strict_slashes=False, methods=["GET"])
 def get_playlists():
     playlists = Playlist.query.all()
     #  users = [user.to_dict() for user in playlists.user]
@@ -15,32 +18,49 @@ def get_playlists():
     return {"Playlists":payload}
 
 
-# Get a playlist
+# Get all songs in playlist
 @bp.route("/<int:id>/songs", methods=["GET"])
 def get_playlist(id):
     playlist = Playlist.query.options(joinedload('songs')).get(id)
     songs = [song.to_dict() for song in playlist.songs]
-    payload = {"Playlist": [{"name": playlist.name, "description": playlist.description,
-                            "created_by": playlist.user.user_name, "image_url": playlist.image_url,
-                            "songs": songs}]}
-    # payload = [{"name": playlist.name, "description": playlist.description,
+    
+    # payload = {"Playlist": [{"name": playlist.name, "description": playlist.description,
     #                         "created_by": playlist.user.user_name, "image_url": playlist.image_url,
-    #                         "songs": songs}]
-    return payload
+    #                         "songs": songs}]}
+    payload = [{"name": playlist.name, "description": playlist.description,
+                            "created_by": playlist.user.user_name, "image_url": playlist.image_url,
+                            "songs": songs}]
+    return {"data":payload}
          
 
-# GET all user's playlists
-@bp.route("/<int:user_id>/playlists", methods=["GET"])
-def get_user_playlists(user_id):
-    playlists = Playlist.query.filter_by(user_id=user_id).all()
-    payload = [{
-        "playlist_name": playlist.name,
-        "description": playlist.description,
-        "image_url": playlist.image_url,
-        "created_by": playlist.user.user_name
-    } for playlist in playlists]
+# # GET all user's playlists
+# @bp.route("/<int:user_id>/playlists", methods=["GET"])
+# def get_user_playlists(user_id):
+#     playlists = Playlist.query.filter_by(user_id=user_id).all()
+#     payload = [{
+#         "playlist_name": playlist.name,
+#         "description": playlist.description,
+#         "image_url": playlist.image_url,
+#         "created_by": playlist.user.user_name
+#     } for playlist in playlists]
 
-    return {"Playlists":payload}
+#     return {"Playlists":payload}
+
+@bp.route("/<int:userid>/playlists", methods=["GET"])
+def get_user_playlists(userid):
+    stmt = text("SELECT playlists.name, songs.title as song_name, albums.title as album_title FROM playlists join playlistsongs on playlists.id = playlistsongs.playlist_id join songs on playlistsongs.song_id = songs.id join albums on songs.album_id = albums.id  WHERE playlists.user_id = :userid")
+    playlists = Playlist.query.options(joinedload("songs").joinedload("album")).filter(Playlist.user_id==userid)
+    playlist1 = db.session.query("name","song_name","album_title").from_statement(stmt).params(userid=userid).all()
+    playlist2 = db.session.query(Song.title,Album.title,Artist.name,Song.song_url,Song.song_length,Album.image_url,Artist.image_url,Artist.bio,Playlist.name).select_from(Playlist).join(PlaylistSong).join(Song).join(Album).join(Artist).filter(Playlist.user_id==userid).all()
+    # playlist2 = db.session.query(Album.title).select_from(Playlist).join(PlaylistSong).join(Song).join(Album).join(Artist).filter(Playlist.user_id==userid).distinct()
+    # payload = [{"song_title":playlist[0]}for playlist in playlist2]
+
+    payload = [{"song_title":playlist[0], "album_title":playlist[1],"artist_name":playlist[2],"song_url":playlist[3],"song_length":playlist[4],"album_image":playlist[5],"artist_image":playlist[6],"artist_bio":playlist[7],"playlist_name":playlist[8]}for playlist in playlist2]
+  
+    # .all() returns an array
+    
+
+    return {"Data":payload}
 
 @bp.route("/create", methods=["POST"])
 def create_playlist():
