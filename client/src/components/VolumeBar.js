@@ -13,7 +13,7 @@ const VolumeBar = () => {
         setVolume(sliderValue / 100)
         if (!isNaN(volume)) {
             audio.volume = parseFloat(volume)
-            console.log(audio.volume)
+            localStorage.setItem('volume', audio.volume)
         }
     }
 
@@ -29,11 +29,10 @@ const VolumeBar = () => {
             slider.style.width = `${volume * 100}%`
             thumb.style.left = `${volume * 100}%`
         }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [isPlaying])
 
     return (
-        <Slider className='volume' onChange={volumeSlider} style={{ width: '100px', color: 'grey' }} />
+        audio ? <Slider className='volume' onChange={volumeSlider} style={{ width: '100px', color: 'grey' }} /> : <Slider disabled className='volume' onChange={volumeSlider} style={{ width: '100px', color: 'grey' }} />
     )
 }
 
