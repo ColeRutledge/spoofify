@@ -34,10 +34,12 @@ def get_album_songs(id):
     # album = Album.query.get(id)
     # songs = Song.query.filter_by(album_id=id).all()
     album = Album.query.options(joinedload("songs")).get(id)
-    songs = [song.to_dict() for song in album.songs]
+    # songs = [song.to_dict() for song in album.songs]
+    songs = [{"album_title": song.album.title,"album_image_url":song.album.image_url,"artist_name":song.album.artist.name, "id": song.id,"song_length":song.song_length,"song_url":song.song_url,"title":song.title} for song in album.songs]
+    
     # payload = {"album": songs}
     payload = {"artist":album.artist.name, 
-                        "album_name": album.title,"songs": songs}
+                        "album_name": album.title, "songs": songs}
     return payload
 
 # GET one song from album

@@ -107,7 +107,7 @@ class Song(db.Model):
   id: int
   title: str
   song_url: str
-  song_length: int
+  song_length: str
   album: Album
 
   __tablename__ = 'songs'
@@ -116,7 +116,7 @@ class Song(db.Model):
   album_id = db.Column(db.Integer, db.ForeignKey("albums.id"),nullable=False)
   song_url = db.Column(db.String(255))
   #song length measured in seconds Todo: convert to minutes
-  song_length = db.Column(db.Integer)
+  song_length = db.Column(db.String(15))
 
   
   album = db.relationship("Album", back_populates="songs")

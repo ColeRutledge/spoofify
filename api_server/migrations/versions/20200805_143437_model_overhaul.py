@@ -57,7 +57,7 @@ def upgrade():
     sa.Column('title', sa.String(length=100), nullable=False),
     sa.Column('album_id', sa.Integer(), nullable=False),
     sa.Column('song_url', sa.String(length=255), nullable=True),
-    sa.Column('song_length', sa.Integer(), nullable=True),
+    sa.Column('song_length', sa.String(length=15), nullable=True),
     sa.ForeignKeyConstraint(['album_id'], ['albums.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
