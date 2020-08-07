@@ -19,9 +19,6 @@ const NavBar = () => {
     textDecoration: 'none',
     fontSize: '16px',
     paddingBottom: '4px',
-    paddingRight: '0',
-    paddingLeft: '0',
-
   }
 
   const containerStyles = {

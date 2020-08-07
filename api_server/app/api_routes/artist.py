@@ -10,7 +10,7 @@ bp = Blueprint('artist', __name__, url_prefix="/api/artist")
 
 # Get all artists on spotify
 @bp.route("/", strict_slashes=False, methods=['GET'])
-# @jwt_required
+@jwt_required
 def get_artists():
     artists = Artist.query.all()
     return {"artists": artists}
@@ -41,11 +41,20 @@ def get_artist_albums(id):
     artist = Artist.query.options(joinedload("albums")).get(id)
     # albums = Album.query.filter_by(artist_id=id).all()
     albums = [album.to_dict() for album in artist.albums]
-    
+
 
     payload = {"artist": {"artist_name": artist.name, "albums": albums}}
     return payload
 
 
+# # GET all songs for an artist
+# @bp.route("/<int:id>/songs", methods=["GET"])
+# def get_artist_songs(id):
+#     # q = db.session.query(Artist,Song).from_statement(text("SELECT artists.id from artists join albums on artists.id = albums.artist_id join songs on albums.id = songs.album_id WHERE artist_id =:id" )).params(id=id).all()
+#     # q = db.session.query(Song).join(Album).join(Artist).filter(Artist.id==id).all()
+#     artist = db.session.query(Artist,Album,Song).options(joinedload("albums").joinedload("songs")).filter(and_(Artist.id == id, Album.artist_id == id)).all()
+#     # albums = [album.id for album in artist.albums]
+#     # album = Album.query.options(joinedload("songs")).get(id)
+#     # songs = [song.to_dict() for song in album.songs]
 
-
+#     return jsonify(artist)

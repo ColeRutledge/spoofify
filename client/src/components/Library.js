@@ -1,84 +1,80 @@
-import React, { useEffect, useContext, useState } from 'react'
-import UserContext from '../context/UserContext'
-const apiUrl = process.env.REACT_APP_API_SERVER_BASE_URL
+import React from 'react'
+import { Switch, NavLink, BrowserRouter } from 'react-router-dom'
+import Artists from './Artists'
+import Albums from './Albums'
+import Songs from './Songs'
+import Playlists from './Playlists'
+import ProtectedRoute from './ProtectedRoute'
 
 
 const Library = () => {
-  const { auth } = useContext(UserContext)
-  const [ artists, setArtists ] = useState([])
-
+  // const history = useHistory()
   document.body.style.backgroundColor = '#121212'
 
-  useEffect(() => {
-    const fetchArtists = async () => {
-      try {
-        const res = await fetch(`${apiUrl}/artist`, {
-          method: 'GET',
-          headers: {'Authorization': `Bearer ${localStorage.getItem('token') || auth}`}
-        })
+  // const sleep = async ms => await new Promise(resolve => setTimeout(resolve, ms))
 
-        if (res.ok) {
-          const data = await res.json()
-          console.log(data.artists)
-          setArtists([...data.artists])
-        }
-      } catch (err) {
-        console.error(err)
-      }
-    }
+  // useEffect(() => {
+  //   const redir = async () => {
+  //     await sleep(1000)
+  //     history.push('/library/artists')
+  //   }
 
-    fetchArtists()
-  }, [auth])
+  //   redir()
+  // }, [])
 
-  const cardContainerStyle = {
-    padding: '125px 0 50px 50px',
+  const topBarStyle = {
+    height: '75px',
+    width: '100%',
+    backgroundColor: 'hsl(0deg, 0%, 0%)',
     display: 'grid',
-    gridGap: '16px',
-    gridTemplateColumns: 'repeat(auto-fill,minmax(200px,1fr))',
-  }
-
-  const cardStyles = {
-    display: 'grid',
-    margin: '0 8px',
-    padding: '25px 18px',
-    borderRadius: '10px',
-    backgroundColor: '#282828',
+    position: 'fixed',
+    marginTop: '0',
+    gridTemplateColumns: '1.5fr 1fr 1fr 1fr 1fr 5fr',
     justifyItems: 'center',
-    boxShadow: '0 10px 30px 0 rgba(0,0,0,.3), 0 1px 2px 0 rgba(0,0,0,.2)',
+    alignItems: 'center',
   }
+
+
 
   return (
     <>
-      <div style={cardContainerStyle}>
-        {artists.map(artist => (
-          <div key={artist.id} style={cardStyles}>
-            <img
-              style={{
-                alignContent: 'end',
-                borderRadius: '50%',
-                marginBottom: '20px',
-                boxShadow: '0 10px 30px 0 rgba(0,0,0,.3), 0 1px 2px 0 rgba(0,0,0,.2)'
-              }}
-              src='https://i.scdn.co/image/1a14aedebeca3d8624ee83bd714b486d0b243064'
-              height='160px'
-              width='160px'
-              alt='artist.jpg'
-            />
-            <div style={{ justifySelf: 'start', marginLeft: '10px' }}>
-              <div style={{
-                marginBottom: '7px',
-                color: '#fff',
-                textDecoration: 'none',
-                fontSize: '16px',
-                lineHeight: '24px' }}>{artist.name}</div>
-              <div style={{
-                color: '#b3b3b3',
-                fontSize: '11px',
-                lineHeight: '16px'}}>Artist</div>
-            </div>
+      <BrowserRouter>
+        <div style={topBarStyle}>
+          <div>
+            {/* <button style={{ borderRadius: '50%', marginRight: '16px', color: '#FFF', backgroundColor: 'rgba(0,0,0,.7)', height: '32px', width: '32px', cursor: 'pointer' }}>
+              <svg
+                style={{ backgroundColor: 'rgba(0,0,0,.7)', color: '#FFF' }}
+                role="img"
+                height="24"
+                width="24"
+                viewBox="0 0 24 24"
+                class="Svg-sc-1usfroi-0 jNmUis _6be6d9f3103325b95e6d4c0f6b10b783-scss">
+                <polyline points="16 4 7 12 16 20" fill="none" stroke="#181818" />
+              </svg>
+            </button>
+            <button style={{ borderRadius: '50%', color: '#FFF', backgroundColor: 'rgba(0,0,0,.7)', height: '32px', width: '32px', cursor: 'pointer' }}>
+              <svg
+                role="img"
+                height="24"
+                width="24"
+                viewBox="0 0 24 24"
+                class="Svg-sc-1usfroi-0 jNmUis _6be6d9f3103325b95e6d4c0f6b10b783-scss">
+                <polyline points="8 4 17 12 8 20" fill="none" stroke="#181818" />
+              </svg>
+            </button> */}
           </div>
-        ))}
-      </div>
+          <NavLink activeClassName='navbar--active2' to='/library/artists'>Artists</NavLink>
+          <NavLink activeClassName='navbar--active2' to='/library/albums'>Albums</NavLink>
+          <NavLink activeClassName='navbar--active2' to='/library/songs'>Songs</NavLink>
+          <NavLink activeClassName='navbar--active2' to='/library/playlists'>Playlists</NavLink>
+        </div>
+        <Switch>
+          <ProtectedRoute path='/library/artists' component={Artists} />
+          <ProtectedRoute path='/library/albums' component={Albums} />
+          <ProtectedRoute path='/library/songs' component={Songs} />
+          <ProtectedRoute path='/library/playlists' component={Playlists} />
+        </Switch>
+      </BrowserRouter>
     </>
   )
 }

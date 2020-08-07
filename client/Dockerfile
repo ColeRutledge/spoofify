@@ -21,7 +21,7 @@ ENV NODE_ENV=development
 
 WORKDIR /app
 
-RUN npm install --only=development
+RUN npm install --only=dev
 
 CMD ["npm", "start"]
 
@@ -30,25 +30,15 @@ CMD ["npm", "start"]
 
 # FROM base as build
 
-# # Need to define the env vars for the React app
-# # so that the build process will have access
-# # to the values to use for production
-# ENV REACT_APP_API_SERVER_BASE_URL=http://localhost:5000
-
+# ENV REACT_APP_API_SERVER_BASE_URL=https://spotify-clone-appacademy.herokuapp.com
 
 # WORKDIR /app
 
 # COPY . .
 
+# RUN npm install && npm run build
+
+# RUN npm install -g serve
+
+# CMD ["serve", "-s", "build"]
 # RUN npm run build
-
-
-# # Production
-
-# FROM nginx:stable-alpine as prod
-
-# COPY --from=build /app/build /usr/share/nginx/html
-
-# EXPOSE 80
-
-# CMD ["nginx", "-g", "daemon off;"]

@@ -13,7 +13,7 @@ const VolumeBar = () => {
         setVolume(sliderValue / 100)
         if (!isNaN(volume)) {
             audio.volume = parseFloat(volume)
-            console.log(audio.volume)
+            localStorage.setItem('volume', audio.volume)
         }
     }
 
@@ -33,7 +33,7 @@ const VolumeBar = () => {
     }, [isPlaying])
 
     return (
-        <Slider className='volume' onChange={volumeSlider} style={{ width: '100px', color: 'grey' }} />
+        audio ? <Slider className='volume' onChange={volumeSlider} style={{ width: '100px', color: 'grey' }} /> : <Slider disabled className='volume' onChange={volumeSlider} style={{ width: '100px', color: 'grey' }} />
     )
 }
 
