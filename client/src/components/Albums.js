@@ -5,7 +5,7 @@ import PlayCircleOutlineIcon from '@material-ui/icons/PlayCircleOutline'
 const apiUrl = process.env.REACT_APP_API_SERVER_BASE_URL
 
 const Albums = () => {
-  const { auth, setAuth, setSongs, pointer, setPointer, setIsPlaying, songs } = useContext(UserContext)
+  const { auth, setAuth, setSongs, setPointer, setIsPlaying } = useContext(UserContext)
   const [ albums, setAlbums ] = useState([])
   const history = useHistory()
   const audio = document.getElementById('song')
@@ -71,17 +71,6 @@ const Albums = () => {
     gridGap: '16px',
     gridTemplateColumns: 'repeat(auto-fill,minmax(200px,1fr))',
   }
-
-  const cardStyles = {
-    display: 'grid',
-    margin: '0 8px',
-    padding: '25px 18px',
-    borderRadius: '10px',
-    backgroundColor: '#282828',
-    justifyItems: 'center',
-    boxShadow: '0 10px 30px 0 rgba(0,0,0,.3), 0 1px 2px 0 rgba(0,0,0,.2)',
-  }
-
 
   const headerStyles = {
     padding: '125px 0 0 53px',

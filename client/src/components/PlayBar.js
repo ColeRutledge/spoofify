@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useContext, useEffect, useRef } from 'react'
 import PlayBarIcons from './PlayBarIcons'
 import VolumeUpRoundedIcon from '@material-ui/icons/VolumeUpRounded';
 import ProgressBar from './ProgressBar'
@@ -8,15 +8,18 @@ import UserContext from '../context/UserContext';
 
 const PlayBar = () => {
     const { pointer, songs, setIsPlaying } = useContext(UserContext)
-    let audio = document.getElementById('song')
+    let audio = useRef(document.getElementById('song'))
+
+
     useEffect(() => {
-        audio = document.getElementById('song');
+        // audio = document.getElementById('song');
         if (!isNaN(audio.duration)) {
             audio.setAttribute('src', songs[pointer - 1].song_url)
             audio.play()
             setIsPlaying(true)
             console.log('success')
         }
+
     }, [pointer, audio])
 
     return (
