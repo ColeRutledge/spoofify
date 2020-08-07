@@ -9,7 +9,8 @@ import ShuffleRoundedIcon from '@material-ui/icons/ShuffleRounded';
 import UserContext from '../context/UserContext';
 
 const PlayBarIcons = () => {
-    const { isPlaying, setIsPlaying } = useContext(UserContext);
+    const { isPlaying, setIsPlaying, pointer, setPointer, songs, currentTime } = useContext(UserContext);
+    console.log(pointer)
     const playSong = (e) => {
         const audio = document.getElementById('song');
         if (isPlaying) {
@@ -17,16 +18,31 @@ const PlayBarIcons = () => {
             audio.pause()
         } else {
             setIsPlaying(true)
+            audio.currentTime = currentTime
             audio.play()
+        }
+    }
+
+    const nextSong = () => {
+        if (songs.length > pointer) {
+            setPointer(pointer + 1)
+            localStorage.setItem('currentSongPointer', `${pointer + 1}`)
+        }
+    }
+
+    const previousSong = () => {
+        if (0 < pointer - 1) {
+            setPointer(pointer - 1)
+            localStorage.setItem('currentSongPointer', `${pointer - 1}`)
         }
     }
 
     return (
         <div style={{ display: 'flex', flexDirection: 'row' }}>
             <BottomNavigationAction icon={<ShuffleRoundedIcon />} />
-            <BottomNavigationAction icon={<SkipPreviousIcon />} />
+            <BottomNavigationAction onClick={previousSong} icon={<SkipPreviousIcon />} />
             <BottomNavigationAction onClick={playSong} icon={isPlaying ? <PauseCircleOutlineIcon /> : <PlayCircleOutlineIcon />} />
-            <BottomNavigationAction icon={<SkipNextIcon />} />
+            <BottomNavigationAction onClick={nextSong} icon={<SkipNextIcon />} />
             <BottomNavigationAction icon={<RepeatRoundedIcon />} />
         </div>
     )
