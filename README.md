@@ -80,3 +80,44 @@ python3 database.py
 - Return Artist Library
 - Return Album Library
 - Return Genre Library (optional)
+
+
+#### Deployment Notes:
+Flask App:
+
+Deploying flask to heroku
+- git subtree push heroku --prefix api_server master
+Add heroku.yml
+```bash
+# add gunicorn package and swap these 2 lines in entrypoint.sh
+python3 entry.py run -h 0.0.0.0
+gunicorn app:app
+```
+
+deploying client folder from master branch
+- git subtree push client --prefix client master
+
+
+installing serve package globally to serve static assets
+- npm install -g serve
+
+deploying client folder on react-auth branch
+- git push client `git subtree split --prefix client react-auth`:master --force
+```bash
+# production image build
+FROM node:12-alpine as base
+
+FROM base as build
+
+ENV REACT_APP_API_SERVER_BASE_URL=https://spotify-clone-appacademy.herokuapp.com
+
+WORKDIR /app
+
+COPY . .
+
+RUN npm install && npm run build
+
+RUN npm install -g serve
+
+CMD ["serve", "-s", "build"]
+```

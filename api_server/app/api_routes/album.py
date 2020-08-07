@@ -1,4 +1,5 @@
 from flask import Flask, Blueprint, jsonify
+from flask_jwt_extended import jwt_required
 from app.models import db, Album, Artist, Song
 from sqlalchemy.orm import joinedload
 
@@ -7,6 +8,7 @@ bp = Blueprint('album', __name__, url_prefix="/api/album")
 
 # GET all albums on Spotify
 @bp.route("/", strict_slashes=False, methods=["GET"])
+@jwt_required
 def get_albums():
     albums = Album.query.all()
     # artist =[artist.to_dict() for artist in albums.artist]
