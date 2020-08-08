@@ -1,5 +1,5 @@
 import React from 'react'
-import { Switch, NavLink } from 'react-router-dom'
+import { Switch, NavLink, Redirect } from 'react-router-dom'
 import Artists from './Artists'
 import Albums from './Albums'
 import Songs from './Songs'
@@ -26,10 +26,6 @@ const Library = () => {
     zIndex: '1',
   }
 
-
-
-
-
   return (
     <>
       <div style={topBarStyle}>
@@ -43,7 +39,8 @@ const Library = () => {
         <ProtectedRoute path='/library/albums' component={Albums} />
         <ProtectedRoute path='/library/songs' component={Songs} />
         <ProtectedRoute path='/library/playlists' component={Playlists} />
-        <ProtectedRoute path={`/library/artists/${1}`} component={ArtistDetails} />
+        <ProtectedRoute path='/library/artists/:id' component={ArtistDetails} />
+        <Redirect to='/library/artists' />
       </Switch>
     </>
   )

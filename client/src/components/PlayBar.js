@@ -12,6 +12,7 @@ const PlayBar = () => {
 
 
     useEffect(() => {
+      // eslint-disable-next-line react-hooks/exhaustive-deps
         audio = document.getElementById('song');
         if (!isNaN(audio.duration)) {
             audio.setAttribute('src', songs[pointer - 1].song_url)
@@ -19,7 +20,6 @@ const PlayBar = () => {
             setIsPlaying(true)
             console.log('success')
         }
-
     }, [pointer, audio])
 
     return (

@@ -1,7 +1,5 @@
 import React, { useEffect, useContext, useState } from 'react'
-import { useHistory, NavLink, Switch } from 'react-router-dom'
-import ProtectedRoute from './ProtectedRoute'
-import ArtistDetails from './ArtistDetails'
+import { useHistory, NavLink } from 'react-router-dom'
 import UserContext from '../context/UserContext'
 const apiUrl = process.env.REACT_APP_API_SERVER_BASE_URL
 
@@ -77,9 +75,6 @@ const Artist = () => {
 
   return (
     <>
-      {/* <Switch>
-        <ProtectedRoute path={`/library/artists/${1}`} component={ArtistDetails} />
-      </Switch> */}
       <div style={headerStyles}>Artists</div>
       <div style={cardContainerStyle}>
         {artists.map((artist, idx) => (
