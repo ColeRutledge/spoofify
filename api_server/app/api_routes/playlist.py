@@ -72,7 +72,6 @@ def create_playlist():
     try:
         playlist = Playlist(name=data['name'],
                             description=data['description'],
-                            image_url = data['image_url'],
                             user_id = data['user_id'])
         db.session.add(playlist)
         db.session.commit()

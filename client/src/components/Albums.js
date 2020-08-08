@@ -50,8 +50,8 @@ const Albums = () => {
 
         if (res.ok) {
             const data = await res.json();
-            const songsData = data.album.songs
-            setSongs(data.album.songs)
+            const songsData = data.songs
+            setSongs(data.songs)
             localStorage.setItem('currentSongPointer', 1);
             setPointer(1)
             localStorage.setItem('currentTime', 0)
