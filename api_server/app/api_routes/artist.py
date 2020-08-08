@@ -47,9 +47,23 @@ def get_artist_albums(id):
     return payload
 
 
+<<<<<<< HEAD
 # GET all songs for an artist
 @bp.route("/<int:id>/songs", methods=["GET"])
 def get_artist_songs(id):
+=======
+# # GET all songs for an artist
+@bp.route("/<int:id>/songs", methods=["GET"])
+def get_artist_songs(id):
+    # q = db.session.query(Artist,Song).from_statement(text("SELECT artists.id from artists join albums on artists.id = albums.artist_id join songs on albums.id = songs.album_id WHERE artist_id =:id" )).params(id=id).all()
+    # q = db.session.query(Song).join(Album).join(Artist).filter(Artist.id==id).all()
+    # artist = db.session.query(Artist,Album,Song).options(joinedload("albums").joinedload("songs")).filter(and_(Artist.id == id, Album.artist_id == id)).all()
+    # albums = [album.id for album in artist.albums]
+    # album = Album.query.options(joinedload("songs")).get(id)
+    # songs = [song.to_dict() for song in album.songs]
+
+    # return jsonify(artist)
+>>>>>>> master
     songs = db.session.query(Song.title,Song.song_length).join(Album).join(Artist).filter(Album.artist_id == id).all()
     payload = [{"song_title":song[0],"song_length":song[1]}for song in songs]
     return {"Data":payload}

@@ -44,7 +44,7 @@ def create_user():
   print()
   db.session.add(user)
   db.session.commit()
-  return {'token': user.get_token()}, 201
+  return {'token': user.get_token(), 'username': user.user_name, 'id': user.id}, 201
 
 
 @bp.route('/users')
@@ -78,6 +78,6 @@ def login():
 
   try:
     user = User.query.filter(User.email == email).one()
-    return {'token': user.get_token()} if user.check_password(password) else {'error': 'Login failed.'}
+    return {'token': user.get_token(), 'username': user.user_name, 'id': user.id} if user.check_password(password) else {'error': 'Login failed.'}
   except:
     return {'error': 'Login failed.'}

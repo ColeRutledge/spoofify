@@ -87,6 +87,7 @@ Flask App:
 
 Deploying flask to heroku
 - git subtree push heroku --prefix api_server master
+
 Add heroku.yml
 ```bash
 # add gunicorn package and swap these 2 lines in entrypoint.sh
