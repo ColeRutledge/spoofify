@@ -14,19 +14,22 @@ function App() {
       id: 1,
       song_url: 'https://spotify-clone-app.s3-us-west-2.amazonaws.com/acid-rain.mp3',
       title: 'Acid Rain',
-      album: 'Acid Rap'
+      album_title: 'Acid Rap',
+      album_image_url: 'https://i.scdn.co/image/ab67616d00001e02d95ab48a8a9de3c4a2cbfe80'
     },
     {
       id: 2,
       song_url: 'https://spotify-clone-app.s3-us-west-2.amazonaws.com/all-the-small-things.mp3',
       title: 'All The Small Things',
-      album: 'Enema of the State'
+      album_title: 'Enema of the State',
+      album_image_url: 'https://i.scdn.co/image/ab67616d00001e026da502e35a7a3e48de2b0f74'
     },
     {
       id: 3,
       song_url: 'https://spotify-clone-app.s3-us-west-2.amazonaws.com/cocoa-butter-kisses.mp3',
       title: 'Cocoa Butter Kisses',
-      album: 'Acid Rap'
+      album_title: 'Acid Rap',
+      album_image_url: 'https://i.scdn.co/image/ab67616d00001e02d95ab48a8a9de3c4a2cbfe80'
     }
   ]);
   const [pointer, setPointer] = useState(Number.parseInt(localStorage.getItem('currentSongPointer')) || 1);

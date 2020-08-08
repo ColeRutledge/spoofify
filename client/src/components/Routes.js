@@ -9,6 +9,7 @@ import Register from './Register'
 import Catalog from './Catalog'
 import ProtectedRoute from './ProtectedRoute'
 import Library from './Library'
+import AlbumPage from './AlbumPage'
 
 
 const Routes = () => {
