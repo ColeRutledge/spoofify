@@ -31,6 +31,8 @@ const Register = () => {
         }
         console.log('Successful fetch!')
         localStorage.setItem('token', data.token)
+        localStorage.setItem('username', data.username)
+        localStorage.setItem('id', data.id)
         setAuth(data.token)
         console.log(data)
       } else throw res
