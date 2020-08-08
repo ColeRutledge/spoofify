@@ -55,18 +55,6 @@ const Albums = () => {
                 headers: { 'Authorization': `Bearer ${localStorage.getItem('token') || auth}` }
             })
 
-<<<<<<< HEAD
-        if (res.ok) {
-            const data = await res.json();
-            const songsData = data.songs
-            setSongs(data.songs)
-            localStorage.setItem('currentSongPointer', 1);
-            setPointer(1)
-            localStorage.setItem('currentTime', 0)
-            audio.setAttribute('src', songsData[localStorage.getItem('currentSongPointer') - 1].song_url)
-            audio.play()
-            setIsPlaying(true)
-=======
             if (res.ok) {
                 const data = await res.json();
                 const songsData = data.songs
@@ -77,7 +65,6 @@ const Albums = () => {
                 audio.setAttribute('src', songsData[localStorage.getItem('currentSongPointer') - 1].song_url)
                 audio.play()
                 setIsPlaying(true)
->>>>>>> master
 
             }
         } catch (err) {

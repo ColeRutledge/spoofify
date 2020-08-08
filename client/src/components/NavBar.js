@@ -35,12 +35,9 @@ const NavBar = () => {
     height: '100%',
   }
 
-<<<<<<< HEAD
  
 
 
-=======
->>>>>>> master
   return (
     <>
       <div>
@@ -50,11 +47,7 @@ const NavBar = () => {
           <NavLink style={linkStyles} activeClassName='navbar--active' to='/users'>Users</NavLink>
           <NavLink style={linkStyles} activeClassName='navbar--active' to='/library'>Library</NavLink>
           <NavLink style={linkStyles} activeClassName='navbar--active' to='/catalog'>Browse</NavLink>
-<<<<<<< HEAD
           <Modal text={"Create Playlist"} />
-=======
-          <CreatePlaylist />
->>>>>>> master
           <NavLink style={linkStyles} activeClassName='navbar--active' to='/login'>Login</NavLink>
           <NavLink style={linkStyles} activeClassName='navbar--active' to='/register'>Register</NavLink>
           <NavLink style={linkStyles} onClick={logout} activeClassName='navbar--active' to='/logout'>Logout</NavLink>
