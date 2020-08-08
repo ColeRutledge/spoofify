@@ -48,11 +48,19 @@ def get_album_songs(id):
 # GET one song from album
 
 
-@bp.route("/<int:id>/<int:song_id>")
-def get_album_song(id, song_id):
-    songs = Song.query.filter_by(album_id=id, id=song_id).all()
+@bp.route("/song/<int:song_id>")
+# def get_album_song(id, song_id):
+#     songs = Song.query.filter_by(album_id=id, id=song_id).all()
+#     res = [{"title": song.title,
+#             "album": song.album.title,
+#             "song_length": song.song_length,
+#             "song_url": song.song_url} for song in songs]
+#     return jsonify(res)
+def get_album_song(song_id):
+    songs = Song.query.filter_by(id=song_id).all()
     res = [{"title": song.title,
-            "album": song.album.title,
+            "album_title": song.album.title,
+            "album_image_url": song.album.image_url,
             "song_length": song.song_length,
             "song_url": song.song_url} for song in songs]
     return jsonify(res)

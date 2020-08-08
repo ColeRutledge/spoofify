@@ -11,6 +11,9 @@ const NavBar = () => {
     if (auth) {
       setAuth('')
       localStorage.removeItem('token')
+      localStorage.removeItem('volume')
+      localStorage.removeItem('currentTime')
+      localStorage.removeItem('currentPointer')
     }
   }
 
@@ -32,8 +35,8 @@ const NavBar = () => {
     height: '100%',
   }
 
-  const buttonStyle ={
-    
+  const buttonStyle = {
+
   }
 
 
