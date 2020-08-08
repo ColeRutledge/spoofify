@@ -10,7 +10,7 @@ const ArtistDetails = () => {
   const { auth, setAuth } = useContext(UserContext)
   const [ artist, setArtist ] = useState({})
   const [ albums, setAlbums ] = useState([])
-  const [ songs, setSongs ] = useState([])
+  const [ allSongs, setAllSongs ] = useState([])
   const history = useHistory()
   const { id } = useParams()
 
@@ -43,7 +43,7 @@ const ArtistDetails = () => {
           console.log(songs_data)
           setArtist({...artist_data})
           setAlbums([...albums_data.artist.albums])
-          setSongs([...songs_data.Data])
+          setAllSongs([...songs_data.Data])
         } else throw artistJson
 
       } catch (err) {
