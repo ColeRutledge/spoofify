@@ -52,13 +52,12 @@ const Songs = () => {
 
       if (res.ok) {
         const data = await res.json();
-        const songsData = data
-        setSongs(data)
-        console.log(songsData)
+        console.log(data)
         localStorage.setItem('currentSongPointer', 1);
         setPointer(1)
+        setSongs(data)
         localStorage.setItem('currentTime', 0)
-        audio.setAttribute('src', songsData[localStorage.getItem('currentSongPointer') - 1].song_url)
+        audio.setAttribute('src', data[localStorage.getItem('currentSongPointer') - 1].song_url)
         audio.play()
         setIsPlaying(true)
 
@@ -113,8 +112,8 @@ const Songs = () => {
                       <span style={{ marginLeft: '13px', justifySelf: 'center', pointerEvents: 'none', color: '#b3b3b3', display: 'inline' }}>{song.album}</span>
                     </div>
                   </div>
+                  <div style={{ alignSelf: 'center' }}>{song.song_length}</div>
                 </div>
-                <div style={{ alignSelf: 'center' }}>{song.song_length}</div>
               </a>
             </div>
             {allSongs[i + 1] !== undefined && song.artist !== allSongs[i + 1].artist

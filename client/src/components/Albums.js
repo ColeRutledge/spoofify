@@ -90,50 +90,45 @@ const Albums = () => {
 
     return (
         <>
-            <BrowserRouter>
-                <div style={headerStyles}>Albums</div>
-                <div style={cardContainerStyle}>
-                    {albums.map(album => (
-                        <div key={album.id}>
-                            <div className='image-container'>
-                                <img
-                                    style={{
-                                        alignContent: 'end',
-                                        marginBottom: '20px',
-                                    }}
-                                    src={album.image_url}
-                                    height='200px'
-                                    width='200px'
-                                    alt='album.jpg'
-                                    draggable='false'
-                                />
-                                <div className='after'>
-                                    <button onClick={playAlbum} id={album.id} style={{ backgroundColor: 'transparent', border: 'none', outline: 'none', cursor: 'pointer' }}>
-                                        <PlayCircleOutlineIcon style={{ fontSize: '100px', pointerEvents: 'none' }} />
-                                    </button>
-                                </div>
-                            </div>
-                            <div style={{ justifySelf: 'start', marginLeft: '10px' }}>
-                                <NavLink activeClassName='navbar--active2' to={`/library/albums/${album.id}`} style={{
-                                    marginTop: '10px',
-                                    marginBottom: '7px',
-                                    color: '#fff',
-                                    fontSize: '16px',
-                                    lineHeight: '24px',
-                                }}>{album.title}</NavLink>
-                                <div style={{
-                                    color: '#b3b3b3',
-                                    fontSize: '11px',
-                                    lineHeight: '16px'
-                                }}>Album</div>
+            <div style={headerStyles}>Albums</div>
+            <div style={cardContainerStyle}>
+                {albums.map(album => (
+                    <div key={album.id}>
+                        <div className='image-container'>
+                            <img
+                                style={{
+                                    alignContent: 'end',
+                                    marginBottom: '20px',
+                                }}
+                                src={album.image_url}
+                                height='200px'
+                                width='200px'
+                                alt='album.jpg'
+                                draggable='false'
+                            />
+                            <div className='after'>
+                                <button onClick={playAlbum} id={album.id} style={{ backgroundColor: 'transparent', border: 'none', outline: 'none', cursor: 'pointer' }}>
+                                    <PlayCircleOutlineIcon style={{ fontSize: '100px', pointerEvents: 'none' }} />
+                                </button>
                             </div>
                         </div>
-                    ))}
-                </div>
-                <Switch>
-                    <ProtectedRoute path='/library/albums/:id' component={AlbumPage} />
-                </Switch>
-            </BrowserRouter>
+                        <div style={{ justifySelf: 'start', marginLeft: '10px' }}>
+                            <NavLink activeClassName='navbar--active2' to={`/library/albums/${album.id}`} style={{
+                                marginTop: '10px',
+                                marginBottom: '7px',
+                                color: '#fff',
+                                fontSize: '16px',
+                                lineHeight: '24px',
+                            }}>{album.title}</NavLink>
+                            <div style={{
+                                color: '#b3b3b3',
+                                fontSize: '11px',
+                                lineHeight: '16px'
+                            }}>Album</div>
+                        </div>
+                    </div>
+                ))}
+            </div>
         </>
     )
 }

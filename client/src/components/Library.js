@@ -6,6 +6,7 @@ import Songs from './Songs'
 import Playlists from './Playlists'
 import ProtectedRoute from './ProtectedRoute'
 import ArtistDetails from './ArtistDetails'
+import AlbumPage from './AlbumPage'
 
 
 const Library = () => {
@@ -36,10 +37,11 @@ const Library = () => {
       </div>
       <Switch>
         <ProtectedRoute exact path='/library/artists' component={Artists} />
-        <ProtectedRoute path='/library/albums' component={Albums} />
+        <ProtectedRoute exact path='/library/albums' component={Albums} />
         <ProtectedRoute path='/library/songs' component={Songs} />
         <ProtectedRoute path='/library/playlists' component={Playlists} />
         <ProtectedRoute path='/library/artists/:id' component={ArtistDetails} />
+        <ProtectedRoute path='/library/albums/:id' component={AlbumPage} />
         <Redirect to='/library/artists' />
       </Switch>
     </>
