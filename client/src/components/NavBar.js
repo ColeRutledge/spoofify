@@ -33,7 +33,7 @@ const NavBar = () => {
   }
 
   const buttonStyle ={
-    
+
   }
 
 

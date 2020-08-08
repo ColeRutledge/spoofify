@@ -1,5 +1,5 @@
 import React from 'react'
-import ReactDOM from 'react-dom';
+// import ReactDOM from 'react-dom';
 // import Modal from 'react-modal';
 
 
@@ -9,7 +9,7 @@ class CreatePlayist extends React.Component{
 
 render() {
     return(
-        <> 
+        <>
         {/* <ModalButton /> */}
         {/* {this.state.isShown ? (<Modal/>) : null} */}
         </>
