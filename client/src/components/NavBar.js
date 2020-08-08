@@ -11,6 +11,9 @@ const NavBar = () => {
     if (auth) {
       setAuth('')
       localStorage.removeItem('token')
+      localStorage.removeItem('volume')
+      localStorage.removeItem('currentTime')
+      localStorage.removeItem('currentPointer')
     }
   }
 
@@ -32,11 +35,6 @@ const NavBar = () => {
     height: '100%',
   }
 
-  const buttonStyle ={
-
-  }
-
-
   return (
     <>
       <div>
@@ -46,7 +44,7 @@ const NavBar = () => {
           <NavLink style={linkStyles} activeClassName='navbar--active' to='/users'>Users</NavLink>
           <NavLink style={linkStyles} activeClassName='navbar--active' to='/library'>Library</NavLink>
           <NavLink style={linkStyles} activeClassName='navbar--active' to='/catalog'>Browse</NavLink>
-          <CreatePlaylist style={buttonStyle} />
+          <CreatePlaylist />
           <NavLink style={linkStyles} activeClassName='navbar--active' to='/login'>Login</NavLink>
           <NavLink style={linkStyles} activeClassName='navbar--active' to='/register'>Register</NavLink>
           <NavLink style={linkStyles} onClick={logout} activeClassName='navbar--active' to='/logout'>Logout</NavLink>

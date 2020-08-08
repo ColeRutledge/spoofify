@@ -15,7 +15,7 @@ const BottomNav = () => {
                             <GitHubIcon style={{ color: 'white' }} />
                         </IconButton>
                         <IconButton aria-label='linkedin'>
-                            <LinkedInIcon style={{ color: 'white' }} />
+                            <LinkedInIcon href='https://www.linkedin.com/in/chris-tran-/' style={{ color: 'white' }} />
                         </IconButton>
                     </div>
                 </div>
