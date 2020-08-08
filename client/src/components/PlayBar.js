@@ -8,7 +8,7 @@ import UserContext from '../context/UserContext';
 
 const PlayBar = () => {
     const { pointer, songs, setIsPlaying } = useContext(UserContext)
-    let audio = document.getElementById('song')
+    let audio
 
 
     useEffect(() => {
@@ -32,7 +32,8 @@ const PlayBar = () => {
               bottom: '0px',
               left: '0px',
               display: 'grid',
-              gridTemplateColumns: '1fr 1fr 1fr'
+              gridTemplateColumns: '1fr 1fr 1fr',
+              zIndex: '1',
             }}>
               <audio id='song'>
                   <source src={songs[pointer - 1].song_url} type='audio/mpeg' />

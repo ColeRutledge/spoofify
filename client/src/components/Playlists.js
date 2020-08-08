@@ -60,7 +60,7 @@ const Playlists = () => {
   }
 
   const headerStyles = {
-    padding: '50px 0 0 53px',
+    padding: '125px 0 0 53px',
     margin: '0 3px',
     fontSize: '24px',
     lineHeight: '28px',

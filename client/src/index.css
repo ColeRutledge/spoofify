@@ -11,7 +11,8 @@
 body {
   font-family: "Circular Spotify Tx T Black";
   margin-left: 250px;
-  margin-top: 0;
+  margin-top: 0px;
+  margin-bottom: 150px;
 }
 
 a {
@@ -41,10 +42,12 @@ a:hover {
   fill: #b3b3b3 !important;
 }
 
+
 .songCards:hover {
-  background-color: #b3b3b3;
+  background-color: #b3b3b3 !important;
   border-radius: 5px;
 }
+
 
 .image-container {
   position: relative;

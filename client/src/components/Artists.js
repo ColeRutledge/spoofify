@@ -1,6 +1,8 @@
 import React, { useEffect, useContext, useState } from 'react'
+import { useHistory, NavLink, Switch } from 'react-router-dom'
+import ProtectedRoute from './ProtectedRoute'
+import ArtistDetails from './ArtistDetails'
 import UserContext from '../context/UserContext'
-import { useHistory } from 'react-router-dom'
 const apiUrl = process.env.REACT_APP_API_SERVER_BASE_URL
 
 
@@ -59,7 +61,7 @@ const Artist = () => {
   }
 
   const headerStyles = {
-    padding: '50px 0 0 53px',
+    padding: '125px 0 0 53px',
     margin: '0 3px',
     color: '#FFF',
     fontSize: '24px',
@@ -67,40 +69,59 @@ const Artist = () => {
     // padding: '25px 10px',
   }
 
+  const onClick = (e) => {
+    console.log(e.target.id)
+    // const { id } = useParams()
+    // console.log(id)
+  }
+
   return (
     <>
+      {/* <Switch>
+        <ProtectedRoute path={`/library/artists/${1}`} component={ArtistDetails} />
+      </Switch> */}
       <div style={headerStyles}>Artists</div>
       <div style={cardContainerStyle}>
-        {artists.map(artist => (
-          <div key={artist.id} style={cardStyles}>
-            <img
-              style={{
-                alignContent: 'end',
-                borderRadius: '50%',
-                marginBottom: '20px',
-                boxShadow: '0 10px 30px 0 rgba(0,0,0,.3), 0 1px 2px 0 rgba(0,0,0,.2)'
-              }}
-              src={artist.image_url}
-              height='160px'
-              width='160px'
-              alt='artist.jpg'
-            />
-            <div style={{ justifySelf: 'start', marginLeft: '10px' }}>
-              <div style={{
-                marginBottom: '7px',
-                color: '#fff',
-                fontSize: '16px',
-                lineHeight: '24px',
-                width: '173px',
-                overflow: 'hidden',
-                whiteSpace: 'nowrap',
-                textOverflow: 'ellipsis' }}>{artist.name}</div>
-              <div style={{
-                color: '#b3b3b3',
-                fontSize: '11px',
-                lineHeight: '16px'}}>Artist</div>
-            </div>
-          </div>
+        {artists.map((artist, idx) => (
+          <React.Fragment key={idx}>
+            <NavLink
+              style={{ padding: '2px 0', borderRadius: '10px', cursor: 'pointer' }}
+              className='songCards'
+              to={`/library/artists/${artist.id}`}
+              onClick={onClick}
+              id={artist.id}
+            >
+              <div key={artist.id} style={cardStyles}>
+                <img
+                  style={{
+                    alignContent: 'end',
+                    borderRadius: '50%',
+                    marginBottom: '20px',
+                    boxShadow: '0 10px 30px 0 rgba(0,0,0,.3), 0 1px 2px 0 rgba(0,0,0,.2)'
+                  }}
+                  src={artist.image_url}
+                  height='160px'
+                  width='160px'
+                  alt='artist.jpg'
+                />
+                <div style={{ justifySelf: 'start', marginLeft: '10px' }}>
+                  <div style={{
+                    marginBottom: '7px',
+                    color: '#fff',
+                    fontSize: '16px',
+                    lineHeight: '24px',
+                    width: '173px',
+                    overflow: 'hidden',
+                    whiteSpace: 'nowrap',
+                    textOverflow: 'ellipsis' }}>{artist.name}</div>
+                  <div style={{
+                    color: '#b3b3b3',
+                    fontSize: '11px',
+                    lineHeight: '16px'}}>Artist</div>
+                </div>
+              </div>
+            </NavLink>
+          </React.Fragment>
         ))}
       </div>
     </>

@@ -1,6 +1,8 @@
 import React, { useEffect, useContext, useState } from 'react'
 import UserContext from '../context/UserContext'
 import { useHistory } from 'react-router-dom'
+import FavoriteIcon from '@material-ui/icons/Favorite'
+import Button from '@material-ui/core/Button'
 const apiUrl = process.env.REACT_APP_API_SERVER_BASE_URL
 
 
@@ -41,7 +43,6 @@ const Songs = () => {
 
 
   const cardContainerStyle = {
-    padding: '30px 0 150px 50px',
     display: 'flex',
     flexDirection: 'column',
   }
@@ -50,17 +51,19 @@ const Songs = () => {
     display: 'grid',
     gridTemplateColumns: '1fr .5fr',
     justifyItems: 'end',
+    alignItems: 'center',
     color: '#FFF',
-    margin: '3px 3px',
-    padding: '25px 10px',
+    margin: '4px 3px',
+    padding: '0 15px',
+    minHeight: '55px',
     borderRadius: '5px',
     backgroundColor: '#282828',
     boxShadow: '0 10px 30px 0 rgba(0,0,0,.3), 0 1px 2px 0 rgba(0,0,0,.2)',
   }
 
   const headerStyles = {
-    padding: '50px 0 0 53px',
-    margin: '0 3px',
+    padding: '50px 0 20px 53px',
+    margin: '0 10px',
     fontSize: '24px',
     lineHeight: '28px',
     color: 'hsla(0,0%,100%,1)',
@@ -68,25 +71,30 @@ const Songs = () => {
 
   return (
     <>
+      <div style={{ paddingTop: '75px' }}></div>
       <div style={headerStyles}>Songs</div>
       {songs.length > 0 && <div style={{...headerStyles, fontSize: '19px', color: '#b3b3b3' }}>{songs[0].artist}</div>}
       <div style={cardContainerStyle}>
         {songs.map((song, i) => (
           <React.Fragment key={i}>
-            <a className='songCards' style={{ cursor: 'pointer' }} id={song.title} href={song.song_url} >
+            <div style={{ display: 'grid', gridTemplateColumns: '50px 1fr', alignItems: 'center', justifyItems: 'center' }}>
+            <Button><FavoriteIcon style={{ color: 'hsla(0,0%,100%,.3)' }} /></Button>
+            <a className='songCards' style={{ cursor: 'pointer', width: '100%' }} id={song.song_id} href={song.song_url} >
               <div style={cardStyles}>
                 <div style={{ justifySelf: 'start' }}>{song.title}
-                  <div style={{ marginTop: '5px', justifySelf: 'center', fontSize: '12px', color: '#b3b3b3' }}>{song.artist}
-                    <span style={{ marginLeft: '10px' }}>•</span>
-                    <span style={{ marginLeft: '10px', justifySelf: 'center', color: '#b3b3b3', display: 'inline' }}>{song.album}</span>
+                  <div style={{ marginTop: '5px', justifySelf: 'center', fontSize: '15px', color: '#b3b3b3' }}>{song.artist}
+                    <span style={{ marginLeft: '13px' }}>•</span>
+                    <span style={{ marginLeft: '13px', justifySelf: 'center', color: '#b3b3b3', display: 'inline' }}>{song.album}</span>
                   </div>
                 </div>
                 <div style={{ alignSelf: 'center' }}>{song.song_length}</div>
               </div>
             </a>
+            <div />
             {songs[i + 1] !== undefined && song.artist !== songs[i + 1].artist
-              && <div style={{...headerStyles, fontSize: '19px', paddingLeft: '5px', marginBottom: '25px', color: '#b3b3b3' }}
+              && <div style={{...headerStyles, fontSize: '19px', paddingLeft: '5px', color: '#b3b3b3', justifySelf: 'start' }}
               >{songs[i + 1].artist}</div>}
+              </div>
           </React.Fragment>
         ))}
       </div>
