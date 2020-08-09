@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 import UserContext from './context/UserContext'
 
 import Routes from './components/Routes'
+import Landing from './components/Landing'
+import { BrowserRouter, Switch, Route } from 'react-router-dom'
 
 
 function App() {
@@ -57,7 +59,12 @@ function App() {
 
   return (
     <UserContext.Provider value={context} >
-      <Routes />
+      <BrowserRouter>
+        <Switch>
+          <Route exact path='/' render={() => <Landing />} />
+          <Routes />
+        </Switch>
+      </BrowserRouter>
     </UserContext.Provider>
   )
 }

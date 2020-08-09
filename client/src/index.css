@@ -105,6 +105,7 @@ a:hover {
   border: 0;
   box-shadow: 0;
   cursor: pointer;
+  outline: none;
 }
 
 ._modal-close-icon {
@@ -142,7 +143,10 @@ a:hover {
   color: #b3b3b3 !important;
   cursor: default;
 }
+<<<<<<< HEAD
 
 .icon{
   fill: rgb(29, 185, 84) !important
 }
+=======
+>>>>>>> master

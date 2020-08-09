@@ -104,6 +104,7 @@ installing serve package globally to serve static assets
 
 deploying client folder on react-auth branch
 - git push client `git subtree split --prefix client react-auth`:master --force
+
 ```bash
 # production image build
 FROM node:12-alpine as base
@@ -121,4 +122,9 @@ RUN npm install && npm run build
 RUN npm install -g serve
 
 CMD ["serve", "-s", "build"]
+```
+
+```bash
+# deployment for specific branch for api_server
+git push heroku `git subtree split --prefix api_server react-auth`:master --force
 ```

@@ -1,6 +1,5 @@
 import React, { useContext } from 'react'
-import { BrowserRouter, Route, Switch } from 'react-router-dom'
-import Landing from './Landing'
+import { Route, Switch } from 'react-router-dom'
 import NavBar from './NavBar'
 import PlayBar from './PlayBar'
 import Users from './Users'
@@ -16,18 +15,17 @@ import UserContext from '../context/UserContext'
 const Routes = () => {
   const { auth } = useContext(UserContext)
   return (
-    <BrowserRouter>
+    <>
       {auth ? <NavBar /> : <TopNav />}
       {auth ? <PlayBar /> : <BottomNav />}
       <Switch>
-        <Route exact path='/' render={() => <Landing />} />
         <Route path='/login' render={() => <Login />} />
         <Route path='/logout' render={() => <Login />} />
         <Route path='/register' render={() => <Register />} />
         <ProtectedRoute path='/users' component={Users} />
         <ProtectedRoute path='/library' component={Library} />
       </Switch>
-    </BrowserRouter>
+    </>
   )
 }
 
