@@ -147,7 +147,7 @@ const PlaylistDetails = () => {
           {allSongs.map((song, i) => (
             <React.Fragment key={i}>
               <div style={{ display: 'grid', gridTemplateColumns: '50px 1fr', alignItems: 'center', justifyItems: 'center' }}>
-                <Button id={song.id}><FavoriteIcon style={{ color: 'hsla(0,0%,100%,.3)', pointerEvents: 'none' }} /></Button>
+                <Button><FavoriteIcon style={{ color: 'hsla(0,0%,100%,.3)' }} id={song.id} onClick={(e) => {console.log(e.currentTarget.id)}}/></Button>
                 <a className='songCards' style={{ cursor: 'pointer', width: '100%' }} id={song.id} href='/' onClick={playSong} >
                   <div style={{ ...cardStyles, pointerEvents: 'none' }}>
                     <div style={{ justifySelf: 'start', pointerEvents: 'none' }}>{song.title}
