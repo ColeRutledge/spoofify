@@ -143,3 +143,7 @@ a:hover {
   color: #b3b3b3 !important;
   cursor: default;
 }
+
+.icon{
+  fill: rgb(29, 185, 84) !important
+}

@@ -33,9 +33,10 @@ function App() {
       album_title: 'Acid Rap',
       album_image_url: 'https://i.scdn.co/image/ab67616d00001e02d95ab48a8a9de3c4a2cbfe80'
     }
-  ]);
+  ] || localStorage.getItem('currentSong'));
   const [pointer, setPointer] = useState(Number.parseInt(localStorage.getItem('currentSongPointer')) || 1);
-
+  const [isLooping, setIsLooping] = useState(false);
+  const [isShuffling, setIsShuffling] = useState(false);
 
 
   const context = {
@@ -50,7 +51,10 @@ function App() {
     songs,
     setSongs,
     pointer,
-    setPointer
+    setPointer,
+    isLooping,
+    setIsLooping,
+    isShuffling, setIsShuffling
   }
 
   return (

@@ -56,6 +56,7 @@ const Albums = () => {
                 const songsData = data.songs
                 setSongs(data.songs)
                 localStorage.setItem('currentSongPointer', 1);
+                localStorage.setItem('currentSong', data.songs)
                 setPointer(1)
                 localStorage.setItem('currentTime', 0)
                 audio.setAttribute('src', songsData[localStorage.getItem('currentSongPointer') - 1].song_url)

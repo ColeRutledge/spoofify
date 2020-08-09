@@ -6,7 +6,7 @@ const apiUrl = process.env.REACT_APP_API_SERVER_BASE_URL
 
 const Artist = () => {
   const { auth, setAuth } = useContext(UserContext)
-  const [ artists, setArtists ] = useState([])
+  const [artists, setArtists] = useState([])
   const history = useHistory()
 
   useEffect(() => {
@@ -14,7 +14,7 @@ const Artist = () => {
       try {
         const res = await fetch(`${apiUrl}/api/artist`, {
           method: 'GET',
-          headers: {'Authorization': `Bearer ${localStorage.getItem('token') || auth}`}
+          headers: { 'Authorization': `Bearer ${localStorage.getItem('token') || auth}` }
         })
 
         if (res.ok) {
@@ -101,11 +101,13 @@ const Artist = () => {
                     width: '173px',
                     overflow: 'hidden',
                     whiteSpace: 'nowrap',
-                    textOverflow: 'ellipsis' }}>{artist.name}</div>
+                    textOverflow: 'ellipsis'
+                  }}>{artist.name}</div>
                   <div style={{
                     color: '#b3b3b3',
                     fontSize: '11px',
-                    lineHeight: '16px'}}>Artist</div>
+                    lineHeight: '16px'
+                  }}>Artist</div>
                 </div>
               </div>
             </NavLink>

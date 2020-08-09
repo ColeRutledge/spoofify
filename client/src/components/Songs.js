@@ -55,6 +55,7 @@ const Songs = () => {
         const data = await res.json();
         // console.log(data)
         localStorage.setItem('currentSongPointer', 1);
+        localStorage.setItem('currentSong', data)
         setPointer(1)
         setSongs(data)
         localStorage.setItem('currentTime', 0)
