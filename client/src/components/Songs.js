@@ -23,7 +23,7 @@ const Songs = () => {
 
         if (res.ok) {
           const data = await res.json()
-          console.log(data)
+          // console.log(data)
           setAllSongs([...data])
         } else throw res
 
@@ -43,6 +43,7 @@ const Songs = () => {
   }, [])
 
   const playSong = async (e) => {
+    e.preventDefault()
     const songId = e.target.getAttribute('id')
     try {
       const res = await fetch(`${apiUrl}/api/album/song/${songId}`, {
@@ -52,7 +53,7 @@ const Songs = () => {
 
       if (res.ok) {
         const data = await res.json();
-        console.log(data)
+        // console.log(data)
         localStorage.setItem('currentSongPointer', 1);
         setPointer(1)
         setSongs(data)
@@ -103,8 +104,8 @@ const Songs = () => {
         {allSongs.map((song, i) => (
           <React.Fragment key={i}>
             <div style={{ display: 'grid', gridTemplateColumns: '50px 1fr', alignItems: 'center', justifyItems: 'center' }}>
-              <Button><FavoriteIcon style={{ color: 'hsla(0,0%,100%,.3)' }} /></Button>
-              <a className='songCards' style={{ cursor: 'pointer', width: '100%' }} id={song.song_id} onClick={playSong} >
+              <Button id={song.song_id}><FavoriteIcon style={{ color: 'hsla(0,0%,100%,.3)', pointerEvents: 'none' }} /></Button>
+              <a className='songCards' style={{ cursor: 'pointer', width: '100%' }} id={song.song_id} href='/' onClick={playSong} >
                 <div style={{ ...cardStyles, pointerEvents: 'none' }}>
                   <div style={{ justifySelf: 'start', pointerEvents: 'none' }}>{song.title}
                     <div style={{ marginTop: '5px', pointerEvents: 'none', justifySelf: 'center', fontSize: '15px', color: '#b3b3b3' }}>{song.artist}

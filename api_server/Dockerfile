@@ -12,5 +12,3 @@ COPY ./database.py /app/database.py
 COPY ./entry.py /app/entry.py
 
 RUN chmod +x /app/entrypoint.sh
-
-# CMD ["python3", "database.py"]

@@ -1,6 +1,5 @@
 import React from 'react'
-import { BrowserRouter, Route, Switch } from 'react-router-dom'
-import Landing from './Landing'
+import { Route, Switch } from 'react-router-dom'
 import NavBar from './NavBar'
 import PlayBar from './PlayBar'
 import Users from './Users'
@@ -9,16 +8,14 @@ import Register from './Register'
 import Catalog from './Catalog'
 import ProtectedRoute from './ProtectedRoute'
 import Library from './Library'
-import AlbumPage from './AlbumPage'
 
 
 const Routes = () => {
   return (
-    <BrowserRouter>
+    <>
       <NavBar />
       <PlayBar />
       <Switch>
-        <Route exact path='/' render={() => <Landing />} />
         <Route path='/login' render={() => <Login />} />
         <Route path='/logout' render={() => <Login />} />
         <Route path='/register' render={() => <Register />} />
@@ -26,7 +23,7 @@ const Routes = () => {
         <ProtectedRoute path='/users' component={Users} />
         <ProtectedRoute path='/library' component={Library} />
       </Switch>
-    </BrowserRouter>
+    </>
   )
 }
 

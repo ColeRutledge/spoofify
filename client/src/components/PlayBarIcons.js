@@ -10,7 +10,7 @@ import UserContext from '../context/UserContext';
 
 const PlayBarIcons = () => {
     const { isPlaying, setIsPlaying, pointer, setPointer, songs, currentTime } = useContext(UserContext);
-    console.log(pointer)
+    // console.log(pointer)
     const playSong = (e) => {
         const audio = document.getElementById('song');
         if (isPlaying) {
