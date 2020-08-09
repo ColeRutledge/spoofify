@@ -18,7 +18,6 @@ const PlayBar = () => {
             audio.setAttribute('src', songs[pointer - 1].song_url)
             audio.play()
             setIsPlaying(true)
-            console.log('success')
         }
     }, [pointer, audio])
 

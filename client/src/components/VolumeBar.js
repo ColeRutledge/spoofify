@@ -21,7 +21,6 @@ const VolumeBar = () => {
         if (audio) {
             if (!isNaN(volume)) {
                 audio.volume = parseFloat(volume)
-                console.log(audio.volume)
             }
             const slider = document.querySelector('.volume').childNodes[1]
             const thumb = document.querySelector('.volume').childNodes[3]
