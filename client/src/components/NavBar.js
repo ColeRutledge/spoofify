@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
 import { NavLink } from 'react-router-dom'
-import Modal from './Modal'
+import PlaylistModal from './PlaylistModal'
 import UserContext from '../context/UserContext'
 
 
@@ -48,7 +48,7 @@ const NavBar = () => {
           <NavLink style={linkStyles} activeClassName='navbar--active' to='/library'>Library</NavLink>
           {/* <NavLink style={linkStyles} activeClassName='navbar--active' to='/login'>Login</NavLink> */}
           {/* <NavLink style={linkStyles} activeClassName='navbar--active' to='/register'>Register</NavLink> */}
-          <Modal text={"Create Playlist"} />
+          <PlaylistModal text={"Create Playlist"} />
           <h1 style={{ ...linkStyles, marginTop: '100px', color: 'hsl(0deg 2% 33%)' }}>Welcome, <span style={{ color: 'white' }}>{localStorage.getItem('username')}</span></h1>
           <NavLink style={{ ...linkStyles }} onClick={logout} activeClassName='navbar--active' to='/logout'>Logout</NavLink>
         </div>

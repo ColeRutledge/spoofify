@@ -1,11 +1,10 @@
 import React from 'react'
-// import ReactDOM from 'react-dom';
 import ModalButton from './ModalButton'
 import CreatePlaylistForm from './CreatePlaylistForm'
 
 
 
-class Modal extends React.Component{
+class PlaylistModal extends React.Component{
     state = { isShown: false};
 
     showModal = () => {
@@ -53,7 +52,6 @@ render() {
         />
         {this.state.isShown ? (
             <CreatePlaylistForm
-                // onSubmit={this.onSubmit}
                 modalRef={ (n) => (this.modal = n)}
                 buttonRef={(n) => (this.closeButton = n)}
                 closeModal ={this.closeModal}
@@ -66,4 +64,4 @@ render() {
     }
 }
 
-export default Modal
+export default PlaylistModal
