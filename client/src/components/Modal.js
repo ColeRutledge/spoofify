@@ -53,7 +53,7 @@ render() {
         />
         {this.state.isShown ? (
             <CreatePlaylistForm
-                onSubmit={this.onSubmit}
+                // onSubmit={this.onSubmit}
                 modalRef={ (n) => (this.modal = n)}
                 buttonRef={(n) => (this.closeButton = n)}
                 closeModal ={this.closeModal}

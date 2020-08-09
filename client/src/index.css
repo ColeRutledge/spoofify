@@ -105,6 +105,7 @@ a:hover {
   border: 0;
   box-shadow: 0;
   cursor: pointer;
+  outline: none;
 }
 
 ._modal-close-icon {
