@@ -1,5 +1,5 @@
 import React from 'react'
-import ReactDOM from 'react-dom';
+// import ReactDOM from 'react-dom';
 import ModalButton from './ModalButton'
 import CreatePlaylistForm from './CreatePlaylistForm'
 
@@ -7,11 +7,11 @@ import CreatePlaylistForm from './CreatePlaylistForm'
 
 class Modal extends React.Component{
     state = { isShown: false};
-    
+
     showModal = () => {
         this.setState({ isShown: true} , () =>{
             this.closeButton.focus();
-            
+
         })
         this.toggleScrollLock();
     }
@@ -45,7 +45,7 @@ class Modal extends React.Component{
 
 render() {
     return(
-        <> 
+        <>
         <ModalButton
         showModal= {this.showModal}
         buttonRef = {(n)=>  (this.ModalButton = n)}
