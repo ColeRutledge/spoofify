@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import React, { useEffect, useContext, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import UserContext from '../context/UserContext'
@@ -6,15 +5,6 @@ import FavoriteIcon from '@material-ui/icons/Favorite'
 import Button from '@material-ui/core/Button'
 
 const apiUrl = process.env.REACT_APP_API_SERVER_BASE_URL
-=======
-import React from 'react';
-// import { BrowserRouter, NavLink, Switch } from 'react-router-dom';
-// import ProtectedRoute from './ProtectedRoute';
-// import Artists from './Artists'
-// import Songs from './Songs'
-// import Playlists from './Playlists'
-// import Albums from './Albums'
->>>>>>> master
 
 const AlbumPage = () => {
     const { id } = useParams()

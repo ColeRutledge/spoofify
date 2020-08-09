@@ -9,12 +9,7 @@ import ShuffleRoundedIcon from '@material-ui/icons/ShuffleRounded';
 import UserContext from '../context/UserContext';
 
 const PlayBarIcons = () => {
-<<<<<<< HEAD
     const { isPlaying, setIsPlaying, pointer, setPointer, songs, currentTime, isLooping, setIsLooping, isShuffling, setIsShuffling } = useContext(UserContext);
-=======
-    const { isPlaying, setIsPlaying, pointer, setPointer, songs, currentTime } = useContext(UserContext);
-    // console.log(pointer)
->>>>>>> master
     const playSong = (e) => {
         const audio = document.getElementById('song');
         if (isPlaying) {
