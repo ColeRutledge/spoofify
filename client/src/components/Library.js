@@ -49,37 +49,3 @@ const Library = () => {
 }
 
 export default Library
-
-  // const sleep = async ms => await new Promise(resolve => setTimeout(resolve, ms))
-
-  // useEffect(() => {
-  //   const redir = async () => {
-  //     await sleep(1000)
-  //     history.push('/library/artists')
-  //   }
-
-  //   redir()
-  // }, [])
-
-
-          // <button style={{ borderRadius: '50%', marginRight: '16px', color: '#FFF', backgroundColor: 'rgba(0,0,0,.7)', height: '32px', width: '32px', cursor: 'pointer' }}>
-          //   <svg
-          //     style={{ backgroundColor: 'rgba(0,0,0,.7)', color: '#FFF' }}
-          //     role="img"
-          //     height="24"
-          //     width="24"
-          //     viewBox="0 0 24 24"
-          //     class="Svg-sc-1usfroi-0 jNmUis _6be6d9f3103325b95e6d4c0f6b10b783-scss">
-          //     <polyline points="16 4 7 12 16 20" fill="none" stroke="#181818" />
-          //   </svg>
-          // </button>
-          // <button style={{ borderRadius: '50%', color: '#FFF', backgroundColor: 'rgba(0,0,0,.7)', height: '32px', width: '32px', cursor: 'pointer' }}>
-          //   <svg
-          //     role="img"
-          //     height="24"
-          //     width="24"
-          //     viewBox="0 0 24 24"
-          //     class="Svg-sc-1usfroi-0 jNmUis _6be6d9f3103325b95e6d4c0f6b10b783-scss">
-          //     <polyline points="8 4 17 12 8 20" fill="none" stroke="#181818" />
-          //   </svg>
-          // </button>

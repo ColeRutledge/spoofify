@@ -9,8 +9,7 @@ import ShuffleRoundedIcon from '@material-ui/icons/ShuffleRounded';
 import UserContext from '../context/UserContext';
 
 const PlayBarIcons = () => {
-    const { isPlaying, setIsPlaying, pointer, setPointer, songs, currentTime } = useContext(UserContext);
-    console.log(pointer)
+    const { isPlaying, setIsPlaying, pointer, setPointer, songs, currentTime, isLooping, setIsLooping, isShuffling, setIsShuffling } = useContext(UserContext);
     const playSong = (e) => {
         const audio = document.getElementById('song');
         if (isPlaying) {
@@ -37,13 +36,29 @@ const PlayBarIcons = () => {
         }
     }
 
+    const loopSong = () => {
+        if (isLooping === true) {
+            setIsLooping(false);
+        } else {
+            setIsLooping(true);
+        }
+    }
+
+    const shuffleSongs = () => {
+        if (isShuffling === true) {
+            setIsShuffling(false);
+        } else {
+            setIsShuffling(true);
+        }
+    }
+
     return (
         <div style={{ display: 'flex', flexDirection: 'row' }}>
-            <BottomNavigationAction icon={<ShuffleRoundedIcon />} />
+            <BottomNavigationAction onClick={shuffleSongs} icon={isShuffling ? <ShuffleRoundedIcon className='icon' /> : <ShuffleRoundedIcon />} />
             <BottomNavigationAction onClick={previousSong} icon={<SkipPreviousIcon />} />
             <BottomNavigationAction onClick={playSong} icon={isPlaying ? <PauseCircleOutlineIcon /> : <PlayCircleOutlineIcon />} />
             <BottomNavigationAction onClick={nextSong} icon={<SkipNextIcon />} />
-            <BottomNavigationAction icon={<RepeatRoundedIcon />} />
+            <BottomNavigationAction onClick={loopSong} icon={isLooping ? <RepeatRoundedIcon className='icon' /> : <RepeatRoundedIcon />} />
         </div>
     )
 }

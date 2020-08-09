@@ -1,9 +1,8 @@
 import React, { useEffect, useContext, useState } from 'react'
 import UserContext from '../context/UserContext'
-import { useHistory, NavLink, Switch, BrowserRouter } from 'react-router-dom'
+import { useHistory, NavLink } from 'react-router-dom'
 import PlayCircleOutlineIcon from '@material-ui/icons/PlayCircleOutline'
-import ProtectedRoute from './ProtectedRoute';
-import AlbumPage from './AlbumPage'
+
 
 const apiUrl = process.env.REACT_APP_API_SERVER_BASE_URL
 
@@ -43,10 +42,7 @@ const Albums = () => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
-    const redirectToAlbumPage = (e) => {
-        const id = e.target.childNodes[0].getAttribute('id')
-        window.location.replace(`/library/albums/${id}`)
-    }
+
     const playAlbum = async (e) => {
         const albumId = e.target.getAttribute('id')
         try {
@@ -60,6 +56,7 @@ const Albums = () => {
                 const songsData = data.songs
                 setSongs(data.songs)
                 localStorage.setItem('currentSongPointer', 1);
+                localStorage.setItem('currentSong', data.songs)
                 setPointer(1)
                 localStorage.setItem('currentTime', 0)
                 audio.setAttribute('src', songsData[localStorage.getItem('currentSongPointer') - 1].song_url)

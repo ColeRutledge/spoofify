@@ -5,7 +5,7 @@ import UserContext from '../context/UserContext';
 
 
 const ProgressBar = () => {
-    const { currentTime, setCurrentTime, isPlaying } = useContext(UserContext);
+    const { currentTime, setCurrentTime, isPlaying, setIsPlaying, isLooping, songs, pointer, setPointer, isShuffling } = useContext(UserContext);
 
     const audio = document.getElementById('song');
     const slider = document.querySelector('.MuiSlider-track');
@@ -40,6 +40,19 @@ const ProgressBar = () => {
                 slider.style.width = `${(audio.currentTime / audio.duration) * 100}%`
                 thumb.setAttribute('aria-valuenow', (audio.currentTime / audio.duration) * 100)
                 thumb.style.left = `${(audio.currentTime / audio.duration) * 100}%`
+                if (!isLooping && audio.ended) {
+                    if (songs.length > pointer) {
+                        setPointer(pointer + 1)
+                        localStorage.setItem('currentSongPointer', `${pointer + 1}`)
+                    } else {
+                        setIsPlaying(false)
+                        audio.pause()
+                    }
+                }
+                if (isLooping && audio.ended) {
+                    audio.currentTime = 0
+                    audio.play()
+                }
                 if (!isPlaying) {
                     clearInterval()
                 }
@@ -48,6 +61,23 @@ const ProgressBar = () => {
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [isPlaying])
+
+    useEffect(() => {
+        if (isShuffling) {
+            const randomInt = Math.floor(Math.random() * Math.floor(songs.length)) + 1
+            setPointer(randomInt)
+            localStorage.setItem('currentSongPointer', randomInt)
+            if (audio) {
+                audio.currentTime = 0
+            }
+        } else {
+            setPointer(1)
+            localStorage.setItem('currentSongPointer', 1)
+            if (audio) {
+                audio.currentTime = 0
+            }
+        }
+    }, [isShuffling])
 
     const secondsToMinutes = (seconds) => {
         const min = Math.floor(seconds / 60)

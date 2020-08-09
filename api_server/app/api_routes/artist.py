@@ -50,6 +50,6 @@ def get_artist_albums(id):
 #GET all songs for an artist
 @bp.route("/<int:id>/songs", methods=["GET"])
 def get_artist_songs(id):
-    songs = db.session.query(Song.title,Song.song_length).join(Album).join(Artist).filter(Album.artist_id == id).all()
-    payload = [{"song_title":song[0],"song_length":song[1]}for song in songs]
+    songs = db.session.query(Song.title,Song.song_length,Song.id).join(Album).join(Artist).filter(Album.artist_id == id).all()
+    payload = [{"song_title":song[0],"song_length":song[1],"song_id":song[2]}for song in songs]
     return {"Data":payload}
