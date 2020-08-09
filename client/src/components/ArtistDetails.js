@@ -42,9 +42,9 @@ const ArtistDetails = () => {
           const artist_data = await artistJson.json()
           const albums_data = await albumsJson.json()
           const songs_data = await songsJson.json()
-          console.log(artist_data)
-          console.log(albums_data.artist.albums)
-          console.log(songs_data)
+          // console.log(artist_data)
+          // console.log(albums_data.artist.albums)
+          // console.log(songs_data)
           setArtist({...artist_data})
           setAlbums([...albums_data.artist.albums])
           setAllSongs([...songs_data.Data])
@@ -102,7 +102,7 @@ const ArtistDetails = () => {
 
       if (res.ok) {
         const data = await res.json();
-        console.log(data)
+        // console.log(data)
         localStorage.setItem('currentSongPointer', 1);
         setPointer(1)
         setSongs(data)

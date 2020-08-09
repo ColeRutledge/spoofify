@@ -23,7 +23,7 @@ const Songs = () => {
 
         if (res.ok) {
           const data = await res.json()
-          console.log(data)
+          // console.log(data)
           setAllSongs([...data])
         } else throw res
 
@@ -53,7 +53,7 @@ const Songs = () => {
 
       if (res.ok) {
         const data = await res.json();
-        console.log(data)
+        // console.log(data)
         localStorage.setItem('currentSongPointer', 1);
         setPointer(1)
         setSongs(data)

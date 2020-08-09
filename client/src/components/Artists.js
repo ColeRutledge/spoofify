@@ -19,7 +19,7 @@ const Artist = () => {
 
         if (res.ok) {
           const data = await res.json()
-          console.log(data.artists)
+          // console.log(data.artists)
           setArtists([...data.artists])
         } else throw res
 
@@ -67,12 +67,6 @@ const Artist = () => {
     // padding: '25px 10px',
   }
 
-  const onClick = (e) => {
-    console.log(e.target.id)
-    // const { id } = useParams()
-    // console.log(id)
-  }
-
   return (
     <>
       <div style={headerStyles}>Artists</div>
@@ -83,7 +77,6 @@ const Artist = () => {
               style={{ padding: '2px 0', borderRadius: '10px', cursor: 'pointer' }}
               className='songCards'
               to={`/library/artists/${artist.id}`}
-              onClick={onClick}
               id={artist.id}
             >
               <div key={artist.id} style={cardStyles}>
