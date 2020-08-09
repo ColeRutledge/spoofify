@@ -66,13 +66,14 @@ def get_user_playlists(userid):
     return {"Data":payload}
 
 @bp.route("/create", methods=["POST"])
+@jwt_required
 def create_playlist():
     data = request.json
 
     try:
-        playlist = Playlist(name=data['name'],
-                            description=data['description'],
-                            user_id = data['user_id'])
+        playlist = Playlist(name=data['playlistName'],
+                            description=data['playlistDescription'],
+                            user_id = data['id'])
         db.session.add(playlist)
         db.session.commit()
         return {'playlist':playlist.to_dict()}

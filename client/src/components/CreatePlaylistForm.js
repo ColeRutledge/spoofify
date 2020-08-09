@@ -1,9 +1,53 @@
-import React from 'react'
+import React,{useState, useContext} from 'react'
 import ReactDOM from 'react-dom'
 import FocusTrap from 'focus-trap-react'
+import {useForm} from 'react-hook-form'
+import UserContext from '../context/UserContext'
 
-const CreatePlaylistForm = ({onSubmit,modalRef,buttonRef,closeModal,onKeyDown,onClickOutside})=>{
+const apiUrl = process.env.REACT_APP_API_SERVER_BASE_URL
 
+
+const CreatePlaylistForm = ({onClickOutside,onKeyDown,modalRef,buttonRef,closeModal})=> {
+    const [PlaylistError, setPlaylistError] = useState('')
+    const {register, handleSubmit, errors} = useForm()
+    const { auth, setAuth } = useContext(UserContext)
+
+
+    const onSubmit = async data => {
+        // console.log(data)
+        let id = localStorage.getItem('id')
+        data["id"] = id;
+        try {
+          const res = await fetch(`${apiUrl}/api/playlist/create`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${localStorage.getItem('token') || auth}` 
+                    },
+            body: JSON.stringify(data),
+          })
+    
+          if (res.ok) {
+            let data = await res.json()
+            if (data.error) {
+              setPlaylistError(data.error)
+              return
+            }
+            
+            console.log(data)
+          } else throw res
+    
+        } catch (err) {
+          console.log(err)
+        }
+      }
+
+    // const onSubmit = data =>{
+    //     let id = localStorage.getItem('id')
+    //     data["id"]= id
+    //     console.log(data)
+    // }
+
+    
     return ReactDOM.createPortal(
         <FocusTrap>
             <aside
@@ -30,17 +74,18 @@ const CreatePlaylistForm = ({onSubmit,modalRef,buttonRef,closeModal,onKeyDown,on
                     </button>
                 <div className="modal-body">
                 <h3 style={{color:"white"}}>Create Playlist</h3>
-                    <form onSubmit={onSubmit}>
+                    <form onSubmit={handleSubmit(onSubmit)}>
                         <div className="form-group">
                             <label htmlFor="playlist-name"style={{color:"#b3b3b3"}}>Name</label>
-                            <input style={{width:"100%"}}className="form-control" id="playlist-name" />
+                            <input style={{width:"100%"}}className="form-control" id="playlist-name" name='playlistName' ref={register({required:true})}/>
+                            {errors.playlistName && <span style={{color:"white"}}>Playlist Name is required</span>}
                         </div>
                         <div className="form-group">
                             <label htmlFor="playlist-description"style={{color:"#b3b3b3"}}>Description</label>
-                            <textarea style={{width:"100%", height:"150px"}}className="form-control" id="playlist-description" placeholder="Give your playlist a catchy description"></textarea>
+                            <textarea style={{width:"100%", height:"150px"}}className="form-control" id="playlist-description" name='playlistDescription' placeholder="Give your playlist a catchy description" ref={register}></textarea>
                         </div>
                         <div className="form-group">
-                            <button style={{position:"relative", left:"100px"}} type="submit"> Create</button>
+                            <button style={{position:"relative", left:"90px", borderRadius:"7px",fontSize:"17px",backgroundColor:"green",color:"white",outline:"none",border:"none"}} type="submit"> Create</button>
                         </div>
                     </form>
                 </div>
@@ -49,7 +94,7 @@ const CreatePlaylistForm = ({onSubmit,modalRef,buttonRef,closeModal,onKeyDown,on
         </FocusTrap>, document.body
         )
     
-
+    
    
 
 } 
