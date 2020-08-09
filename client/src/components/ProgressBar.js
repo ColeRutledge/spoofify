@@ -77,6 +77,7 @@ const ProgressBar = () => {
                 audio.currentTime = 0
             }
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [isShuffling])
 
     const secondsToMinutes = (seconds) => {

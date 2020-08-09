@@ -1,6 +1,6 @@
 import React, { useEffect, useContext, useState } from 'react'
 import UserContext from '../context/UserContext'
-import { useHistory } from 'react-router-dom'
+import { useHistory, NavLink } from 'react-router-dom'
 const apiUrl = process.env.REACT_APP_API_SERVER_BASE_URL
 
 
@@ -72,23 +72,31 @@ const Playlists = () => {
       <div style={headerStyles}>Playlists</div>
       <div style={cardContainerStyle}>
         {playlists.map(playlist => (
-          <div key={playlist.id} style={cardStyles}>
-            <div style={{ justifySelf: 'start', marginLeft: '10px' }}>
-              <div style={{
-                marginBottom: '7px',
-                color: '#fff',
-                fontSize: '16px',
-                lineHeight: '24px',
-                width: '173px',
-                overflow: 'hidden',
-                whiteSpace: 'nowrap',
-                textOverflow: 'ellipsis' }}>{playlist.name}</div>
-              <div style={{
-                color: '#b3b3b3',
-                fontSize: '11px',
-                lineHeight: '16px'}}>Artist</div>
+          <NavLink
+            style={{ padding: '2px 0', borderRadius: '10px', cursor: 'pointer' }}
+            className='songCards'
+            to={`/library/playlists/${playlist.id}`}
+            id={playlist.id}
+            key={playlist.id}
+          >
+            <div key={playlist.id} style={cardStyles}>
+              <div style={{ justifySelf: 'start', marginLeft: '10px' }}>
+                <div style={{
+                  marginBottom: '7px',
+                  color: '#fff',
+                  fontSize: '16px',
+                  lineHeight: '24px',
+                  width: '173px',
+                  overflow: 'hidden',
+                  whiteSpace: 'nowrap',
+                  textOverflow: 'ellipsis' }}>{playlist.name}</div>
+                <div style={{
+                  color: '#b3b3b3',
+                  fontSize: '11px',
+                lineHeight: '16px'}}>{`${playlist.created_by}'s playlist`}</div>
+              </div>
             </div>
-          </div>
+          </NavLink>
         ))}
       </div>
     </>
