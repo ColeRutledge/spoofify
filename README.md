@@ -26,15 +26,6 @@
 - Links to AWS hosting for music
 
 
-#### Package List
-- Flask
-- SQLAlchemy
-- Alembic
-- Flask
-- Flask_RESTful
-- python-dotenv
-- psycopg2-binary (although we won't use this if Mongo)
-
 ### API Endpoints
 
 #### User
