@@ -16,14 +16,19 @@ body {
 }
 
 a {
-  color: hsl(0deg 2% 33%);
+  color: #bfbfbf;
   text-decoration: none!important;
+  transition: .2s;
+}
+
+
+.navButton--active {
+  background-color: #282828;
+  color: #FFFFFF;
 }
 
 .navbar--active {
-  border-bottom: 2px solid #b3b3b3;
-  font-weight: 500;
-  color: #b3b3b3;
+  color: #FFFFFF;
 }
 
 .navbar--active2 {
@@ -33,7 +38,7 @@ a {
 
 
 a:hover {
-  color: #b3b3b3;
+  color: #FFFFFF;
   cursor: default;
 }
 
