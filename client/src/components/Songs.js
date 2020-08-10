@@ -122,7 +122,7 @@ const Songs = () => {
               </a>
             </div>
             {allSongs[i + 1] !== undefined && song.artist !== allSongs[i + 1].artist
-              && <div style={{ ...headerStyles, fontSize: '19px', paddingLeft: '5px', color: '#b3b3b3', justifySelf: 'start' }}
+              && <div style={{ ...headerStyles, fontSize: '19px', paddingLeft: '50px', color: '#b3b3b3', justifySelf: 'start' }}
               >{allSongs[i + 1].artist}</div>}
           </React.Fragment>
         ))}

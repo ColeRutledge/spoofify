@@ -109,19 +109,25 @@ const Albums = () => {
                                 </button>
                             </div>
                         </div>
-                        <div style={{ justifySelf: 'start', marginLeft: '10px' }}>
-                            <NavLink activeClassName='navbar--active2' to={`/library/albums/${album.id}`} style={{
+                        <div
+                          style={{
+                            justifySelf: 'start',
+                            marginTop: '5px',
+                            width: '190px',
+                            overflow: 'hidden',
+                          }}>
+                            <NavLink type='button' activeClassName='navbar--active2' to={`/library/albums/${album.id}`} style={{
                                 marginTop: '10px',
                                 marginBottom: '7px',
                                 color: '#fff',
                                 fontSize: '16px',
-                                lineHeight: '24px',
+                                whiteSpace: 'nowrap',
                             }}>{album.title}</NavLink>
                             <div style={{
                                 color: '#b3b3b3',
                                 fontSize: '11px',
                                 lineHeight: '16px'
-                            }}>Album</div>
+                            }}>{album.artist}</div>
                         </div>
                     </div>
                 ))}
