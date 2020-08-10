@@ -2,42 +2,42 @@
 
 FROM node:12-alpine as base
 
-ENV NODE_ENV=production
+# ENV NODE_ENV=production
 
-WORKDIR /app
+# WORKDIR /app
 
-COPY package*.json ./
+# COPY package*.json ./
 
-RUN npm ci && npm cache clean --force
+# RUN npm ci && npm cache clean --force
 
-ENV PATH /app/node_modules/.bin:$PATH
+# ENV PATH /app/node_modules/.bin:$PATH
 
 
 # Development
 
-FROM base as dev
+# FROM base as dev
 
-ENV NODE_ENV=development
+# ENV NODE_ENV=development
 
-WORKDIR /app
+# WORKDIR /app
 
-RUN npm install --only=dev
+# RUN npm install --only=dev
 
-CMD ["npm", "start"]
+# CMD ["npm", "start"]
 
 
 # Build
 
-# FROM base as build
+FROM base as build
 
-# ENV REACT_APP_API_SERVER_BASE_URL=https://spotify-clone-appacademy.herokuapp.com
+ENV REACT_APP_API_SERVER_BASE_URL=https://spotify-clone-appacademy.herokuapp.com
 
-# WORKDIR /app
+WORKDIR /app
 
-# COPY . .
+COPY . .
 
-# RUN npm install && npm run build
+RUN npm install && npm run build
 
-# RUN npm install -g serve
+RUN npm install -g serve
 
-# CMD ["serve", "-s", "build"]
+CMD ["serve", "-s", "build"]
