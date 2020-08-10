@@ -1,47 +1,25 @@
 # Spotify Clone
-
-## Setup
-1. Clone project
-2. Create .env files in the root directory (example.env included)
-3. Create .env file in api_server directory with DATABASE_URL
-4. From the root directory, run [docker-compose up]
-
-## To run locally:
-1. cd into either api_server or client
-2. install packages locally
-3. npm start or flask run (with venv activated)
-
-## To gain access to postgres inside container:
-```bash
-docker container exec -it spotify_clone_db_1 /bin/sh
-psql -U flask_api -W flask_api_db
-```
-## To populate DB with seeder data:
-```bash
-docker container exec -it spotify_clone_api_1 /bin/sh
-python3 database.py
-```
+## with a React UI and a Python/Flask API backend
 
 ## Containers:
-### React Application:
+### React App:
 - JWT
 - React Hook Form
 - React Router
-- Hooks
+- Hooks (useState, useContext, useHistory, useEffect)
 - Material UI
-- Elastic Search
 - AWS
 
-### Python Flask:
+### Python/Flask API Server:
 - JWT Auth
 - Werkzeug Security for password encryption
 - API Endpoints for Song/Playlist/User CRUD
 
-### MongoDB DB
+### PostgreSQL DB
 - User Info
 - Library / Playlists
 - Song / Artist Info
-- Store songs?
+- Links to AWS hosting for music
 
 
 ### Package List
@@ -81,6 +59,28 @@ python3 database.py
 - Return Album Library
 - Return Genre Library (optional)
 
+
+## Setup
+1. Clone project
+2. Create .env files in the root directory (example.env included)
+3. Create .env file in api_server directory with DATABASE_URL
+4. From the root directory, run [docker-compose up]
+
+## To run locally:
+1. cd into either api_server or client
+2. install packages locally
+3. npm start or flask run (with venv activated)
+
+## To gain access to postgres inside container:
+```bash
+docker container exec -it spotify_clone_db_1 /bin/sh
+psql -U flask_api -W flask_api_db
+```
+## To populate DB with seeder data:
+```bash
+docker container exec -it spotify_clone_api_1 /bin/sh
+python3 database.py
+```
 
 #### Deployment Notes:
 Flask App:
