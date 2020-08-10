@@ -1,5 +1,5 @@
 # Spotify Clone
-## with a React UI and a Python/Flask API backend
+## a clone of the popular streaming music service
 
 ## Containers:
 ### React App:
