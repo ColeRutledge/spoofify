@@ -71,8 +71,8 @@ const SongModalList = ({songId, closeModal}) => {
   const addToPlaylist = async e =>{
       let playlist_id = e.currentTarget.id
       let song_id = songId
-      console.log(playlist_id)
-      console.log(song_id)
+      console.log(playlist_id,"playlist id")
+      console.log(song_id,"song id")
       try { 
           const res = await fetch(`${apiUrl}/api/playlist/${playlist_id}/song/${song_id}`, {
               method: 'POST',

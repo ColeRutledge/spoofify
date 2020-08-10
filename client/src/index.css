@@ -86,7 +86,7 @@ a:hover {
 
 .modal-area {
   position: fixed;
-  top: 40%;
+  top: 10%;
   left: 50%;
   border-radius: 15px;
   padding: 1.5em 1.5em 1.5em 1.5em;

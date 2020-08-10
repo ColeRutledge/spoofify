@@ -137,7 +137,7 @@ const AlbumPage = () => {
                 {allSongs.map((song, i) => (
                     <React.Fragment key={i}>
                         <div style={{ display: 'grid', gridTemplateColumns: '50px 1fr', alignItems: 'center', justifyItems: 'center' }}>
-                            <SongModal songId={song.song_id}></SongModal>
+                            <SongModal songId={song.id}></SongModal>
                             <a className='songCards' style={{ cursor: 'pointer', width: '100%' }} id={song.id} href="/" onClick={playSong} >
                                 <div style={{ ...cardStyles, pointerEvents: 'none' }}>
                                     <div style={{ justifySelf: 'start', pointerEvents: 'none' }}>{song.title}
