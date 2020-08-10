@@ -25,7 +25,8 @@ def get_playlists():
 @bp.route("/<int:id>/songs", methods=["GET"])
 def get_playlist(id):
     playlist = Playlist.query.options(joinedload('songs')).get(id)
-    songs = [song.to_dict() for song in playlist.songs]
+    songs = [{"album_title":song.album.title, "artist_name":song.album.artist.name,"title":song.title,
+              "album_id":song.album.id, "id": song.id,"song_length":song.song_length} for song in playlist.songs]
     
     # payload = {"Playlist": [{"name": playlist.name, "description": playlist.description,
     #                         "created_by": playlist.user.user_name, "image_url": playlist.image_url,
@@ -72,7 +73,6 @@ def create_playlist():
 
     try:
         playlist = Playlist(name=data['playlistName'],
-                            description=data['playlistDescription'],
                             user_id = data['id'])
         db.session.add(playlist)
         db.session.commit()

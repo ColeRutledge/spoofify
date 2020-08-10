@@ -1,8 +1,7 @@
 import React, { useEffect, useContext, useState } from 'react'
 import { useParams, useHistory } from 'react-router-dom'
+import SongModal from './SongModal'
 
-import FavoriteIcon from '@material-ui/icons/Favorite'
-import Button from '@material-ui/core/Button'
 import demo_playlist from '../images/demo_playlist.jpg'
 import UserContext from '../context/UserContext'
 const apiUrl = process.env.REACT_APP_API_SERVER_BASE_URL
@@ -147,7 +146,7 @@ const PlaylistDetails = () => {
           {allSongs.map((song, i) => (
             <React.Fragment key={i}>
               <div style={{ display: 'grid', gridTemplateColumns: '50px 1fr', alignItems: 'center', justifyItems: 'center' }}>
-                <Button><FavoriteIcon style={{ color: 'hsla(0,0%,100%,.3)' }} id={song.id} onClick={(e) => {console.log(e.currentTarget.id)}}/></Button>
+              <SongModal songId={song.song_id}></SongModal>
                 <a className='songCards' style={{ cursor: 'pointer', width: '100%' }} id={song.id} href='/' onClick={playSong} >
                   <div style={{ ...cardStyles, pointerEvents: 'none' }}>
                     <div style={{ justifySelf: 'start', pointerEvents: 'none' }}>{song.title}
@@ -157,7 +156,7 @@ const PlaylistDetails = () => {
                           pointerEvents: 'none',
                           justifySelf: 'center',
                           fontSize: '15px',
-                          color: '#b3b3b3' }}>Artist
+                          color: '#b3b3b3' }}>{song.artist_name}
                         <span style={{ marginLeft: '13px', pointerEvents: 'none' }}>•</span>
                         <span
                           style={{
@@ -165,7 +164,7 @@ const PlaylistDetails = () => {
                             justifySelf: 'center',
                             pointerEvents: 'none',
                             color: '#b3b3b3',
-                            display: 'inline' }}>{song.album_id}</span>
+                            display: 'inline' }}>{song.album_title}</span>
                       </div>
                     </div>
                     <div style={{ alignSelf: 'center' }}>{song.song_length}</div>

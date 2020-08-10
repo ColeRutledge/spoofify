@@ -1,16 +1,12 @@
-import React from 'react'
+import React,{useState} from 'react'
 import { NavLink } from 'react-router-dom'
-<<<<<<< HEAD
-import PlaylistModal from './PlaylistModal'
-import UserContext from '../context/UserContext'
-=======
-import Modal from './Modal'
+import CreatePlaylist from './CreatePlaylist'
 
->>>>>>> master
 
 
 const NavBar = () => {
 
+  const [createPlaylist,setCreatePlaylist] = useState(false)
 
   const containerStyles = {
     backgroundColor: 'hsl(0deg, 0%, 0%)',
@@ -30,6 +26,9 @@ const NavBar = () => {
     paddingBottom: '4px',
   }
 
+  const handlePlaylistShow = ()=> setCreatePlaylist(true)
+
+  const handlePlaylistHide = ()=> setCreatePlaylist(false)
 
   return (
     <>
@@ -41,7 +40,9 @@ const NavBar = () => {
           <NavLink style={linkStyles} activeClassName='navbar--active' to='/library'>Library</NavLink>
           {/* <NavLink style={linkStyles} activeClassName='navbar--active' to='/login'>Login</NavLink> */}
           {/* <NavLink style={linkStyles} activeClassName='navbar--active' to='/register'>Register</NavLink> */}
-          <PlaylistModal text={"Create Playlist"} />
+          {/* <PlaylistModal text={"Create Playlist"} /> */}
+          <button className="createPlaylist-button" onClick={handlePlaylistShow}><div>Create Playlist</div></button>
+          {createPlaylist ? <CreatePlaylist handlePlaylistHide={handlePlaylistHide}></CreatePlaylist> :null}
         </div>
       </div>
     </>
