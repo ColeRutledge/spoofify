@@ -28,16 +28,18 @@ const AlbumPage = () => {
                     setAlbum(data)
                     setAllSongs(data.songs)
                     setAlbumUrl(data.songs[0].album_image_url)
-                    console.log(data)
+                    // console.log(data)
                 }
             } catch (err) {
                 console.error(err)
             }
         }
         fetchAlbum()
+      // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     const playSong = async (e) => {
+        e.preventDefault()
         const songId = e.target.getAttribute('id')
         try {
             const res = await fetch(`${apiUrl}/api/album/song/${songId}`, {
@@ -118,7 +120,7 @@ const AlbumPage = () => {
         <>
             <div style={{ paddingTop: '90px' }}></div>
             <div style={{ padding: '30px 30px', display: 'flex' }}>
-                <img style={{ marginRight: '30px', width: '250px', height: '250px', boxShadow: '0 10px 30px 0 rgba(0,0,0,.3)' }} src={albumUrl} />
+                <img style={{ marginRight: '30px', width: '250px', height: '250px', boxShadow: '0 10px 30px 0 rgba(0,0,0,.3)' }} alt='img.jpg' src={albumUrl} />
                 <div style={{ color: 'hsla(0,0%,100%,1)' }}>
                     <h1 style={{ fontSize: '15px' }}>Album</h1>
                     <h1 style={{ fontSize: '50px', marginTop: '0px', marginBottom: '15px' }}>{album.album_name}</h1>
@@ -135,7 +137,7 @@ const AlbumPage = () => {
                     <React.Fragment key={i}>
                         <div style={{ display: 'grid', gridTemplateColumns: '50px 1fr', alignItems: 'center', justifyItems: 'center' }}>
                             <Button><FavoriteIcon style={{ color: 'hsla(0,0%,100%,.3)' }} /></Button>
-                            <a className='songCards' style={{ cursor: 'pointer', width: '100%' }} id={song.id} onClick={playSong} >
+                            <a className='songCards' style={{ cursor: 'pointer', width: '100%' }} id={song.id} href="/" onClick={playSong} >
                                 <div style={{ ...cardStyles, pointerEvents: 'none' }}>
                                     <div style={{ justifySelf: 'start', pointerEvents: 'none' }}>{song.title}
                                         <div style={{ marginTop: '5px', pointerEvents: 'none', justifySelf: 'center', fontSize: '15px', color: '#b3b3b3' }}>{song.artist_name}

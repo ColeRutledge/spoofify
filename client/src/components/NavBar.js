@@ -1,28 +1,11 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import { NavLink } from 'react-router-dom'
 import Modal from './Modal'
-import UserContext from '../context/UserContext'
+
 
 
 const NavBar = () => {
-  const { auth, setAuth } = useContext(UserContext)
 
-  const logout = () => {
-    if (auth) {
-      setAuth('')
-      localStorage.removeItem('token')
-      localStorage.removeItem('volume')
-      localStorage.removeItem('currentTime')
-      localStorage.removeItem('currentPointer')
-    }
-  }
-
-  const linkStyles = {
-    margin: '20px',
-    textDecoration: 'none',
-    fontSize: '16px',
-    paddingBottom: '4px',
-  }
 
   const containerStyles = {
     backgroundColor: 'hsl(0deg, 0%, 0%)',
@@ -35,7 +18,12 @@ const NavBar = () => {
     height: '100%',
   }
 
-
+  const linkStyles = {
+    margin: '20px',
+    textDecoration: 'none',
+    fontSize: '16px',
+    paddingBottom: '4px',
+  }
 
 
   return (
@@ -49,8 +37,6 @@ const NavBar = () => {
           {/* <NavLink style={linkStyles} activeClassName='navbar--active' to='/login'>Login</NavLink> */}
           {/* <NavLink style={linkStyles} activeClassName='navbar--active' to='/register'>Register</NavLink> */}
           <Modal text={"Create Playlist"} />
-          <h1 style={{ ...linkStyles, marginTop: '100px', color: 'hsl(0deg 2% 33%)' }}>Welcome, <span style={{ color: 'white' }}>{localStorage.getItem('username')}</span></h1>
-          <NavLink style={{ ...linkStyles }} onClick={logout} activeClassName='navbar--active' to='/logout'>Logout</NavLink>
         </div>
       </div>
     </>

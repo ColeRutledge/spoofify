@@ -8,9 +8,9 @@ const apiUrl = process.env.REACT_APP_API_SERVER_BASE_URL
 
 
 const CreatePlaylistForm = ({onClickOutside,onKeyDown,modalRef,buttonRef,closeModal})=> {
-    const [PlaylistError, setPlaylistError] = useState('')
+    const [ setPlaylistError] = useState('')
     const {register, handleSubmit, errors} = useForm()
-    const { auth, setAuth } = useContext(UserContext)
+    const { auth } = useContext(UserContext)
 
 
     const onSubmit = async data => {
@@ -21,21 +21,21 @@ const CreatePlaylistForm = ({onClickOutside,onKeyDown,modalRef,buttonRef,closeMo
           const res = await fetch(`${apiUrl}/api/playlist/create`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${localStorage.getItem('token') || auth}` 
+                        'Authorization': `Bearer ${localStorage.getItem('token') || auth}`
                     },
             body: JSON.stringify(data),
           })
-    
+
           if (res.ok) {
             let data = await res.json()
             if (data.error) {
               setPlaylistError(data.error)
               return
             }
-            
+
             console.log(data)
           } else throw res
-    
+
         } catch (err) {
           console.log(err)
         }
@@ -47,7 +47,7 @@ const CreatePlaylistForm = ({onClickOutside,onKeyDown,modalRef,buttonRef,closeMo
     //     console.log(data)
     // }
 
-    
+
     return ReactDOM.createPortal(
         <FocusTrap>
             <aside
@@ -93,9 +93,9 @@ const CreatePlaylistForm = ({onClickOutside,onKeyDown,modalRef,buttonRef,closeMo
             </aside>
         </FocusTrap>, document.body
         )
-    
-    
-   
 
-} 
+
+
+
+}
 export default CreatePlaylistForm
