@@ -1,12 +1,10 @@
-import React, { useState } from 'react'
-import { NavLink, Link } from 'react-router-dom'
+import React from 'react'
+import { NavLink } from 'react-router-dom'
 import Modal from './Modal'
 
 
 
 const NavBar = () => {
-  const [ active, setActive ] = useState(false)
-
 
   const containerStyles = {
     backgroundColor: 'hsl(0deg, 0%, 0%)',
