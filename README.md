@@ -1,7 +1,11 @@
 # Spotify Clone
 ## a clone of the popular streaming music service
 
-### Containers:
+### Docker Containers:
+- React App (bootstrapped with create-react-app)
+- Python/Flask API Server
+- PostgreSQL Database
+
 #### React App:
 - JWT
 - React Hook Form
