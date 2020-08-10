@@ -23,6 +23,7 @@ const NavBar = () => {
     textDecoration: 'none',
     fontSize: '16px',
     paddingBottom: '4px',
+    color: '#bfbfbf',
   }
 
 

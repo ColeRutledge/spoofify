@@ -27,7 +27,7 @@ const Library = () => {
   }
 
   const linkStyles = {
-    marginLeft: '50px',
+    margin: '0 50px',
     textDecoration: 'none',
     fontSize: '16px',
   }
@@ -41,7 +41,7 @@ const Library = () => {
     position: 'fixed',
     marginTop: '0',
     marginBottom: '50px',
-    gridTemplateColumns: '1fr 1fr 1fr 1fr 5fr',
+    gridTemplateColumns: '1fr 1fr 1fr 1fr 5fr 250px',
     justifyItems: 'center',
     alignItems: 'center',
     zIndex: '1',
@@ -54,10 +54,11 @@ const Library = () => {
         <NavLink activeClassName='navbar--active2' to='/library/albums'>Albums</NavLink>
         <NavLink activeClassName='navbar--active2' to='/library/songs'>Songs</NavLink>
         <NavLink activeClassName='navbar--active2' to='/library/playlists'>Playlists</NavLink>
-        <div style={{display: 'flex', justifyContent: 'flex-end', alignItems: 'center' }}>
-          <h1 style={{ ...linkStyles, color: 'hsl(0deg 2% 33%)' }}>Welcome, <span>{localStorage.getItem('username')}</span></h1>
+        <div style={{display: 'flex', justifyContent: 'flex-end', alignItems: 'center', justifySelf: 'end' }}>
+          <h1 style={{ ...linkStyles, color: '#bfbfbf' }}>Welcome, <span>{localStorage.getItem('username')}</span></h1>
           <NavLink style={{ ...linkStyles }} onClick={logout} to='/logout'>Logout</NavLink>
         </div>
+        <div />
       </div>
       <Switch>
         <ProtectedRoute exact path='/library/artists' component={Artists} />
