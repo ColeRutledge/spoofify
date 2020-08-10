@@ -93,16 +93,16 @@ const Artist = () => {
                   alt='artist.jpg'
                 />
                 <div style={{ justifySelf: 'start', marginLeft: '10px' }}>
-                  <div style={{
-                    marginBottom: '7px',
-                    color: '#fff',
-                    fontSize: '16px',
-                    lineHeight: '24px',
-                    width: '173px',
-                    overflow: 'hidden',
-                    whiteSpace: 'nowrap',
-                    textOverflow: 'ellipsis'
-                  }}>{artist.name}</div>
+                  <div
+                    style={{
+                      marginBottom: '7px',
+                      color: '#fff',
+                      fontSize: '16px',
+                      lineHeight: '24px',
+                      width: '173px',
+                      overflow: 'hidden',
+                      whiteSpace: 'nowrap',
+                      textOverflow: 'ellipsis'}}>{artist.name}</div>
                   <div style={{
                     color: '#b3b3b3',
                     fontSize: '11px',
