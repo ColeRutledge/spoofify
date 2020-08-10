@@ -1,8 +1,8 @@
 # Spotify Clone
 ## a clone of the popular streaming music service
 
-## Containers:
-### React App:
+### Containers:
+#### React App:
 - JWT
 - React Hook Form
 - React Router
@@ -10,19 +10,19 @@
 - Material UI
 - AWS
 
-### Python/Flask API Server:
+#### Python/Flask API Server:
 - JWT Auth
 - Werkzeug Security for password encryption
 - API Endpoints for Song/Playlist/User CRUD
 
-### PostgreSQL DB
+#### PostgreSQL DB
 - User Info
 - Library / Playlists
 - Song / Artist Info
 - Links to AWS hosting for music
 
 
-### Package List
+#### Package List
 - Flask
 - SQLAlchemy
 - Alembic
@@ -31,52 +31,52 @@
 - python-dotenv
 - psycopg2-binary (although we won't use this if Mongo)
 
-## API Endpoints
+### API Endpoints
 
-### User
+#### User
 - Create User
 - Delete User
 - Update User
 - Return Users
 - User Auth -> /token
 
-### Playlist
+#### Playlist
 - Create Playlist
 - Delete Playlist
 - Update Playlist (add/remove)
 - Return Playlist
 
-### User Library
+#### User Library
 - Add/Remove Songs
 - Return Song Library
 - Return Artist Library
 - Return Album Library
 - Return Genre Library (optional)
 
-### Spotify Library
+#### Spotify Library
 - Return Song Library
 - Return Artist Library
 - Return Album Library
 - Return Genre Library (optional)
 
 
-## Setup
+### Setup
 1. Clone project
 2. Create .env files in the root directory (example.env included)
 3. Create .env file in api_server directory with DATABASE_URL
 4. From the root directory, run [docker-compose up]
 
-## To run locally:
+### To run locally:
 1. cd into either api_server or client
 2. install packages locally
 3. npm start or flask run (with venv activated)
 
-## To gain access to postgres inside container:
+### To gain access to postgres inside container:
 ```bash
 docker container exec -it spotify_clone_db_1 /bin/sh
 psql -U flask_api -W flask_api_db
 ```
-## To populate DB with seeder data:
+### To populate DB with seeder data:
 ```bash
 docker container exec -it spotify_clone_api_1 /bin/sh
 python3 database.py
