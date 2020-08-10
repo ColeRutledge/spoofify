@@ -91,7 +91,7 @@ a:hover {
 
 .modal-area {
   position: fixed;
-  top: 40%;
+  top: 10%;
   left: 50%;
   border-radius: 15px;
   padding: 1.5em 1.5em 1.5em 1.5em;
@@ -151,4 +151,90 @@ a:hover {
 
 .icon{
   fill: rgb(29, 185, 84) !important
+}
+
+.playlist-name-input{
+  line-height:56px;
+  font-size: 48px;
+  font-weight: bold;
+  color: white;
+  text-transform: none;
+  width:100%;
+  background-color: transparent;
+  border:none;
+  outline:0;
+}
+.createPlaylistInput{
+  color:white;
+  font-size:14px;
+  font-weight: bold;
+  padding-left:100px;
+}
+.createPlaylist-header{
+  font-size: 45px;
+  color:white;
+  font-weight: bolder;
+  margin-bottom: 16px;
+}
+.createPlaylistScreen{
+  position: absolute;
+  bottom:200px;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.75);
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index:100;
+  right:0;
+}
+
+.createPlaylist-button{
+  display:flex;
+  align-items: center;
+  font-size: 100%;
+  background-color: black;
+  color: #bfbfbf;
+  font-weight: bold;
+  border: none;
+  padding-bottom: 10;
+  transition: .2s linear;
+}
+.create-playlist-form{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width:100%;
+  height:150px;
+  z-index:6;
+  background-color: rgba(40,40,40);
+}
+.createPlaylist-buttons{
+  display:flex;
+  margin-top: 16px;
+  padding-right:200px;
+}
+.createPlaylist-buttons-cancel, .createPlaylist-buttons-create {
+  margin-bottom: 14px;
+  width: 100%;
+  margin: 0 16px;
+  color: #FFF;
+  background-color: rgba(0,0,0,0.75);
+  font-size: 14px;
+  border-radius: 500px;
+  padding: 8px 24px;
+  border-width: 0;
+  letter-spacing: 2px;
+  min-width: 160px;
+  width: 100%;
+  font-weight: 700;
+  cursor: pointer;
+  border: 0.5px solid #b8b8b8;
+  transition: background-color .1s ease-in;
+  outline: none;
+  text-align: center;
+  transition: transform .2s;
+  
 }

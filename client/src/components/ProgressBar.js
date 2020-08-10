@@ -20,13 +20,15 @@ const ProgressBar = () => {
     }
 
     const seekTime = () => {
-        audio.currentTime = thumb.getAttribute('aria-valuenow') / step
-        setCurrentTime(audio.currentTime)
-        setIsSeeking(false)
+        if (!isNaN(thumb.getAttribute('aria-valuenow') / step)) {
+            audio.currentTime = thumb.getAttribute('aria-valuenow') / step
+            setCurrentTime(audio.currentTime)
+            setIsSeeking(false)
+        }
     }
 
     useEffect(() => {
-        if (audio) {
+        if (audio && !isNaN(audio.duration)) {
             setStep(100 / audio.duration)
         }
         let interval;
@@ -60,7 +62,7 @@ const ProgressBar = () => {
             setMyInterval(interval)
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [isPlaying])
+    }, [isPlaying, audio])
 
     useEffect(() => {
         if (isShuffling) {
@@ -94,7 +96,8 @@ const ProgressBar = () => {
         <div style={{ color: '#b3b3b3', display: 'flex', alignItems: 'center', flexDirection: 'row' }}>
             <p style={{ marginRight: '15px', fontSize: '12px' }}>{secondsToMinutes(currentTime)}</p>
             {audio ? <Slider onClick={seekTime} onMouseDown={seeking} onMouseUp={seekTime} step={step} style={{ color: 'grey', width: '350px', marginBottom: '2px' }}></Slider> : <Slider disabled step={step} style={{ color: 'grey', width: '350px', marginBottom: '2px' }}></Slider>}
-            <p style={{ marginLeft: '15px', fontSize: '12px' }}>{audio ? secondsToMinutes(audio.duration) : '0:00'}</p>
+            {/* <p style={{ marginLeft: '15px', fontSize: '12px' }}>{audio ? secondsToMinutes(audio.duration) : '0:00'}</p> */}
+            <p style={{ marginLeft: '15px', fontSize: '12px' }}>{audio ? !isNaN(audio.duration) ? secondsToMinutes(audio.duration) : '0:00' : '0:00'}</p>
         </div >
     )
 }

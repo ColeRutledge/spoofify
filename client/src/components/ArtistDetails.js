@@ -3,6 +3,7 @@ import { useParams, useHistory } from 'react-router-dom'
 import FavoriteIcon from '@material-ui/icons/Favorite'
 import Button from '@material-ui/core/Button'
 import UserContext from '../context/UserContext'
+import SongModal from './SongModal'
 
 import PlayCircleOutlineIcon from '@material-ui/icons/PlayCircleOutline'
 const apiUrl = process.env.REACT_APP_API_SERVER_BASE_URL
@@ -225,7 +226,7 @@ const cardStyles = {
         {allSongs.map((song, i) => (
           <React.Fragment key={i}>
             <div style={{ display: 'grid', gridTemplateColumns: '50px 1fr', alignItems: 'center', justifyItems: 'center' }}>
-              <Button id={song.song_id}><FavoriteIcon style={{ color: 'hsla(0,0%,100%,.3)', pointerEvents: 'none' }} /></Button>
+            <SongModal songId={song.song_id}></SongModal>
               <a className='songCards' style={{ cursor: 'pointer', width: '100%' }} id={song.song_id} href='/' onClick={playSong} >
                 <div style={{ ...cardStyles, pointerEvents: 'none' }}>
                   <div style={{ justifySelf: 'start', pointerEvents: 'none' }}>{song.song_title}
