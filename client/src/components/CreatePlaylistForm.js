@@ -1,24 +1,22 @@
 import React,{useState, useContext} from 'react'
-import ReactDOM from 'react-dom'
-import FocusTrap from 'focus-trap-react'
 import {useForm} from 'react-hook-form'
 import UserContext from '../context/UserContext'
 
 const apiUrl = process.env.REACT_APP_API_SERVER_BASE_URL
 
 
-const CreatePlaylistForm = ({fetchPlaylists, onClickOutside,onKeyDown,modalRef,buttonRef,closeModal,handlePlaylistHide})=> {
-    const [ playlistError, setPlaylistError] = useState('')
+const CreatePlaylistForm = ({fetchPlaylists, handlePlaylistHide})=> {
+    const [ setPlaylistError] = useState('')
     const {register, handleSubmit, errors} = useForm()
     const { auth } = useContext(UserContext)
 
-    const onCancel = (e)=>{
-      e.preventDefault();
-      //Toggle hide screen 
+    // const onCancel = (e)=>{
+    //   e.preventDefault();
+    //   //Toggle hide screen
 
-    }
+    // }
     const onSubmit = async data => {
-        
+
         let id = localStorage.getItem('id')
         data["id"] = id;
         try {
@@ -38,7 +36,7 @@ const CreatePlaylistForm = ({fetchPlaylists, onClickOutside,onKeyDown,modalRef,b
             }
             fetchPlaylists()
             handlePlaylistHide()
-            
+
           } else throw res
 
         } catch (err) {
@@ -111,7 +109,7 @@ const CreatePlaylistForm = ({fetchPlaylists, onClickOutside,onKeyDown,modalRef,b
       </div>
     </form>
       )
-    
+
 
 
 

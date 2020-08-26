@@ -1,7 +1,6 @@
 import React,{useState, useEffect, useContext} from 'react'
 import { NavLink } from 'react-router-dom'
 import CreatePlaylist from './CreatePlaylist'
-import { useParams } from 'react-router-dom';
 import UserContext from '../context/UserContext';
 
 const apiUrl = process.env.REACT_APP_API_SERVER_BASE_URL
@@ -58,20 +57,21 @@ const NavBar = () => {
         method: 'GET',
         headers: { 'Authorization': `Bearer ${localStorage.getItem('token') || auth}` }
     })
-    if(res.ok){
-      const data = await res.json();
-      setPlaylists(data.Playlists)
+
+      if(res.ok){
+        const data = await res.json();
+        setPlaylists(data.Playlists)
+      }
+    }catch (err){
+      console.error(err)
     }
-  }catch (err){
-    console.log(err)
-  }
   }
 
   useEffect(()=>{
-    
     fetchPlaylists()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   },[])
-  
+
   // console.log(playlists)
   const handlePlaylistShow = ()=> setCreatePlaylist(true)
 
@@ -85,19 +85,19 @@ const NavBar = () => {
           <button style={navButton} type='button'><NavLink activeClassName='navButton--active' style={linkStyles} to='/library'>Your Library</NavLink></button>
           <button className="createPlaylist-button" onClick={handlePlaylistShow}><div>Create Playlist</div></button>
           {createPlaylist ? <CreatePlaylist fetchPlaylists={fetchPlaylists} handlePlaylistHide={handlePlaylistHide}></CreatePlaylist> :null}
-          <h2 style={{marginBottom:10, marginTop: 30, color:"#BFBFBF", }}>Your Playlists</h2>
-          <div >
-            {playlists.map((playlist,i)=>(
-              
-                <NavLink
-                        style={linkStyles} 
-                        to={`/library/playlists/${playlist.playlist_id}`} 
-                        key={playlist.id}> 
-                        {playlist.playlist_name}
-                </NavLink>
-              
-            ))}
-          </div>
+          <div style={{color: 'white', borderBottom: '3px solid #282828', width: '80%', margin: '20px 0 0 0' }} />
+          <div style={{ marginBottom:10, marginTop: 20, color:"#BFBFBF", fontSize: '14px' }}>PLAYLISTS</div>
+          {playlists.map((playlist,i)=>(
+            <button key={i} style={navButton} type='button'>
+              <NavLink
+                      style={{...linkStyles, fontSize: '14px'}}
+                      activeClassName='navButton--active'
+                      to={`/library/playlists/${playlist.playlist_id}`}
+                      key={playlist.id}>
+                      {playlist.playlist_name}
+              </NavLink>
+            </button>
+          ))}
         </div>
       </div>
     </>

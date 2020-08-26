@@ -1,7 +1,5 @@
 import React, { useEffect, useContext, useState } from 'react'
 import { useParams, useHistory } from 'react-router-dom'
-import FavoriteIcon from '@material-ui/icons/Favorite'
-import Button from '@material-ui/core/Button'
 import UserContext from '../context/UserContext'
 import SongModal from './SongModal'
 

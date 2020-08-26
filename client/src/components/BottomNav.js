@@ -5,7 +5,7 @@ import LinkedInIcon from '@material-ui/icons/LinkedIn';
 
 const BottomNav = () => {
     return (
-        <nav style={{ padding: '0 25px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', height: '100px', position: 'absolute', bottom: '0px', right: '0px', left: '0px', backgroundColor: 'hsl(0deg, 0%, 0%)' }}>
+        <nav style={{ padding: '0 25px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', height: '100px', position: 'fixed', bottom: '0px', right: '0px', left: '0px', backgroundColor: 'hsl(0deg, 0%, 0%)' }}>
             <div>
                 <p style={{ color: 'white' }}>Tech Stack</p>
                 <div style={{ display: 'flex', flexDirection: 'row' }}>

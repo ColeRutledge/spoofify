@@ -16,7 +16,7 @@ const Login = () => {
   document.body.style.backgroundColor = '#FFF'
 
   const onSubmit = async data => {
-    // console.log(data)
+    if (!data.email) data = { email: 'demo_user@email.com', password: 'password1' }
     setLoading(true)
     try {
       const res = await fetch(`${apiUrl}/login`, {
@@ -32,7 +32,6 @@ const Login = () => {
           setLoginError(data.error)
           return
         }
-        // console.log('Successful fetch!')
         localStorage.setItem('token', data.token)
         localStorage.setItem('username', data.username)
         localStorage.setItem('id', data.id)
@@ -56,7 +55,16 @@ const Login = () => {
     <>
       {auth
         ? <Redirect to='/library' />
-        : <div style={{ display: 'flex', alignItems: 'center', paddingTop: '50px', flexDirection: 'column', marginLeft: '-250px', marginTop: '75px' }}>
+        : <div
+            style={{
+              display: 'flex',
+              marginTop: '75px',
+              paddingTop: '50px',
+              alignItems: 'center',
+              marginLeft: '-250px',
+              flexDirection: 'column',
+            }}
+          >
           <h1 style={{ fontSize: 22 }}>Login</h1>
           <form
             onSubmit={handleSubmit(onSubmit)}
@@ -72,13 +80,13 @@ const Login = () => {
               onChange={e => { clearErrors(e.target.name) }}
             />
             {errors.email?.type === 'required' &&
-              <Typography style={errorStyles}
-              >Email required.
-                </Typography>}
+              <Typography style={errorStyles}>
+                Email required.
+              </Typography>}
             {errors.email?.type === 'maxLength' &&
-              <Typography style={errorStyles}
-              >Email cannot exceed 50 characters.
-                </Typography>}
+              <Typography style={errorStyles}>
+                Email cannot exceed 50 characters.
+              </Typography>}
             <TextField
               label='Password'
               name='password'
@@ -89,27 +97,43 @@ const Login = () => {
               onChange={e => { clearErrors(e.target.name); setLoginError('') }}
             />
             {errors.password?.type === 'required' &&
-              <Typography style={errorStyles}
-              >Invalid password.
-                </Typography>}
-            {errors.password?.type === 'minLength' &&
-              <Typography style={errorStyles}
-              >Invalid password.
-                </Typography>}
-            {errors.password?.type === 'pattern' &&
-              <Typography style={errorStyles}
-              >Invalid password.
-                </Typography>}
-            {loginError &&
-              <Typography style={{ ...errorStyles, marginTop: '2px' }}
-              >{loginError}
+              <Typography style={errorStyles}>
+                Invalid password.
               </Typography>}
-            <Button
-              variant='outlined'
-              type='submit'
-              style={{ margin: '20px 0' }}
-              disabled={loading}
-              >{loading ? <CircularProgress size={22} thickness={2} /> : 'Submit'}</Button>
+            {errors.password?.type === 'minLength' &&
+              <Typography style={errorStyles}>
+                Invalid password.
+              </Typography>}
+            {errors.password?.type === 'pattern' &&
+              <Typography style={errorStyles}>
+                Invalid password.
+              </Typography>}
+            {loginError &&
+              <Typography style={{ ...errorStyles, marginTop: '2px' }}>
+                {loginError}
+              </Typography>}
+            <div style={{ display: 'flex' }}>
+              <Button
+                variant='outlined'
+                type='submit'
+                style={{ margin: '20px 5px 0 0' }}
+                disabled={loading}
+                fullWidth={true}
+              >{loading
+                ? <CircularProgress size={22} thickness={2} />
+                : 'Submit'}
+              </Button>
+              <Button
+                fullWidth={true}
+                variant='outlined'
+                style={{ margin: '20px 0 0 5px' }}
+                disabled={loading}
+                onClick={onSubmit}
+              >{loading
+                ? <CircularProgress size={22} thickness={2} />
+                : 'Demo User'}
+              </Button>
+            </div>
           </form>
         </div>
       }

@@ -1,11 +1,11 @@
 import React, { useEffect, useContext, useState } from 'react'
 import UserContext from '../context/UserContext'
-import { useHistory, NavLink } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 const apiUrl = process.env.REACT_APP_API_SERVER_BASE_URL
 
 
 const SongModalList = ({songId, closeModal}) => {
-  const [ songError, setSongError] = useState('')
+  const [ setSongError] = useState('')
   const { auth, setAuth } = useContext(UserContext)
   const [ playlists, setPlaylists ] = useState([])
   const history = useHistory()
@@ -20,7 +20,7 @@ const SongModalList = ({songId, closeModal}) => {
 
         if (res.ok) {
           const data = await res.json()
-          console.log(data)
+          // console.log(data)
           setPlaylists([...data.Playlists])
         } else throw res
 
@@ -30,7 +30,7 @@ const SongModalList = ({songId, closeModal}) => {
           setAuth('')
           history.push('/login')
         }
-        console.dir(err)
+        // console.dir(err)
         console.error(err)
       }
     }
@@ -42,7 +42,7 @@ const SongModalList = ({songId, closeModal}) => {
 
 
   const cardContainerStyle = {
-    
+
     display: 'grid',
     gridGap: '16px',
     gridTemplateColumns: 'repeat(auto-fill,minmax(200px,1fr))',
@@ -61,7 +61,7 @@ const SongModalList = ({songId, closeModal}) => {
   }
 
   const headerStyles = {
-    
+
     margin: '0 3px',
     fontSize: '24px',
     lineHeight: '28px',
@@ -71,9 +71,9 @@ const SongModalList = ({songId, closeModal}) => {
   const addToPlaylist = async e =>{
       let playlist_id = e.currentTarget.id
       let song_id = songId
-      console.log(playlist_id,"playlist id")
-      console.log(song_id,"song id")
-      try { 
+      // console.log(playlist_id,"playlist id")
+      // console.log(song_id,"song id")
+      try {
           const res = await fetch(`${apiUrl}/api/playlist/${playlist_id}/song/${song_id}`, {
               method: 'POST',
               headers:{
@@ -87,11 +87,11 @@ const SongModalList = ({songId, closeModal}) => {
                   setSongError(data.error)
                   return
               }
-              console.log(data)
+              // console.log(data)
               closeModal()
           } else throw res
       } catch (err) {
-          console.log(err)
+        console.error(err)
       }
   }
 

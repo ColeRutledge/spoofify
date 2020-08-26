@@ -1,25 +1,25 @@
-import React,{useState, useContext} from 'react'
+import React from 'react'
 import ReactDOM from 'react-dom'
 import FocusTrap from 'focus-trap-react'
-import {useForm} from 'react-hook-form'
-import UserContext from '../context/UserContext'
+// import {useForm} from 'react-hook-form'
+// import UserContext from '../context/UserContext'
 import SongModalList from './SongModalList'
 
-const apiUrl = process.env.REACT_APP_API_SERVER_BASE_URL
+// const apiUrl = process.env.REACT_APP_API_SERVER_BASE_URL
 
 
 const SongToPlaylistForm = ({onClickOutside,onKeyDown,modalRef,buttonRef,closeModal,songId})=> {
-    const [ setPlaylistError] = useState('')
-    const {register, handleSubmit, errors} = useForm()
-    const { auth } = useContext(UserContext)
+    // const [ setPlaylistError] = useState('')
+    // const {register, handleSubmit, errors} = useForm()
+    // const { auth } = useContext(UserContext)
 
-    const onCancel = (e)=>{
-      e.preventDefault();
-      //Toggle hide screen 
+    // const onCancel = (e)=>{
+    //   e.preventDefault();
+    //   //Toggle hide screen
 
-    }
+    // }
     // const onSubmit = async data => {
-        
+
     //     let id = localStorage.getItem('id')
     //     data["id"] = id;
     //     console.log(data)
@@ -47,6 +47,23 @@ const SongToPlaylistForm = ({onClickOutside,onKeyDown,modalRef,buttonRef,closeMo
     //       console.log(err)
     //     }
     //   }
+
+
+    // <form onSubmit={handleSubmit(onSubmit)}>
+    //                         <div className="form-group">
+    //                             <label htmlFor="playlist-name"style={{color:"#b3b3b3"}}>Name</label>
+    //                             <input style={{width:"100%"}}className="form-control" id="playlist-name" name='playlistName' ref={register({required:true})}/>
+    //                             {errors.playlistName && <span style={{color:"white"}}>Playlist Name is required</span>}
+    //                         </div>
+    //                         <div className="form-group">
+    //                             <label htmlFor="playlist-description"style={{color:"#b3b3b3"}}>Description</label>
+    //                             <textarea style={{width:"100%", height:"150px"}}className="form-control" id="playlist-description" name='playlistDescription' placeholder="Give your playlist a catchy description" ref={register}></textarea>
+    //                         </div>
+    //                         <div className="form-group">
+    //                             <button style={{position:"relative", left:"90px", borderRadius:"7px",fontSize:"17px",backgroundColor:"green",color:"white",outline:"none",border:"none"}} type="submit"> Create</button>
+    //                         </div>
+    //                     </form>
+
     return ReactDOM.createPortal(
             <FocusTrap>
                 <aside
@@ -73,27 +90,12 @@ const SongToPlaylistForm = ({onClickOutside,onKeyDown,modalRef,buttonRef,closeMo
                         </button>
                     <div className="modal-body">
                     <SongModalList songId={songId} closeModal={closeModal}/>
-                        
+
                     </div>
                     </div>
                 </aside>
             </FocusTrap>, document.body
             )
     }
+
 export default SongToPlaylistForm
-
-
-{/* <form onSubmit={handleSubmit(onSubmit)}>
-                            <div className="form-group">
-                                <label htmlFor="playlist-name"style={{color:"#b3b3b3"}}>Name</label>
-                                <input style={{width:"100%"}}className="form-control" id="playlist-name" name='playlistName' ref={register({required:true})}/>
-                                {errors.playlistName && <span style={{color:"white"}}>Playlist Name is required</span>}
-                            </div>
-                            <div className="form-group">
-                                <label htmlFor="playlist-description"style={{color:"#b3b3b3"}}>Description</label>
-                                <textarea style={{width:"100%", height:"150px"}}className="form-control" id="playlist-description" name='playlistDescription' placeholder="Give your playlist a catchy description" ref={register}></textarea>
-                            </div>
-                            <div className="form-group">
-                                <button style={{position:"relative", left:"90px", borderRadius:"7px",fontSize:"17px",backgroundColor:"green",color:"white",outline:"none",border:"none"}} type="submit"> Create</button>
-                            </div>
-                        </form> */}

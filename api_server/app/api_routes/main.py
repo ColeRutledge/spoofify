@@ -29,7 +29,6 @@ def create_user():
     return {'error': 'User already exists. Please try again.'}
 
   new_user = {
-    'id': len(User.query.all()) + 1,
     'user_name': data['userName'],
     'first_name': data['firstName'],
     'last_name': data['lastName'],
