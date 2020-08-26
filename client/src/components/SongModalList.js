@@ -1,11 +1,11 @@
 import React, { useEffect, useContext, useState } from 'react'
 import UserContext from '../context/UserContext'
-import { useHistory, NavLink } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 const apiUrl = process.env.REACT_APP_API_SERVER_BASE_URL
 
 
 const SongModalList = ({songId, closeModal}) => {
-  const [ songError, setSongError] = useState('')
+  const [ setSongError] = useState('')
   const { auth, setAuth } = useContext(UserContext)
   const [ playlists, setPlaylists ] = useState([])
   const history = useHistory()
@@ -42,7 +42,7 @@ const SongModalList = ({songId, closeModal}) => {
 
 
   const cardContainerStyle = {
-    
+
     display: 'grid',
     gridGap: '16px',
     gridTemplateColumns: 'repeat(auto-fill,minmax(200px,1fr))',
@@ -61,7 +61,7 @@ const SongModalList = ({songId, closeModal}) => {
   }
 
   const headerStyles = {
-    
+
     margin: '0 3px',
     fontSize: '24px',
     lineHeight: '28px',
@@ -73,7 +73,7 @@ const SongModalList = ({songId, closeModal}) => {
       let song_id = songId
       console.log(playlist_id,"playlist id")
       console.log(song_id,"song id")
-      try { 
+      try {
           const res = await fetch(`${apiUrl}/api/playlist/${playlist_id}/song/${song_id}`, {
               method: 'POST',
               headers:{

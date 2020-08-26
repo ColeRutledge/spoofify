@@ -26,7 +26,7 @@ const PlaylistDetails = () => {
 
         if (playlistJson.ok) {
           const playlist_data = await playlistJson.json()
-          console.log(playlist_data.data)
+          // console.log(playlist_data.data)
           setPlaylist([...playlist_data.data])
           setAllSongs([...playlist_data.data[0].songs])
 
@@ -38,7 +38,7 @@ const PlaylistDetails = () => {
           setAuth('')
           history.push('/login')
         }
-        console.dir(err)
+        // console.dir(err)
         console.error(err)
       }
     }

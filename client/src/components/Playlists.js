@@ -19,7 +19,7 @@ const Playlists = () => {
 
         if (res.ok) {
           const data = await res.json()
-          console.log(data)
+          // console.log(data)
           setPlaylists([...data.Playlists])
         } else throw res
 
