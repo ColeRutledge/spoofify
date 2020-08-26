@@ -20,7 +20,7 @@ const SongModalList = ({songId, closeModal}) => {
 
         if (res.ok) {
           const data = await res.json()
-          console.log(data)
+          // console.log(data)
           setPlaylists([...data.Playlists])
         } else throw res
 
@@ -30,7 +30,7 @@ const SongModalList = ({songId, closeModal}) => {
           setAuth('')
           history.push('/login')
         }
-        console.dir(err)
+        // console.dir(err)
         console.error(err)
       }
     }
@@ -71,8 +71,8 @@ const SongModalList = ({songId, closeModal}) => {
   const addToPlaylist = async e =>{
       let playlist_id = e.currentTarget.id
       let song_id = songId
-      console.log(playlist_id,"playlist id")
-      console.log(song_id,"song id")
+      // console.log(playlist_id,"playlist id")
+      // console.log(song_id,"song id")
       try {
           const res = await fetch(`${apiUrl}/api/playlist/${playlist_id}/song/${song_id}`, {
               method: 'POST',
@@ -87,11 +87,11 @@ const SongModalList = ({songId, closeModal}) => {
                   setSongError(data.error)
                   return
               }
-              console.log(data)
+              // console.log(data)
               closeModal()
           } else throw res
       } catch (err) {
-          console.log(err)
+        console.error(err)
       }
   }
 
