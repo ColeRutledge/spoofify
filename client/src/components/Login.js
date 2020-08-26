@@ -1,21 +1,23 @@
 import React, { useContext, useState } from 'react'
 import { Redirect } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
-import { TextField, Button, Typography } from '@material-ui/core'
+import { TextField, Button, Typography, CircularProgress } from '@material-ui/core'
 import UserContext from '../context/UserContext'
 
 const apiUrl = process.env.REACT_APP_API_SERVER_BASE_URL
 
 
 const Login = () => {
-  const [loginError, setLoginError] = useState('')
-  const { register, handleSubmit, errors } = useForm()
+  const [ loginError, setLoginError ] = useState('')
+  const [ loading, setLoading ] = useState(false)
+  const { register, handleSubmit, errors, clearErrors } = useForm()
   const { auth, setAuth } = useContext(UserContext)
 
   document.body.style.backgroundColor = '#FFF'
 
   const onSubmit = async data => {
-    console.log(data)
+    // console.log(data)
+    setLoading(true)
     try {
       const res = await fetch(`${apiUrl}/login`, {
         method: 'POST',
@@ -25,20 +27,22 @@ const Login = () => {
 
       if (res.ok) {
         let data = await res.json()
+        setLoading(false)
         if (data.error) {
           setLoginError(data.error)
           return
         }
-        console.log('Successful fetch!')
+        // console.log('Successful fetch!')
         localStorage.setItem('token', data.token)
         localStorage.setItem('username', data.username)
         localStorage.setItem('id', data.id)
         setAuth(data.token)
-        console.log(data)
+        // console.log(data)
       } else throw res
 
     } catch (err) {
-      console.log(err)
+      setLoading(false)
+      console.error(err)
     }
   }
 
@@ -65,6 +69,7 @@ const Login = () => {
               variant='outlined'
               style={{ margin: '15px 0' }}
               inputRef={register({ required: true, maxLength: 255 })}
+              onChange={e => { clearErrors(e.target.name) }}
             />
             {errors.email?.type === 'required' &&
               <Typography style={errorStyles}
@@ -81,6 +86,7 @@ const Login = () => {
               variant='outlined'
               style={{ margin: '15px 0' }}
               inputRef={register({ required: true, minLength: 6, pattern: /^(?=.*\d)(?=.*[a-z])/ })}
+              onChange={e => { clearErrors(e.target.name); setLoginError('') }}
             />
             {errors.password?.type === 'required' &&
               <Typography style={errorStyles}
@@ -102,7 +108,8 @@ const Login = () => {
               variant='outlined'
               type='submit'
               style={{ margin: '20px 0' }}
-            >Submit</Button>
+              disabled={loading}
+              >{loading ? <CircularProgress size={22} thickness={2} /> : 'Submit'}</Button>
           </form>
         </div>
       }
