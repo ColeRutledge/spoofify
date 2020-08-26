@@ -5,7 +5,7 @@ import UserContext from '../context/UserContext'
 const apiUrl = process.env.REACT_APP_API_SERVER_BASE_URL
 
 
-const CreatePlaylistForm = ({onClickOutside,onKeyDown,modalRef,buttonRef,closeModal,handlePlaylistHide})=> {
+const CreatePlaylistForm = ({fetchPlaylists, handlePlaylistHide})=> {
     const [ setPlaylistError] = useState('')
     const {register, handleSubmit, errors} = useForm()
     const { auth } = useContext(UserContext)
@@ -19,7 +19,6 @@ const CreatePlaylistForm = ({onClickOutside,onKeyDown,modalRef,buttonRef,closeMo
 
         let id = localStorage.getItem('id')
         data["id"] = id;
-        console.log(data)
         try {
           const res = await fetch(`${apiUrl}/api/playlist/create`, {
             method: 'POST',
@@ -35,9 +34,9 @@ const CreatePlaylistForm = ({onClickOutside,onKeyDown,modalRef,buttonRef,closeMo
               setPlaylistError(data.error)
               return
             }
-
-            console.log(data)
+            fetchPlaylists()
             handlePlaylistHide()
+
           } else throw res
 
         } catch (err) {
