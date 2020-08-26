@@ -37,8 +37,6 @@ const ArtistDetails = () => {
           headers: {'Authorization': `Bearer ${localStorage.getItem('token') || auth}`}
         })
 
-
-
         if (artistJson.ok && albumsJson.ok && songsJson.ok) {
           const artist_data = await artistJson.json()
           const albums_data = await albumsJson.json()
@@ -57,7 +55,7 @@ const ArtistDetails = () => {
           setAuth('')
           history.push('/login')
         }
-        console.dir(err)
+        // console.dir(err)
         console.error(err)
       }
     }
@@ -164,6 +162,16 @@ const cardStyles = {
     gridTemplateRows: '1fr 1fr'
   }
 
+  const anchorCursorStyleNoSong = {
+    cursor: 'not-allowed',
+    width: '100%',
+  }
+  const anchorCursorStyle = {
+    cursor: 'pointer',
+    width: '100%',
+  }
+
+
   return (
     <>
       <div className='artistInfoContainer' style={detailContainerStyle}>
@@ -227,7 +235,13 @@ const cardStyles = {
           <React.Fragment key={i}>
             <div style={{ display: 'grid', gridTemplateColumns: '50px 1fr', alignItems: 'center', justifyItems: 'center' }}>
             <SongModal songId={song.song_id}></SongModal>
-              <a className='songCards' style={{ cursor: 'pointer', width: '100%' }} id={song.song_id} href='/' onClick={playSong} >
+              <a
+                className='songCards'
+                id={song.song_id}
+                href='/'
+                onClick={playSong}
+                style={song.song_id > 20 ? anchorCursorStyleNoSong : anchorCursorStyle}
+              >
                 <div style={{ ...cardStyles, pointerEvents: 'none' }}>
                   <div style={{ justifySelf: 'start', pointerEvents: 'none' }}>{song.song_title}
                     <div style={{ marginTop: '5px', pointerEvents: 'none', justifySelf: 'center', fontSize: '15px', color: '#b3b3b3' }}>{artist.name}
