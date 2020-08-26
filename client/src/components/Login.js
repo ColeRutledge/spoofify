@@ -56,7 +56,16 @@ const Login = () => {
     <>
       {auth
         ? <Redirect to='/library' />
-        : <div style={{ display: 'flex', alignItems: 'center', paddingTop: '50px', flexDirection: 'column', marginLeft: '-250px', marginTop: '75px' }}>
+        : <div
+            style={{
+              display: 'flex',
+              marginTop: '75px',
+              paddingTop: '50px',
+              alignItems: 'center',
+              marginLeft: '-250px',
+              flexDirection: 'column',
+            }}
+          >
           <h1 style={{ fontSize: 22 }}>Login</h1>
           <form
             onSubmit={handleSubmit(onSubmit)}
@@ -72,13 +81,13 @@ const Login = () => {
               onChange={e => { clearErrors(e.target.name) }}
             />
             {errors.email?.type === 'required' &&
-              <Typography style={errorStyles}
-              >Email required.
-                </Typography>}
+              <Typography style={errorStyles}>
+                Email required.
+              </Typography>}
             {errors.email?.type === 'maxLength' &&
-              <Typography style={errorStyles}
-              >Email cannot exceed 50 characters.
-                </Typography>}
+              <Typography style={errorStyles}>
+                Email cannot exceed 50 characters.
+              </Typography>}
             <TextField
               label='Password'
               name='password'
@@ -89,27 +98,30 @@ const Login = () => {
               onChange={e => { clearErrors(e.target.name); setLoginError('') }}
             />
             {errors.password?.type === 'required' &&
-              <Typography style={errorStyles}
-              >Invalid password.
-                </Typography>}
+              <Typography style={errorStyles}>
+                Invalid password.
+              </Typography>}
             {errors.password?.type === 'minLength' &&
-              <Typography style={errorStyles}
-              >Invalid password.
-                </Typography>}
+              <Typography style={errorStyles}>
+                Invalid password.
+              </Typography>}
             {errors.password?.type === 'pattern' &&
-              <Typography style={errorStyles}
-              >Invalid password.
-                </Typography>}
+              <Typography style={errorStyles}>
+                Invalid password.
+              </Typography>}
             {loginError &&
-              <Typography style={{ ...errorStyles, marginTop: '2px' }}
-              >{loginError}
+              <Typography style={{ ...errorStyles, marginTop: '2px' }}>
+                {loginError}
               </Typography>}
             <Button
               variant='outlined'
               type='submit'
               style={{ margin: '20px 0' }}
               disabled={loading}
-              >{loading ? <CircularProgress size={22} thickness={2} /> : 'Submit'}</Button>
+              >{loading
+                ? <CircularProgress size={22} thickness={2} />
+                : 'Submit'}
+              </Button>
           </form>
         </div>
       }

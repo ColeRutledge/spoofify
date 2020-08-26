@@ -17,6 +17,7 @@ const Register = () => {
 
   const onSubmit = async data => {
     // console.log(data)
+    if (data.password !== data.confirmPassword) return setRegisterError('Confirmed password does not match.')
     setLoading(true)
     try {
       const res = await fetch(`${apiUrl}/register`, {
@@ -56,7 +57,16 @@ const Register = () => {
     <>
       {auth
         ? <Redirect to='/library' />
-        : <div style={{ display: 'flex', alignItems: 'center', paddingTop: '50px', flexDirection: 'column', marginTop: '75px', marginLeft: '-250px' }}>
+        : <div
+            style={{
+              display: 'flex',
+              marginTop: '75px',
+              paddingTop: '50px',
+              alignItems: 'center',
+              marginLeft: '-250px',
+              flexDirection: 'column',
+            }}
+          >
           <h1 style={{ fontSize: 22 }}>Registration</h1>
           <form
             onSubmit={handleSubmit(onSubmit)}
@@ -72,13 +82,13 @@ const Register = () => {
               onChange={e => { clearErrors(e.target.name) }}
             />
             {errors.userName?.type === 'required' &&
-              <Typography style={errorStyles}
-              >Username required.
-                </Typography>}
+              <Typography style={errorStyles}>
+                Username required.
+            </Typography>}
             {errors.userName?.type === 'maxLength' &&
-              <Typography style={errorStyles}
-              >Username cannot exceed 50 characters.
-                </Typography>}
+              <Typography style={errorStyles}>
+                Username cannot exceed 50 characters.
+              </Typography>}
             <TextField
               label='First Name'
               name='firstName'
@@ -88,13 +98,13 @@ const Register = () => {
               onChange={e => { clearErrors(e.target.name) }}
             />
             {errors.firstName?.type === 'required' &&
-              <Typography style={errorStyles}
-              >First name required.
-                </Typography>}
+              <Typography style={errorStyles}>
+                First name required.
+              </Typography>}
             {errors.firstName?.type === 'maxLength' &&
-              <Typography style={errorStyles}
-              >First name cannot exceed 50 characters.
-                </Typography>}
+              <Typography style={errorStyles}>
+                First name cannot exceed 50 characters.
+              </Typography>}
             <TextField
               label='Last Name'
               name='lastName'
@@ -104,13 +114,13 @@ const Register = () => {
               onChange={e => { clearErrors(e.target.name) }}
             />
             {errors.lastName?.type === 'required' &&
-              <Typography style={errorStyles}
-              >Last name required.
-                </Typography>}
+              <Typography style={errorStyles}>
+                Last name required.
+              </Typography>}
             {errors.lastName?.type === 'maxLength' &&
-              <Typography style={errorStyles}
-              >Last name cannot exceed 50 characters.
-                </Typography>}
+              <Typography style={errorStyles}>
+                Last name cannot exceed 50 characters.
+              </Typography>}
             <TextField
               label='Email Address'
               name='email'
@@ -121,13 +131,13 @@ const Register = () => {
               onChange={e => { clearErrors(e.target.name) }}
             />
             {errors.email?.type === 'required' &&
-              <Typography style={errorStyles}
-              >Email required.
-                </Typography>}
+              <Typography style={errorStyles}>
+                Email required.
+              </Typography>}
             {errors.email?.type === 'maxLength' &&
-              <Typography style={errorStyles}
-              >Email cannot exceed 50 characters.
-                </Typography>}
+              <Typography style={errorStyles}>
+                Email cannot exceed 50 characters.
+              </Typography>}
             <TextField
               label='Password'
               name='password'
@@ -138,17 +148,17 @@ const Register = () => {
               onChange={e => { clearErrors(e.target.name) }}
             />
             {errors.password?.type === 'required' &&
-              <Typography style={errorStyles}
-              >Password required.
-                </Typography>}
+              <Typography style={errorStyles}>
+                Password required.
+              </Typography>}
             {errors.password?.type === 'minLength' &&
-              <Typography style={errorStyles}
-              >Please provide a password with more than six characters that includes at least one number and one letter.
-                </Typography>}
+              <Typography style={errorStyles}>
+                Please provide a password with more than six characters that includes at least one number and one letter.
+              </Typography>}
             {errors.password?.type === 'pattern' &&
-              <Typography style={errorStyles}
-              >Please provide a password with more than six characters that includes at least one number and one letter.
-                </Typography>}
+              <Typography style={errorStyles}>
+                Please provide a password with more than six characters that includes at least one number and one letter.
+              </Typography>}
             <TextField
               label='Confirm Password'
               name='confirmPassword'
@@ -159,27 +169,30 @@ const Register = () => {
               onChange={e => { clearErrors(e.target.name); setRegisterError('') }}
             />
             {errors.confirmPassword?.type === 'required' &&
-              <Typography style={errorStyles}
-              >Password required.
-                </Typography>}
-            {errors.confirmPassword?.type === 'minLength' &&
-              <Typography style={errorStyles}
-              >Please provide a password with more than six characters that includes at least one number and one letter.
-                </Typography>}
-            {errors.confirmPassword?.type === 'pattern' &&
-              <Typography style={errorStyles}
-              >Please provide a password with more than six characters that includes at least one number and one letter.
-                </Typography>}
-            {registerError &&
-              <Typography style={{ ...errorStyles, marginTop: '2px' }}
-              >{registerError}
+              <Typography style={errorStyles}>
+                Password required.
               </Typography>}
+            {errors.confirmPassword?.type === 'minLength' &&
+              <Typography style={errorStyles}>
+                Please provide a password with more than six characters that includes at least one number and one letter.
+              </Typography>}
+            {errors.confirmPassword?.type === 'pattern' &&
+              <Typography style={errorStyles}>
+                Please provide a password with more than six characters that includes at least one number and one letter.
+              </Typography>}
+            {registerError &&
+              <Typography style={{ ...errorStyles, marginTop: '2px' }}>
+                {registerError}
+            </Typography>}
             <Button
               variant='outlined'
               type='submit'
               style={{ margin: '10px 0' }}
               disabled={loading}
-            >{loading ? <CircularProgress size={22} thickness={2} /> : 'Submit'}</Button>
+            >{loading
+              ? <CircularProgress size={22} thickness={2} />
+              : 'Submit'}
+            </Button>
           </form>
         </div>
       }
