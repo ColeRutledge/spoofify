@@ -10,6 +10,7 @@ import Library from './Library'
 import TopNav from './TopNav'
 import BottomNav from './BottomNav'
 import UserContext from '../context/UserContext'
+import PlaylistDetails from './PlaylistDetails'
 
 
 const Routes = () => {
@@ -24,6 +25,7 @@ const Routes = () => {
         <Route path='/register' render={() => <Register />} />
         <ProtectedRoute path='/users' component={Users} />
         <ProtectedRoute path='/library' component={Library} />
+        <ProtectedRoute path='/library/playlists/:id' render={()=><PlaylistDetails/>} />
       </Switch>
     </>
   )

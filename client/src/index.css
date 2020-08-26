@@ -168,13 +168,14 @@ a:hover {
   color:white;
   font-size:14px;
   font-weight: bold;
-  padding-left:100px;
+  margin-left:480px;
 }
 .createPlaylist-header{
   font-size: 45px;
   color:white;
   font-weight: bolder;
   margin-bottom: 16px;
+  margin-left: 120px
 }
 .createPlaylistScreen{
   position: absolute;
@@ -214,7 +215,7 @@ a:hover {
 .createPlaylist-buttons{
   display:flex;
   margin-top: 16px;
-  padding-right:200px;
+  margin-left:100px;
 }
 .createPlaylist-buttons-cancel, .createPlaylist-buttons-create {
   margin-bottom: 14px;
