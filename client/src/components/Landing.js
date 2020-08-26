@@ -33,7 +33,7 @@ const Landing = () => {
           }}>
             <p style={{ color: 'white', fontSize: '75px' }}>Music for everyone.</p>
             <p style={{ color: 'white', fontSize: '25px', marginTop: '20px' }} >Millions of songs. No credit card needed</p>
-            <Button href='/register' style={{ backgroundColor: '#1DB954', borderRadius: '25px', color: 'white', fontSize: '15px', marginTop: '30px', padding: '10px 25px', fontFamily: 'inherit' }}>Register Now</Button>
+            <Button href='/register' style={{ cursor: 'pointer', backgroundColor: '#1DB954', borderRadius: '25px', color: 'white', fontSize: '15px', marginTop: '30px', padding: '10px 25px', fontFamily: 'inherit' }}>Register Now</Button>
           </div>
           <BottomNav />
         </div>
