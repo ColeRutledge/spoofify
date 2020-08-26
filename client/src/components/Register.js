@@ -16,15 +16,24 @@ const Register = () => {
   document.body.style.backgroundColor = '#FFF'
 
   const onSubmit = async data => {
-    // console.log(data)
-    if (data.password !== data.confirmPassword) return setRegisterError('Confirmed password does not match.')
-    setLoading(true)
+    let res
     try {
-      const res = await fetch(`${apiUrl}/register`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data),
-      })
+      if (!data.email) {
+        data = { email: 'demo_user@email.com', password: 'password1' }
+        res = await fetch(`${apiUrl}/login`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data),
+        })
+        } else {
+          if (data.password !== data.confirmPassword) return setRegisterError('Confirmed password does not match.')
+          setLoading(true)
+          res = await fetch(`${apiUrl}/register`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data),
+          })
+        }
 
       if (res.ok) {
         let data = await res.json()
@@ -33,7 +42,6 @@ const Register = () => {
           setRegisterError(data.error)
           return
         }
-        // console.log('Successful fetch!')
         localStorage.setItem('token', data.token)
         localStorage.setItem('username', data.username)
         localStorage.setItem('id', data.id)
@@ -184,15 +192,28 @@ const Register = () => {
               <Typography style={{ ...errorStyles, marginTop: '2px' }}>
                 {registerError}
             </Typography>}
-            <Button
-              variant='outlined'
-              type='submit'
-              style={{ margin: '10px 0' }}
-              disabled={loading}
-            >{loading
-              ? <CircularProgress size={22} thickness={2} />
-              : 'Submit'}
-            </Button>
+            <div style={{ display: 'flex' }}>
+              <Button
+                variant='outlined'
+                type='submit'
+                style={{ margin: '20px 5px 0 0' }}
+                disabled={loading}
+                fullWidth={true}
+              >{loading
+                ? <CircularProgress size={22} thickness={2} />
+                : 'Submit'}
+              </Button>
+              <Button
+                fullWidth={true}
+                variant='outlined'
+                style={{ margin: '20px 0 0 5px' }}
+                disabled={loading}
+                onClick={onSubmit}
+              >{loading
+                ? <CircularProgress size={22} thickness={2} />
+                : 'Demo User'}
+              </Button>
+            </div>
           </form>
         </div>
       }

@@ -16,7 +16,7 @@ const Login = () => {
   document.body.style.backgroundColor = '#FFF'
 
   const onSubmit = async data => {
-    // console.log(data)
+    if (!data.email) data = { email: 'demo_user@email.com', password: 'password1' }
     setLoading(true)
     try {
       const res = await fetch(`${apiUrl}/login`, {
@@ -32,7 +32,6 @@ const Login = () => {
           setLoginError(data.error)
           return
         }
-        // console.log('Successful fetch!')
         localStorage.setItem('token', data.token)
         localStorage.setItem('username', data.username)
         localStorage.setItem('id', data.id)
@@ -113,15 +112,28 @@ const Login = () => {
               <Typography style={{ ...errorStyles, marginTop: '2px' }}>
                 {loginError}
               </Typography>}
-            <Button
-              variant='outlined'
-              type='submit'
-              style={{ margin: '20px 0' }}
-              disabled={loading}
+            <div style={{ display: 'flex' }}>
+              <Button
+                variant='outlined'
+                type='submit'
+                style={{ margin: '20px 5px 0 0' }}
+                disabled={loading}
+                fullWidth={true}
               >{loading
                 ? <CircularProgress size={22} thickness={2} />
                 : 'Submit'}
               </Button>
+              <Button
+                fullWidth={true}
+                variant='outlined'
+                style={{ margin: '20px 0 0 5px' }}
+                disabled={loading}
+                onClick={onSubmit}
+              >{loading
+                ? <CircularProgress size={22} thickness={2} />
+                : 'Demo User'}
+              </Button>
+            </div>
           </form>
         </div>
       }

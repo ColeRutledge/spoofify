@@ -1,8 +1,6 @@
 import React, { useEffect, useContext, useState } from 'react'
 import UserContext from '../context/UserContext'
 import { useHistory } from 'react-router-dom'
-import FavoriteIcon from '@material-ui/icons/Favorite'
-import Button from '@material-ui/core/Button'
 import SongModal from './SongModal'
 const apiUrl = process.env.REACT_APP_API_SERVER_BASE_URL
 
