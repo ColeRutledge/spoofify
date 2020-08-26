@@ -22,7 +22,6 @@ const Albums = () => {
 
                 if (res.ok) {
                     const data = await res.json()
-                    console.log(data.albums)
                     setAlbums([...data.albums])
                 } else throw res
 
@@ -110,12 +109,12 @@ const Albums = () => {
                             </div>
                         </div>
                         <div
-                          style={{
-                            justifySelf: 'start',
-                            marginTop: '5px',
-                            width: '190px',
-                            overflow: 'hidden',
-                          }}>
+                            style={{
+                                justifySelf: 'start',
+                                marginTop: '5px',
+                                width: '190px',
+                                overflow: 'hidden',
+                            }}>
                             <NavLink type='button' activeClassName='navbar--active2' to={`/library/albums/${album.id}`} style={{
                                 marginTop: '10px',
                                 marginBottom: '7px',
