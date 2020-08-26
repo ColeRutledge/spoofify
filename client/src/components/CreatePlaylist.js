@@ -2,13 +2,13 @@ import React,{useState, useContext} from 'react'
 import CreatePlaylistForm from './CreatePlaylistForm'
 import ReactDOM from 'react-dom'
 
-const CreatePlaylistScreen =({handlePlaylistHide})=> {
+const CreatePlaylistScreen =({handlePlaylistHide, fetchPlaylists})=> {
         return ReactDOM.createPortal(
         
         
         <div className="createPlaylistScreen">
-        <h1 className="createPlaylist-header" style={{fontSize:"45px",color:"white",fontWeight:"bolder",marginBottom:"16px",paddingRight:"200px"}}>Create new playlist</h1>
-            <CreatePlaylistForm handlePlaylistHide={handlePlaylistHide}></CreatePlaylistForm>
+        <h1 className="createPlaylist-header">Create new playlist</h1>
+            <CreatePlaylistForm fetchPlaylists={fetchPlaylists} handlePlaylistHide={handlePlaylistHide}></CreatePlaylistForm>
         </div>
         , document.body
     )
