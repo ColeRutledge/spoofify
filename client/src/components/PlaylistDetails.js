@@ -112,6 +112,15 @@ const PlaylistDetails = () => {
     gridTemplateRows: '10fr 1fr'
   }
 
+  const anchorCursorStyleNoSong = {
+    cursor: 'not-allowed',
+    width: '100%',
+  }
+  const anchorCursorStyle = {
+    cursor: 'pointer',
+    width: '100%',
+  }
+
   return (
     <>
       {playlist.length > 0 &&
@@ -147,7 +156,13 @@ const PlaylistDetails = () => {
             <React.Fragment key={i}>
               <div style={{ display: 'grid', gridTemplateColumns: '50px 1fr', alignItems: 'center', justifyItems: 'center' }}>
               <SongModal songId={song.song_id}></SongModal>
-                <a className='songCards' style={{ cursor: 'pointer', width: '100%' }} id={song.id} href='/' onClick={playSong} >
+                <a
+                  className='songCards'
+                  id={song.id}
+                  href='/'
+                  onClick={playSong}
+                  style={song.id > 20 ? anchorCursorStyleNoSong : anchorCursorStyle}
+                >
                   <div style={{ ...cardStyles, pointerEvents: 'none' }}>
                     <div style={{ justifySelf: 'start', pointerEvents: 'none' }}>{song.title}
                       <div

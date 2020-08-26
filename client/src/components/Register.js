@@ -1,21 +1,23 @@
 import React, { useState, useContext } from 'react'
 import { useForm } from 'react-hook-form'
 import { Redirect } from 'react-router-dom'
-import { TextField, Button, Typography } from '@material-ui/core'
+import { TextField, Button, Typography, CircularProgress } from '@material-ui/core'
 import UserContext from '../context/UserContext'
 
 const apiUrl = process.env.REACT_APP_API_SERVER_BASE_URL
 
 
 const Register = () => {
-  const [registerError, setRegisterError] = useState('')
-  const { register, handleSubmit, errors } = useForm()
+  const [ registerError, setRegisterError ] = useState('')
+  const [ loading, setLoading ] = useState(false)
+  const { register, handleSubmit, errors, clearErrors } = useForm()
   const { auth, setAuth } = useContext(UserContext)
 
   document.body.style.backgroundColor = '#FFF'
 
   const onSubmit = async data => {
     // console.log(data)
+    setLoading(true)
     try {
       const res = await fetch(`${apiUrl}/register`, {
         method: 'POST',
@@ -25,11 +27,12 @@ const Register = () => {
 
       if (res.ok) {
         let data = await res.json()
+        setLoading(false)
         if (data.error) {
           setRegisterError(data.error)
           return
         }
-        console.log('Successful fetch!')
+        // console.log('Successful fetch!')
         localStorage.setItem('token', data.token)
         localStorage.setItem('username', data.username)
         localStorage.setItem('id', data.id)
@@ -38,7 +41,8 @@ const Register = () => {
       } else throw res
 
     } catch (err) {
-      console.log(err)
+      setLoading(false)
+      console.error(err)
     }
   }
 
@@ -65,6 +69,7 @@ const Register = () => {
               variant='outlined'
               style={{ margin: '10px 0' }}
               inputRef={register({ required: true, maxLength: 50 })}
+              onChange={e => { clearErrors(e.target.name) }}
             />
             {errors.userName?.type === 'required' &&
               <Typography style={errorStyles}
@@ -80,6 +85,7 @@ const Register = () => {
               variant='outlined'
               style={{ margin: '10px 0' }}
               inputRef={register({ required: true, maxLength: 50 })}
+              onChange={e => { clearErrors(e.target.name) }}
             />
             {errors.firstName?.type === 'required' &&
               <Typography style={errorStyles}
@@ -95,6 +101,7 @@ const Register = () => {
               variant='outlined'
               style={{ margin: '10px 0' }}
               inputRef={register({ required: true, maxLength: 50 })}
+              onChange={e => { clearErrors(e.target.name) }}
             />
             {errors.lastName?.type === 'required' &&
               <Typography style={errorStyles}
@@ -111,6 +118,7 @@ const Register = () => {
               variant='outlined'
               style={{ margin: '10px 0' }}
               inputRef={register({ required: true, maxLength: 50 })}
+              onChange={e => { clearErrors(e.target.name) }}
             />
             {errors.email?.type === 'required' &&
               <Typography style={errorStyles}
@@ -127,6 +135,7 @@ const Register = () => {
               variant='outlined'
               style={{ margin: '10px 0' }}
               inputRef={register({ required: true, minLength: 6, pattern: /^(?=.*\d)(?=.*[a-z])/ })}
+              onChange={e => { clearErrors(e.target.name) }}
             />
             {errors.password?.type === 'required' &&
               <Typography style={errorStyles}
@@ -147,6 +156,7 @@ const Register = () => {
               variant='outlined'
               style={{ margin: '10px 0' }}
               inputRef={register({ required: true, minLength: 6, pattern: /^(?=.*\d)(?=.*[a-z])/ })}
+              onChange={e => { clearErrors(e.target.name); setRegisterError('') }}
             />
             {errors.confirmPassword?.type === 'required' &&
               <Typography style={errorStyles}
@@ -168,7 +178,8 @@ const Register = () => {
               variant='outlined'
               type='submit'
               style={{ margin: '10px 0' }}
-            >Submit</Button>
+              disabled={loading}
+            >{loading ? <CircularProgress size={22} thickness={2} /> : 'Submit'}</Button>
           </form>
         </div>
       }

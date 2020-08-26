@@ -117,6 +117,15 @@ const AlbumPage = () => {
         color: 'hsla(0,0%,100%,1)',
     }
 
+    const anchorCursorStyleNoSong = {
+      cursor: 'not-allowed',
+      width: '100%',
+    }
+    const anchorCursorStyle = {
+      cursor: 'pointer',
+      width: '100%',
+    }
+
     return (
         <>
             <div style={{ paddingTop: '90px' }}></div>
@@ -138,7 +147,13 @@ const AlbumPage = () => {
                     <React.Fragment key={i}>
                         <div style={{ display: 'grid', gridTemplateColumns: '50px 1fr', alignItems: 'center', justifyItems: 'center' }}>
                             <SongModal songId={song.id}></SongModal>
-                            <a className='songCards' style={{ cursor: 'pointer', width: '100%' }} id={song.id} href="/" onClick={playSong} >
+                            <a
+                              className='songCards'
+                              id={song.id}
+                              href="/"
+                              onClick={playSong}
+                              style={song.id > 20 ? anchorCursorStyleNoSong : anchorCursorStyle}
+                            >
                                 <div style={{ ...cardStyles, pointerEvents: 'none' }}>
                                     <div style={{ justifySelf: 'start', pointerEvents: 'none' }}>{song.title}
                                         <div style={{ marginTop: '5px', pointerEvents: 'none', justifySelf: 'center', fontSize: '15px', color: '#b3b3b3' }}>{song.artist_name}

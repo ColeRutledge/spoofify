@@ -34,7 +34,7 @@ const Songs = () => {
           setAuth('')
           history.push('/login')
         }
-        console.dir(err)
+        // console.dir(err)
         console.error(err)
       }
     }
@@ -70,7 +70,7 @@ const Songs = () => {
     }
   }
 
- 
+
 
   const cardContainerStyle = {
     display: 'flex',
@@ -99,6 +99,15 @@ const Songs = () => {
     color: 'hsla(0,0%,100%,1)',
   }
 
+  const anchorCursorStyleNoSong = {
+    cursor: 'not-allowed',
+    width: '100%',
+  }
+  const anchorCursorStyle = {
+    cursor: 'pointer',
+    width: '100%',
+  }
+
   return (
     <>
       <div style={{ paddingTop: '75px' }}></div>
@@ -109,7 +118,13 @@ const Songs = () => {
           <React.Fragment key={i}>
             <div style={{ display: 'grid', gridTemplateColumns: '50px 1fr', alignItems: 'center', justifyItems: 'center' }}>
               <SongModal songId={song.song_id}></SongModal>
-              <a className='songCards' style={{ cursor: 'pointer', width: '100%' }} id={song.song_id} href='/' onClick={playSong} >
+              <a
+                className='songCards'
+                id={song.song_id}
+                href='/'
+                onClick={playSong}
+                style={song.song_url === 'this is the song url' ? anchorCursorStyleNoSong : anchorCursorStyle}
+              >
                 <div style={{ ...cardStyles, pointerEvents: 'none' }}>
                   <div style={{ justifySelf: 'start', pointerEvents: 'none' }}>{song.title}
                     <div style={{ marginTop: '5px', pointerEvents: 'none', justifySelf: 'center', fontSize: '15px', color: '#b3b3b3' }}>{song.artist}
