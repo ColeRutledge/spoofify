@@ -1,6 +1,8 @@
 import React, { useEffect, useContext, useState } from 'react'
 import { useParams, useHistory } from 'react-router-dom'
 import SongModal from './SongModal'
+import DeleteIcon from '@material-ui/icons/Delete';
+import Button from '@material-ui/core/Button'
 
 import demo_playlist from '../images/demo_playlist.jpg'
 import UserContext from '../context/UserContext'
@@ -72,6 +74,22 @@ const PlaylistDetails = () => {
     }
   }
 
+  const deletePlaylist = async(id) =>{
+    const playlistId = id
+    
+    try{
+      const res = await fetch(`${apiUrl}/api/playlist/${playlistId}/delete`, {
+        method: 'DELETE',
+        headers: { 'Authorization': `Bearer ${localStorage.getItem('token') || auth}`}
+      })
+      if(res.ok){
+        history.push('/')
+      }
+    }catch(err){
+      console.log(err)
+    }
+  }
+
 
   const cardStyles = {
     display: 'grid',
@@ -133,7 +151,11 @@ const PlaylistDetails = () => {
               gridArea: 'name',
               fontSize: '36px',
               marginLeft: '20px',
-              alignSelf: 'end' }}>{playlist[0].name}</div>
+              alignSelf: 'end' }}>{playlist[0].name}
+              <Button id={playlist[0].id} onClick={()=>deletePlaylist(id)}> <DeleteIcon style={{ color: 'hsla(0,0%,100%,.3)', pointerEvents: 'none', marginLeft:"15px" }}/>  </Button>
+
+          </div>
+
           <div
             style={{
               gridArea: 'desc',
@@ -146,6 +168,7 @@ const PlaylistDetails = () => {
             <div style={{ fontSize: '18px' }}>{`${playlist[0].created_by}`}</div>
             <div style={{ margin: '0 13px', pointerEvents: 'none', color: '#b3b3b3' }}>•</div>
             <div style={{ fontSize: '18px', color: '#b3b3b3' }}>{playlist[0].description}</div>
+
           </div>
         </div>
       }
