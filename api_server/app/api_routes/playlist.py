@@ -77,6 +77,8 @@ def create_playlist():
     except AssertionError as message:
         return jsonify({"error": str(message)}), 400
 
+
+# Delete Playlist
 @bp.route("/<int:id>/delete", methods=["DELETE"])
 def delete_playlist(id):
     playlist = Playlist.query.get(id)
