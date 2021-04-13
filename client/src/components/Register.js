@@ -46,7 +46,7 @@ const Register = () => {
         localStorage.setItem('username', data.username)
         localStorage.setItem('id', data.id)
         setAuth(data.token)
-        console.log(data)
+        // console.log(data)
       } else throw res
 
     } catch (err) {
