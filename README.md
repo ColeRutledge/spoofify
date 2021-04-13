@@ -1,125 +1,45 @@
-# Spotify Clone
-## a clone of the popular streaming music service
+<h2 align='center'>Spoofify</h2>
+<h3 align='center'>A clone of the popular music streaming service built with Python, Flask, ReactJS, and PostgreSQL</h3>
+</br>
 
-### Docker Containers:
-- React App (bootstrapped with create-react-app)
-- Python/Flask API Server
-- PostgreSQL Database
+---
 
-#### React App:
-- JWT
-- React Hook Form
-- React Router
-- Hooks (useState, useContext, useHistory, useEffect)
-- Material UI
-- AWS
+</br>
+<p>This was a team based project done during the Python and Flask curriculum of the App Academy six month bootcamp program. In it, we used a client side ReactJS app to talk with a Flask API server to retrieve relevant data to power the UI. It was a great project that really helped us develop a better understanding of working with modern web application architecture, authentication, and it was our first introduction to the wonderful world of Docker!</p>
 
-#### Python/Flask API Server:
-- JWT Auth
-- Werkzeug Security for password encryption
-- API Endpoints for Song/Playlist/User CRUD
+### Takeaways:
 
-#### PostgreSQL DB
-- User Info
-- Library / Playlists
-- Song / Artist Info
-- Links to AWS hosting for music
+<ul>
+    <li>The team-based development experience with Docker and docker-compose was excellent!</li>
+    <li>Working with the Spotify API to generate data for the application was simple and helpful.</li>
+    <li>Using JSON Web Tokens (JWT) for auth was much more flexible than using session based auth in Express.</li>
+    <li>React Hook Form was an amazing package to work with for handling form validation and error handling.</li>
+</ul>
 
+### Usage:
 
-### API Endpoints
-
-#### User
-- Create User
-- Delete User
-- Update User
-- Return Users
-- User Auth -> /token
-
-#### Playlist
-- Create Playlist
-- Delete Playlist
-- Update Playlist (add/remove)
-- Return Playlist
-
-#### User Library
-- Add/Remove Songs
-- Return Song Library
-- Return Artist Library
-- Return Album Library
-- Return Genre Library (optional)
-
-#### Spotify Library
-- Return Song Library
-- Return Artist Library
-- Return Album Library
-- Return Genre Library (optional)
-
-
-### Setup
 1. Clone project
-2. Create .env files in the root directory (example.env included)
-3. Create .env file in api_server directory with DATABASE_URL
-4. From the root directory, run [docker-compose up]
+2. Create .env files in the root directory (example.env included and below)
+3. Create .env file in api_server directory with a `DATABASE_URL`
+4. From the root directory, run `docker-compose up`
 
-### To run locally:
-1. cd into either api_server or client
-2. install packages locally
-3. npm start or flask run (with venv activated)
-
-### To gain access to postgres inside container:
-```bash
-docker container exec -it spotify_clone_db_1 /bin/sh
-psql -U flask_api -W flask_api_db
-```
-### To populate DB with seeder data:
-```bash
-docker container exec -it spotify_clone_api_1 /bin/sh
-python3 database.py
-```
-
-#### Deployment Notes:
-Flask App:
-
-Deploying flask to heroku
-- git subtree push heroku --prefix api_server master
-
-Add heroku.yml
-```bash
-# add gunicorn package and swap these 2 lines in entrypoint.sh
-python3 entry.py run -h 0.0.0.0
-gunicorn app:app
-```
-
-deploying client folder from master branch
-- git subtree push client --prefix client master
-
-
-installing serve package globally to serve static assets
-- npm install -g serve
-
-deploying client folder on react-auth branch
-- git push client `git subtree split --prefix client react-auth`:master --force
+</br>
 
 ```bash
-# production image build
-FROM node:12-alpine as base
+# .env example
 
-FROM base as build
+# required in the root of the project
+FLASK_ENV=development
+POSTGRES_USER=db_user
+POSTGRES_PASSWORD=password
+POSTGRES_DB=db_name
 
-ENV REACT_APP_API_SERVER_BASE_URL=https://spotify-clone-appacademy.herokuapp.com
-
-WORKDIR /app
-
-COPY . .
-
-RUN npm install && npm run build
-
-RUN npm install -g serve
-
-CMD ["serve", "-s", "build"]
+# required inside of api_server/.env
+DATABASE_URL=postgresql://db_user:password@postgres/db_name
 ```
 
-```bash
-# deployment for specific branch for api_server
-git push heroku `git subtree split --prefix api_server react-auth`:master --force
-```
+---
+
+</br>
+
+![screenshot](https://colerutledge.dev/static/img/spoofify.png)
