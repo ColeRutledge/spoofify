@@ -40,6 +40,10 @@ DATABASE_URL=postgresql://db_user:password@postgres/db_name
 
 ---
 
+<p style="margin-top: 5%" align='center'>
+    <a href='https://spotify-clone-aa-react.herokuapp.com/' target='_blank'>Link to live demo -> Click Login and then on Demo User</a><br><i>you may have to give Heroku a minute!<i></br>
+</p>
+
 </br>
 
 ![screenshot](https://colerutledge.dev/static/img/spoofify.png)
