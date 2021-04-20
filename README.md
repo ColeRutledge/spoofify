@@ -1,6 +1,5 @@
 <h2 align='center'>Spoofify</h2>
 <h3 align='center'>A clone of the popular music streaming service built with Python, Flask, ReactJS, and PostgreSQL</h3>
-</br>
 
 ---
 
